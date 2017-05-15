@@ -1,10 +1,15 @@
 # Capdash2
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.2.
+This project was originally generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.2.
 
 ## Main Technologies Used
 
-* [Twitter Bootstrap](https://ng-bootstrap.github.io/#/getting-started) Native Angular directives based on Bootstrap's markup and CSS
+* [Angular 4](https://angular.io/) Angular4 JavaScript Client-Side MVC Framework (bundles Typescript and RxJS)
+* [Redux](http://redux.js.org/) predictable state container for JavaScript apps
+* [Redux Observables](https://redux-observable.js.org/) RxJS 5-based middleware for Redux.
+* [Jasmine](https://jasmine.github.io/) Behavior-driven development framework for unit testing JavaScript code
+* [Protractor](http://www.protractortest.org/#/) end-to-end test framework for Angular and AngularJS applications; runs tests against your application running in a real browser, interacting with it as a user would. 
+* [CucumberJS](https://cucumber.io/docs/reference/javascript) Cucumber implementation written in pure JavaScript, for feature tests.
 
 ## Architectural Notes
 
@@ -29,6 +34,7 @@ Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github
 ## Running end-to-end tests
 
 Run `npm e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
 Before running the tests make sure you are serving the app via `ng serve`.
 
 ## Further help
