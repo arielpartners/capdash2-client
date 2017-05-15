@@ -79,10 +79,11 @@ describe('HeaderComponent', () => {
     it('should have been called when radio button is clicked', async(() => {
       fixture.whenStable().then(() => {
         expect(component.toggleRadio).toHaveBeenCalled();
-      })
+      });
     }));
 
-    // Question: since input type is radio, wouldn't button be checked when clicked with or without invoking toggleRadio()? That seems native HTML DOM functionality rather than function of this component.
+    // Question: since input type is radio, wouldn't button be checked when clicked with or without invoking
+    // toggleRadio()? That seems native HTML DOM functionality rather than function of this component.
     it('should check when radio button is clicked', () => {
       expect(button.checked).toBe(true);
     });
