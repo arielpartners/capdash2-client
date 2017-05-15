@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { async, fakeAsync, ComponentFixture, TestBed, tick } from '@angular/core/testing';
-import { Router } from "@angular/router";
 import { RouterTestingModule } from '@angular/router/testing';
-import { Location } from "@angular/common";
-
-import { MockComponent } from 'ng2-mock-component';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
 
 import { AppComponent } from '../../app.component';
@@ -15,10 +11,9 @@ describe('HeaderComponent', () => {
   @Component({
     template: ''
   })
+
   class DummyComponent { }
 
-  let location: Location;
-  let router: Router;
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
@@ -40,14 +35,8 @@ describe('HeaderComponent', () => {
   }));
 
   beforeEach(() => {
-    router = TestBed.get(Router);
-    location = TestBed.get(Location);
-
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
-    // fixture.detectChanges();
-
-    router.initialNavigation();
   });
 
   it('should create', async(() => {
@@ -55,10 +44,10 @@ describe('HeaderComponent', () => {
   }));
 
   describe('logout()', () => {
+
     let button;
     beforeEach(() => {
       spyOn(component, 'logout');
-      // spyOn(component, 'toggleRadio');
       button = fixture.debugElement.nativeElement.querySelector('.logout');
       button.click();
       fixture.detectChanges();
@@ -67,12 +56,11 @@ describe('HeaderComponent', () => {
     it('should have been called when button is clicked', () => {
       fixture.whenStable().then(() => {
         expect(component.logout).toHaveBeenCalled();
-        // expect(component.toggleRadio).toHaveBeenCalled();
       })
     });
 
     it('should redirects to /login route', () => {
-      let href = button.getAttribute('href');
+      const href = button.getAttribute('href');
       expect(href).toBe('/login');
     });
   });
@@ -83,6 +71,7 @@ describe('HeaderComponent', () => {
     beforeEach(() => {
       spyOn(component, 'toggleRadio');
       fixture.detectChanges();
+      // Todo: select button without using id.
       button = fixture.debugElement.nativeElement.querySelector('#dropdown-menu-lg-checkbox');
       button.click();
     });
@@ -93,6 +82,7 @@ describe('HeaderComponent', () => {
       })
     }));
 
+    // Question: since input type is radio, wouldn't button be checked when clicked with or without invoking toggleRadio()? That seems native HTML DOM functionality rather than function of this component.
     it('should check when radio button is clicked', () => {
       expect(button.checked).toBe(true);
     });

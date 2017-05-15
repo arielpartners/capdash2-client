@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {NgRedux} from '@angular-redux/store';
-import { Router } from '@angular/router';
-
-import {IAppState} from '../../store/root.types';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from '../../store/root.types';
 
 @Component({
   selector: 'cd-header',
@@ -11,9 +9,7 @@ import {IAppState} from '../../store/root.types';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(
-    private ngRedux: NgRedux<IAppState>
-  ) {}
+  constructor( private ngRedux: NgRedux<IAppState> ) {}
 
   ngOnInit() {}
 
