@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgRedux} from '@angular-redux/store';
+import { Router } from '@angular/router';
+
 import {IAppState} from '../../store/root.types';
 
 @Component({
@@ -9,7 +11,9 @@ import {IAppState} from '../../store/root.types';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private ngRedux: NgRedux<IAppState>) {}
+  constructor(
+    private ngRedux: NgRedux<IAppState>
+  ) {}
 
   ngOnInit() {}
 
@@ -17,7 +21,6 @@ export class HeaderComponent implements OnInit {
     localStorage.clear();
     this.toggleRadio(undefined);
     this.ngRedux.dispatch({type: 'logged-out'});
-
   }
 
   toggleRadio(e) {
@@ -40,6 +43,5 @@ export class HeaderComponent implements OnInit {
         radioBtn.canClear = false;
       }
     }
-
   }
 }
