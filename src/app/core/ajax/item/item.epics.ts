@@ -21,8 +21,8 @@ export class ItemEpics {
    * @param {string} itemType
    * @returns {EpicMiddleware<any|any, S>}
    */
-  public createEpic(itemType: ItemType) {
-    return createEpicMiddleware(this.createLoadItemEpic(itemType));
+  public createLoadItemEpic(itemType: ItemType) {
+    return createEpicMiddleware(this.loadItemEpic(itemType));
   }
 
   /**
@@ -60,7 +60,7 @@ export class ItemEpics {
    * @param {string} itemType
    * @returns {(action$:any)=>Observable<R|T>}
    */
-  private createLoadItemEpic(itemType) {
+  private loadItemEpic(itemType) {
     return action$ => action$
       .ofType(ItemActions.LOAD_STARTED)
       .filter(({meta}) => meta.itemType === itemType)

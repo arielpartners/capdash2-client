@@ -11,9 +11,9 @@ export class RootEpics {
 
   public createEpics() {
     return [
-      this.itemEpics.createEpic(ITEM_TYPES.INFO),
-      this.itemEpics.createEpic(ITEM_TYPES.TOKEN),
-      this.itemEpics.createEpic(ITEM_TYPES.USER),
+      this.itemEpics.createLoadItemEpic(ITEM_TYPES.INFO),
+      this.itemEpics.createLoadItemEpic(ITEM_TYPES.TOKEN),
+      this.itemEpics.createLoadItemEpic(ITEM_TYPES.USER),
       this.itemEpics.createSimpleEpic({
         action: {
           type: '@angular-redux/router::UPDATE_LOCATION',
