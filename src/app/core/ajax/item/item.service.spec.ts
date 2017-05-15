@@ -1,3 +1,4 @@
+
 import { TestBed, async, inject } from '@angular/core/testing';
 import {
   HttpModule,
@@ -6,11 +7,12 @@ import {
   ResponseOptions,
   XHRBackend
 } from '@angular/http';
+
 import { MockBackend } from '@angular/http/testing';
 import { ItemService } from './item.service';
 import { ITEM_TYPES } from './item.types';
 
-fdescribe('ItemService', () => {
+describe('ItemService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpModule],
@@ -21,16 +23,15 @@ fdescribe('ItemService', () => {
     });
   });
 
-  it('should exist', inject([ItemService], (service: ItemService) => {
-    expect(service).toBeTruthy();
+  it('should exist', inject([ItemService, XHRBackend], (itemService, mockBackend) => {
+    const svc = new ItemService(mockBackend);
+    expect(svc).toBeTruthy();
   }));
 
-  it('should return an Observable',
+  it('should return an Observable upon get',
     inject([ItemService, XHRBackend], (itemService, mockBackend) => {
 
-      const mockResponse = {
-        data: {myType: 'foo'}
-      };
+      const mockResponse = 'foo';
 
       mockBackend.connections.subscribe((connection) => {
         connection.mockRespond(new Response(new ResponseOptions({
@@ -38,7 +39,24 @@ fdescribe('ItemService', () => {
         })));
       });
 
-      itemService.get().subscribe((item) => {
+      itemService.get(ITEM_TYPES.INFO).subscribe((item) => {
+        expect(item).toEqual('foo');
+      });
+
+    }));
+
+  it('should return an Observable upon post',
+    inject([ItemService, XHRBackend], (itemService, mockBackend) => {
+
+      const mockResponse = 'foo';
+
+      mockBackend.connections.subscribe((connection) => {
+        connection.mockRespond(new Response(new ResponseOptions({
+          body: JSON.stringify(mockResponse)
+        })));
+      });
+
+      itemService.post(ITEM_TYPES.INFO, {}).subscribe((item) => {
         expect(item).toEqual('foo');
       });
 
