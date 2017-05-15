@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {}
 
-  logout(e) {
+  logout() {
     localStorage.clear();
     this.toggleRadio(undefined);
     this.ngRedux.dispatch({type: 'logged-out'});

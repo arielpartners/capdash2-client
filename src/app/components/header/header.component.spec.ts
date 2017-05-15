@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { async, fakeAsync, ComponentFixture, TestBed, tick } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
 
-import { AppComponent } from '../../app.component';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -30,14 +30,12 @@ describe('HeaderComponent', () => {
         NgReduxTestingModule,
       ],
     })
-    .compileComponents();
+    .compileComponents().then(() => {
+      fixture = TestBed.createComponent(HeaderComponent);
+      component = fixture.componentInstance;
+    });
     MockNgRedux.reset();
   }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
-    component = fixture.componentInstance;
-  });
 
   it('should create', async(() => {
     expect(component).toBeTruthy();
@@ -46,22 +44,33 @@ describe('HeaderComponent', () => {
   describe('logout()', () => {
 
     let button;
-    beforeEach(() => {
-      spyOn(component, 'logout');
-      button = fixture.debugElement.nativeElement.querySelector('.logout');
-      button.click();
-      fixture.detectChanges();
+
+    beforeEach( () => {
+      button = fixture.debugElement.query(By.css('.logout'));
+
+    });
+
+    it('should clear localStorage when logout() is called', () => {
+      spyOn(localStorage, 'clear');
+      component.logout();
+      expect(localStorage.clear).toHaveBeenCalled();
     });
 
     it('should have been called when button is clicked', () => {
-      fixture.whenStable().then(() => {
+      fakeAsync(() => {
+
+        button.triggerEventHandler('click', null);
+        tick();
+        fixture.detectChanges();
         expect(component.logout).toHaveBeenCalled();
-      })
+      });
+
     });
 
     it('should redirects to /login route', () => {
-      const href = button.getAttribute('href');
-      expect(href).toBe('/login');
+      console.log(button);
+      //const href = button.nativeElement.getAttribute('href');
+      //expect(href).toBe('/login');
     });
   });
 
