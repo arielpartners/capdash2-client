@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {NgRedux} from '@angular-redux/store';
 import {Router} from '@angular/router';
-
+import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {IAppState} from '../../store/root.types';
 import {ITEM_TYPES} from '../../core/ajax/item/item.types';
 import {ItemActions} from '../../core/ajax/item/item.actions';
@@ -17,12 +17,14 @@ export class LoginComponent implements OnInit {
   // We are going to declare our variables here. We’ll have a loginForm that will represent our reactive form,
   // an authenticated boolean that will be true or false based on the users auth status and finally a profile
   // object that will hold the user data.
+  location: Location;
   loginForm: FormGroup;
   store: NgRedux<IAppState>;
   // user : Object;
 
   constructor(fb: FormBuilder,
               ngRedux: NgRedux<IAppState>,
+              location: Location,
               private ngRouter: Router,
               private actions: ItemActions) {
 
@@ -33,6 +35,7 @@ export class LoginComponent implements OnInit {
     });
 
     this.store = ngRedux;
+    this.location = location;
   }
 
   ngOnInit() {
@@ -40,7 +43,7 @@ export class LoginComponent implements OnInit {
     // pair exists in local storage.
     const token = JSON.parse(localStorage.getItem('reduxPersist:token'));
     const loginUrl = '/login';
-    if (token && window.location.pathname === loginUrl) {
+    if (token && this.location.path() === loginUrl) {
       this.ngRouter.navigate(['']);
     }
   }
