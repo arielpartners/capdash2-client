@@ -69,8 +69,8 @@ describe('HeaderComponent', () => {
 
     it('should redirects to /login route', () => {
       console.log(button);
-      //const href = button.nativeElement.getAttribute('href');
-      //expect(href).toBe('/login');
+      // const href = button.nativeElement.getAttribute('href');
+      // expect(href).toBe('/login');
     });
   });
 
