@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../store/root.types';
 
@@ -9,35 +9,39 @@ import { IAppState } from '../../store/root.types';
 })
 export class HeaderComponent implements OnInit {
 
+  public selectedDropdown: String;
+  public isToggled: Boolean;
+
   constructor( private ngRedux: NgRedux<IAppState> ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.selectedDropdown = '';
+    this.isToggled = false
+  }
 
   logout() {
     localStorage.clear();
-    this.toggleRadio(undefined);
+    this.toggleDropdown(undefined);
     this.ngRedux.dispatch({type: 'logged-out'});
   }
 
-  toggleRadio(e) {
-    const radioBtn = e ? e.target : undefined,
-        radioButtons = document.getElementsByName('header');
-
-    Array.prototype.forEach.call(radioButtons, dropdown => {
-      if (dropdown !== radioBtn) {
-        dropdown.canClear = false;
-        dropdown.checked = false;
-      }
-    });
-
-    if (radioBtn) {
-      if (!radioBtn.canClear) {
-        radioBtn.canClear = true;
-        e.target.checked = true;
+  toggleDropdown(e) {
+    const elem = e ? e.target : undefined;
+    if (elem) {
+      if (this.isToggled) {
+        if (this.selectedDropdown === elem.id) {
+          this.isToggled = false;
+          this.selectedDropdown = '';
+        } else {
+          this.selectedDropdown = elem.id;
+        }
       } else {
-        e.target.checked = false;
-        radioBtn.canClear = false;
+        this.isToggled = true;
+        this.selectedDropdown = elem.id;
       }
+    } else {
+      this.isToggled = false;
+      this.selectedDropdown = '';
     }
   }
 }
