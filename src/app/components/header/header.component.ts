@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {NgRedux} from '@angular-redux/store';
-import {IAppState} from '../../store/root.types';
+import { Component, OnInit, Input } from '@angular/core';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from '../../store/root.types';
 
 @Component({
   selector: 'cd-header',
@@ -9,37 +9,39 @@ import {IAppState} from '../../store/root.types';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private ngRedux: NgRedux<IAppState>) {}
+  public selectedDropdown: String;
+  public isToggled: Boolean;
 
-  ngOnInit() {}
+  constructor( private ngRedux: NgRedux<IAppState> ) {}
 
-  logout(e) {
-    localStorage.clear();
-    this.toggleRadio(undefined);
-    this.ngRedux.dispatch({type: 'logged-out'});
-
+  ngOnInit() {
+    this.selectedDropdown = '';
+    this.isToggled = false
   }
 
-  toggleRadio(e) {
-    const radioBtn = e ? e.target : undefined,
-        radioButtons = document.getElementsByName('header');
+  logout() {
+    localStorage.clear();
+    this.toggleDropdown(undefined);
+    this.ngRedux.dispatch({type: 'logged-out'});
+  }
 
-    Array.prototype.forEach.call(radioButtons, dropdown => {
-      if (dropdown !== radioBtn) {
-        dropdown.canClear = false;
-        dropdown.checked = false;
-      }
-    });
-
-    if (radioBtn) {
-      if (!radioBtn.canClear) {
-        radioBtn.canClear = true;
-        e.target.checked = true;
+  toggleDropdown(e) {
+    const elem = e ? e.target : undefined;
+    if (elem) {
+      if (this.isToggled) {
+        if (this.selectedDropdown === elem.id) {
+          this.isToggled = false;
+          this.selectedDropdown = '';
+        } else {
+          this.selectedDropdown = elem.id;
+        }
       } else {
-        e.target.checked = false;
-        radioBtn.canClear = false;
+        this.isToggled = true;
+        this.selectedDropdown = elem.id;
       }
+    } else {
+      this.isToggled = false;
+      this.selectedDropdown = '';
     }
-
   }
 }
