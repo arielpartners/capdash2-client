@@ -41,13 +41,37 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   }));
 
+  describe('ngOnInit()', () => {
+
+    beforeEach( () => {
+      component.ngOnInit();
+      fixture.detectChanges();
+    });
+
+    it('should initialize with isToggled set as false', () => {
+      expect(component.isToggled).toBeFalsy();
+    });
+
+    it('should initialize with selectedDropdown set as empty string', () => {
+      expect(component.selectedDropdown).toBe('');
+    });
+  });
+
   describe('logout()', () => {
 
     let button;
 
     beforeEach( () => {
       button = fixture.debugElement.query(By.css('.logout'));
+    });
 
+    it('should have been called when button is clicked', () => {
+      fakeAsync(() => {
+        button.triggerEventHandler('click', null);
+        tick();
+        fixture.detectChanges();
+        expect(component.logout).toHaveBeenCalled();
+      });
     });
 
     it('should clear localStorage when logout() is called', () => {
@@ -56,51 +80,76 @@ describe('HeaderComponent', () => {
       expect(localStorage.clear).toHaveBeenCalled();
     });
 
-    it('should have been called when button is clicked', () => {
-      fakeAsync(() => {
-
-        button.triggerEventHandler('click', null);
-        tick();
-        fixture.detectChanges();
-        expect(component.logout).toHaveBeenCalled();
-      });
-
+    it('should close all radio button when logout() is called', () => {
+      spyOn(component, 'toggleDropdown');
+      component.logout();
+      expect(component.toggleDropdown).toHaveBeenCalled();
     });
 
     it('should redirects to /login route', () => {
-      console.log(button);
-      // const href = button.nativeElement.getAttribute('href');
-      // expect(href).toBe('/login');
+      // Todo
     });
   });
 
-  describe('toggleRadio()', () => {
+  describe('toggleDropdown()', () => {
 
     let button;
-    beforeEach(() => {
-      spyOn(component, 'toggleRadio');
-      fixture.detectChanges();
-      // Todo: select button without using id.
-      button = fixture.debugElement.nativeElement.querySelector('#dropdown-menu-lg-checkbox');
-      button.click();
+
+    beforeEach( () => {
+      component.ngOnInit();
+      button = fixture.debugElement.query(By.css('#dropdown-menu-lg-checkbox'));
     });
 
-    it('should have been called when radio button is clicked', async(() => {
+    it('should have been called when radio button is clicked', () => {
+      fakeAsync(() => {
+        button.triggerEventHandler('click', null);
+        tick();
+        fixture.detectChanges();
+        expect(component.toggleDropdown).toHaveBeenCalled();
+      });
+    });
+
+    it('should close any dropdown menu when event target is undefined', () => {
+      component.toggleDropdown(undefined);
+      fixture.detectChanges();
+      expect(component.isToggled).toBeFalsy();
+      expect(component.selectedDropdown).toBe('');
+    });
+
+    it('should close toggled dropdown menu when event target matches', async(() => {
+      fixture.detectChanges();
       fixture.whenStable().then(() => {
-        expect(component.toggleRadio).toHaveBeenCalled();
+        component.isToggled = true;
+        component.selectedDropdown = 'dropdown-menu-lg-checkbox';
+        component.toggleDropdown({target: button.nativeElement});
+        fixture.detectChanges();
+        expect(component.isToggled).toBeFalsy();
+        expect(component.selectedDropdown).toBe('');
       });
     }));
 
-    // Question: since input type is radio, wouldn't button be checked when clicked with or without invoking
-    // toggleRadio()? That seems native HTML DOM functionality rather than function of this component.
-    it('should check when radio button is clicked', () => {
-      expect(button.checked).toBe(true);
-    });
+    it('should toggle dropdown menu when event target does not match current dropdown', async(() => {
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        component.isToggled = true;
+        component.selectedDropdown = 'something-else';
+        component.toggleDropdown({target: button.nativeElement});
+        fixture.detectChanges();
+        expect(component.isToggled).toBeTruthy();
+        expect(component.selectedDropdown).toBe(button.nativeElement.id);
+      });
+    }));
 
-    it('should uncheck when other readio button is clicked', () => {
-      fixture.debugElement.nativeElement.querySelector('#user-checkbox').click();
-      expect(button.checked).toBe(false);
-    });
-
+    it('should toggle dropdown menu when event target does not match current dropdown', async(() => {
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        component.isToggled = false;
+        component.selectedDropdown = '';
+        component.toggleDropdown({target: button.nativeElement});
+        fixture.detectChanges();
+        expect(component.isToggled).toBeTruthy();
+        expect(component.selectedDropdown).toBe(button.nativeElement.id);
+      });
+    }));
   });
 });
