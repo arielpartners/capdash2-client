@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
-import { async, fakeAsync, ComponentFixture, TestBed, tick } from '@angular/core/testing';
+import { async, fakeAsync, ComponentFixture, TestBed, tick, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
 
+import { NgRedux } from '@angular-redux/store';
+// import { StoreModule } from '../../store/store.module';
+import { IAppState } from '../../store/root.types';
 import { HeaderComponent } from './header.component';
+import { HeaderActions } from './header.actions';
+
+import { Observable } from 'rxjs/Observable';
 
 describe('HeaderComponent', () => {
 
@@ -27,8 +33,9 @@ describe('HeaderComponent', () => {
         RouterTestingModule.withRoutes([
           { path: 'login', component: DummyComponent }
         ]),
-        NgReduxTestingModule,
+        NgReduxTestingModule
       ],
+      providers: [HeaderActions]
     })
     .compileComponents().then(() => {
       fixture = TestBed.createComponent(HeaderComponent);
@@ -40,22 +47,6 @@ describe('HeaderComponent', () => {
   it('should create', async(() => {
     expect(component).toBeTruthy();
   }));
-
-  describe('ngOnInit()', () => {
-
-    beforeEach( () => {
-      component.ngOnInit();
-      fixture.detectChanges();
-    });
-
-    it('should initialize with isToggled set as false', () => {
-      expect(component.isToggled).toBeFalsy();
-    });
-
-    it('should initialize with selectedDropdown set as empty string', () => {
-      expect(component.selectedDropdown).toBe('');
-    });
-  });
 
   describe('logout()', () => {
 
@@ -80,24 +71,30 @@ describe('HeaderComponent', () => {
       expect(localStorage.clear).toHaveBeenCalled();
     });
 
-    it('should close all radio button when logout() is called', () => {
+    // Todo: spy dispatch toHaveBeenCalledWith()
+    //       HeaderActions.closeToggle()
+    xit('should close all radio button when logout() is called', () => {
       spyOn(component, 'toggleDropdown');
       component.logout();
       expect(component.toggleDropdown).toHaveBeenCalled();
     });
 
-    it('should redirects to /login route', () => {
-      // Todo
+    xit('should redirects to /login route', () => {
     });
   });
 
   describe('toggleDropdown()', () => {
 
-    let button;
+    let button, spy, headerActions;
 
-    beforeEach( () => {
-      component.ngOnInit();
+    beforeEach( async(inject([HeaderActions], (actions: HeaderActions) => {
+      headerActions = actions;
+    })));
+
+    beforeEach(() => {
+      localStorage.clear();
       button = fixture.debugElement.query(By.css('#dropdown-menu-lg-checkbox'));
+      spy = spyOn(MockNgRedux.mockInstance, 'dispatch');
     });
 
     it('should have been called when radio button is clicked', () => {
@@ -109,47 +106,47 @@ describe('HeaderComponent', () => {
       });
     });
 
-    it('should close any dropdown menu when event target is undefined', () => {
+    it('should close toggle when $event is undefined', () => {
       component.toggleDropdown(undefined);
       fixture.detectChanges();
-      expect(component.isToggled).toBeFalsy();
-      expect(component.selectedDropdown).toBe('');
+      expect(spy).toHaveBeenCalledWith(headerActions.closeToggle());
     });
 
-    it('should close toggled dropdown menu when event target matches', async(() => {
+    it('should close toggle when $event matches selectedDropdown', () => {
+      localStorage.setItem('reduxPersist:header', JSON.stringify({
+        isToggled: true,
+        selectedDropdown: button.nativeElement.id
+      }));
+      component.toggleDropdown({ target: button.nativeElement });
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        component.isToggled = true;
-        component.selectedDropdown = 'dropdown-menu-lg-checkbox';
-        component.toggleDropdown({target: button.nativeElement});
-        fixture.detectChanges();
-        expect(component.isToggled).toBeFalsy();
-        expect(component.selectedDropdown).toBe('');
-      });
-    }));
+      expect(spy).toHaveBeenCalledWith(headerActions.closeToggle());
+    });
 
-    it('should toggle dropdown menu when event target does not match current dropdown', async(() => {
+    it('should open toggle when $event exist and localStorage has no value', () => {
+      component.toggleDropdown({ target: button.nativeElement });
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        component.isToggled = true;
-        component.selectedDropdown = 'something-else';
-        component.toggleDropdown({target: button.nativeElement});
-        fixture.detectChanges();
-        expect(component.isToggled).toBeTruthy();
-        expect(component.selectedDropdown).toBe(button.nativeElement.id);
-      });
-    }));
+      expect(spy).toHaveBeenCalledWith(headerActions.openToggle(button.nativeElement.id));
+    });
 
-    it('should toggle dropdown menu when event target does not match current dropdown', async(() => {
+    it('should open toggle when $event exist and was not toggled', () => {
+      localStorage.setItem('reduxPersist:header', JSON.stringify({
+        isToggled: false,
+        selectedDropdown: ''
+      }));
+      component.toggleDropdown({ target: button.nativeElement });
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        component.isToggled = false;
-        component.selectedDropdown = '';
-        component.toggleDropdown({target: button.nativeElement});
-        fixture.detectChanges();
-        expect(component.isToggled).toBeTruthy();
-        expect(component.selectedDropdown).toBe(button.nativeElement.id);
-      });
-    }));
+      expect(spy).toHaveBeenCalledWith(headerActions.openToggle(button.nativeElement.id));
+    });
+
+    it('should open new toggle even when $event.target.id does not match', () => {
+      localStorage.setItem('reduxPersist:header', JSON.stringify({
+        isToggled: true,
+        selectedDropdown: 'something-already-opened'
+      }));
+      component.toggleDropdown({ target: button.nativeElement });
+      fixture.detectChanges();
+      expect(spy).toHaveBeenCalledWith(headerActions.openToggle(button.nativeElement.id));
+    });
+
   });
 });

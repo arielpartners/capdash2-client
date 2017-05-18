@@ -1,47 +1,53 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ElementRef } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../store/root.types';
+import { HeaderActions } from './header.actions'
 
 @Component({
   selector: 'cd-header',
   templateUrl: 'header.component.html',
-  styleUrls: ['header.component.scss']
+  styleUrls: ['header.component.scss'],
+  providers: [HeaderActions],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit {
 
-  public selectedDropdown: String;
-  public isToggled: Boolean;
+  @Input() isToggled: Observable<boolean>;
+  @Input() selectedDropdown: Observable<string>;
 
-  constructor( private ngRedux: NgRedux<IAppState> ) {}
-
-  ngOnInit() {
-    this.selectedDropdown = '';
-    this.isToggled = false
-  }
+  constructor(
+    private ngRedux: NgRedux<IAppState>,
+    private actions: HeaderActions
+  ) {}
 
   logout() {
     localStorage.clear();
-    this.toggleDropdown(undefined);
     this.ngRedux.dispatch({type: 'logged-out'});
+    this.ngRedux.dispatch(this.actions.closeToggle());
+  }
+
+  ngOnInit() {
+    // Question: Do i need OnInit lifecycle?
   }
 
   toggleDropdown(e) {
-    const elem = e ? e.target : undefined;
-    if (elem) {
-      if (this.isToggled) {
-        if (this.selectedDropdown === elem.id) {
-          this.isToggled = false;
-          this.selectedDropdown = '';
-        } else {
-          this.selectedDropdown = elem.id;
-        }
-      } else {
-        this.isToggled = true;
-        this.selectedDropdown = elem.id;
-      }
+    const elem = e ? e.target : undefined,
+          header = JSON.parse(localStorage.getItem('reduxPersist:header'));
+
+    const shouldOpen = elem
+      ? !header
+        ? true
+        : !header.isToggled
+          ? true
+          : header.selectedDropdown !== elem.id
+      : false
+
+    // console.log('toggleDropdown', elem, header, shouldOpen);
+    if (shouldOpen) {
+      this.ngRedux.dispatch(this.actions.openToggle(elem.id));
     } else {
-      this.isToggled = false;
-      this.selectedDropdown = '';
+      this.ngRedux.dispatch(this.actions.closeToggle());
     }
   }
 }
