@@ -1,11 +1,14 @@
 import { TestBed, ComponentFixture, async, inject } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { MockComponent } from 'ng2-mock-component';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
+
+import { HeaderActions } from './components/header/header.actions';
 
 describe('AppComponent', () => {
   let app: AppComponent;
@@ -22,7 +25,11 @@ describe('AppComponent', () => {
         AppComponent,
         DummyComponent,
         MockComponent({selector: 'cd-login'}),
-        MockComponent({selector: 'cd-header'}),
+        MockComponent({
+          selector: 'cd-header',
+          inputs: ['isToggled', 'selectedDropdown'],
+          outputs: ['isToggled', 'selectedDropdown'],
+        }),
         MockComponent({
           selector: 'cd-sidebar',
           inputs: ['version', 'loading', 'error'],
@@ -36,6 +43,7 @@ describe('AppComponent', () => {
         ]),
         NgReduxTestingModule
       ],
+      providers: [HeaderActions]
     });
     TestBed.compileComponents();
     MockNgRedux.reset();
@@ -59,6 +67,30 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.app-content').className).toBeTruthy();
   }));
+
+  describe('onClickApp()', () => {
+    let button, spy, headerActions;
+
+    beforeEach( async(inject([HeaderActions], (actions: HeaderActions) => {
+      headerActions = actions;
+    })));
+
+    beforeEach(() => {
+      localStorage.clear();
+      button = fixture.debugElement.query(By.css('.app'));
+      spy = spyOn(MockNgRedux.mockInstance, 'dispatch');
+    });
+
+    it('should close header toggle when app is clicked', () => {
+      localStorage.setItem('reduxPersist:header', JSON.stringify({
+        isToggled: true,
+        selectedDropdown: button.nativeElement.id
+      }));
+      app.onClickApp();
+      fixture.detectChanges();
+      expect(spy).toHaveBeenCalledWith(headerActions.closeToggle());
+    });
+  });
 
   describe('ngAfterViewInit()', () => {
 
