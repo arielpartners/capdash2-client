@@ -54,6 +54,7 @@
     "@types/node": "~7.0.18",
     "@types/redux-logger": "^3.0.0",
     "codelyzer": "~3.0.1",
+    "cucumber": "^2.1.0",
     "jasmine-core": "~2.6.1",
     "jasmine-spec-reporter": "~4.1.0",
     "json-server": "0.10.0",
