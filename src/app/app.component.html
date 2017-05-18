@@ -1,7 +1,8 @@
-<div class="app">
+<div class="app" (click)="onClickApp()">
   <div *ngIf="token$ | async"
        class="app-header">
-    <cd-header></cd-header>
+    <cd-header [isToggled]="isToggled$"
+               [selectedDropdown]="selectedDropdown$"></cd-header>
   </div>
   <div class="app-section">
     <div *ngIf="token$ | async"
