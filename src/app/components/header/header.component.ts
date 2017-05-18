@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleDropdown(e) {
+
     const elem = e ? e.target : undefined,
           header = JSON.parse(localStorage.getItem('reduxPersist:header'));
 
@@ -41,9 +42,10 @@ export class HeaderComponent implements OnInit {
         : !header.isToggled
           ? true
           : header.selectedDropdown !== elem.id
-      : false
+      : false;
 
-    // console.log('toggleDropdown', elem, header, shouldOpen);
+    // console.log('HeaderComponent | toggleDropdown(e)', elem, header, shouldOpen);
+
     if (shouldOpen) {
       this.ngRedux.dispatch(this.actions.openToggle(elem.id));
     } else {

@@ -50,7 +50,11 @@ describe('HeaderComponent', () => {
 
   describe('logout()', () => {
 
-    let button;
+    let button, spy, headerActions;
+
+    beforeEach( async(inject([HeaderActions], (actions: HeaderActions) => {
+      headerActions = actions;
+    })));
 
     beforeEach( () => {
       button = fixture.debugElement.query(By.css('.logout'));
@@ -71,14 +75,14 @@ describe('HeaderComponent', () => {
       expect(localStorage.clear).toHaveBeenCalled();
     });
 
-    // Todo: spy dispatch toHaveBeenCalledWith()
-    //       HeaderActions.closeToggle()
-    xit('should close all radio button when logout() is called', () => {
-      spyOn(component, 'toggleDropdown');
+    it('should close toggle when logout() is called', () => {
+      spy = spyOn(MockNgRedux.mockInstance, 'dispatch');
       component.logout();
-      expect(component.toggleDropdown).toHaveBeenCalled();
+      fixture.detectChanges();
+      expect(spy).toHaveBeenCalledWith(headerActions.closeToggle());
     });
 
+    // Todo: test redirect
     xit('should redirects to /login route', () => {
     });
   });
@@ -106,22 +110,6 @@ describe('HeaderComponent', () => {
       });
     });
 
-    it('should close toggle when $event is undefined', () => {
-      component.toggleDropdown(undefined);
-      fixture.detectChanges();
-      expect(spy).toHaveBeenCalledWith(headerActions.closeToggle());
-    });
-
-    it('should close toggle when $event matches selectedDropdown', () => {
-      localStorage.setItem('reduxPersist:header', JSON.stringify({
-        isToggled: true,
-        selectedDropdown: button.nativeElement.id
-      }));
-      component.toggleDropdown({ target: button.nativeElement });
-      fixture.detectChanges();
-      expect(spy).toHaveBeenCalledWith(headerActions.closeToggle());
-    });
-
     it('should open toggle when $event exist and localStorage has no value', () => {
       component.toggleDropdown({ target: button.nativeElement });
       fixture.detectChanges();
@@ -138,7 +126,7 @@ describe('HeaderComponent', () => {
       expect(spy).toHaveBeenCalledWith(headerActions.openToggle(button.nativeElement.id));
     });
 
-    it('should open new toggle even when $event.target.id does not match', () => {
+    it('should open new toggle when $event.target.id and selectedDropdown does not match', () => {
       localStorage.setItem('reduxPersist:header', JSON.stringify({
         isToggled: true,
         selectedDropdown: 'something-already-opened'
@@ -147,6 +135,23 @@ describe('HeaderComponent', () => {
       fixture.detectChanges();
       expect(spy).toHaveBeenCalledWith(headerActions.openToggle(button.nativeElement.id));
     });
+
+    it('should close toggle when $event is undefined', () => {
+      component.toggleDropdown(undefined);
+      fixture.detectChanges();
+      expect(spy).toHaveBeenCalledWith(headerActions.closeToggle());
+    });
+
+    it('should close toggle when $event matches selectedDropdown', () => {
+      localStorage.setItem('reduxPersist:header', JSON.stringify({
+        isToggled: true,
+        selectedDropdown: button.nativeElement.id
+      }));
+      component.toggleDropdown({ target: button.nativeElement });
+      fixture.detectChanges();
+      expect(spy).toHaveBeenCalledWith(headerActions.closeToggle());
+    });
+
 
   });
 });

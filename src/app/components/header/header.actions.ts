@@ -5,7 +5,6 @@ export class HeaderActions {
   static readonly TOGGLE = 'TOGGLE';
 
   openToggle(menuId) {
-    // console.log(`HeaderActions | openToggle(${menuId})`);
     return {
       type: HeaderActions.TOGGLE,
       payload: {
@@ -16,7 +15,6 @@ export class HeaderActions {
   }
 
   closeToggle() {
-    // console.log('HeaderActions | closeToggle()');
     return {
       type: HeaderActions.TOGGLE,
       payload: {
