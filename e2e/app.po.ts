@@ -5,6 +5,10 @@ export class Capdash2Page {
     return browser.get('/');
   }
 
+  getTitle() {
+    return browser.getTitle();
+  }
+
   getTextByCss(selector) {
     return element(by.css(selector)).getText();
   }
