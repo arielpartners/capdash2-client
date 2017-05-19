@@ -8,10 +8,10 @@ describe('capdash2 App', () => {
     page = new Capdash2Page();
   });
 
-  it('should display message saying app works', () => {
+  it('should display login screen', () => {
     page.navigateTo();
-    page.getParagraphText().then(text => {
-      expect(text).toEqual('cd works!');
+    page.getTextByCss('.btn-success').then(text => {
+      expect(text).toEqual('Sign me in');
     });
   });
 });
