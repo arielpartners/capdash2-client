@@ -1,4 +1,5 @@
 import { Capdash2Page } from './app.po';
+import {} from 'jasmine';
 
 describe('capdash2 App', () => {
   let page: Capdash2Page;
@@ -9,6 +10,8 @@ describe('capdash2 App', () => {
 
   it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('cd works!');
+    page.getParagraphText().then(text => {
+      expect(text).toEqual('cd works!');
+    });
   });
 });
