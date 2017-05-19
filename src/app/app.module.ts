@@ -8,18 +8,20 @@ import {NgReduxRouterModule} from '@angular-redux/router';
 import {RouterModule} from '@angular/router';
 
 // This app's ngModules
-import {AppComponent} from './app.component';
-import {appRoutes} from './app.routes';
-import {ForecastsModule} from './containers/forecasts/forecasts.module';
-import {HeaderComponent} from './components/header/header.component';
-import {HomeComponent} from './containers/home/home.component';
-import {HotelsModule} from './containers/hotels/hotels.module';
-import {ItemModule} from './core/ajax/item/item.module';
-import {LoginComponent} from './containers/login/login.component';
-import {OfflineUnitsModule} from './containers/offline-units/offline-units.module';
-import {PageNotFoundComponent} from './core/page-not-found/page-not-found.component';
-import {SidebarComponent} from './components/sidebar/sidebar.component';
-import {StoreModule} from './store/store.module';
+import { ItemModule } from './core/ajax/item/item.module';
+import { StoreModule } from './store/store.module';
+import { OfflineUnitsModule } from './containers/offline-units/offline-units.module';
+
+import { appRoutes } from './app.routes';
+import { AppComponent } from './app.component';
+import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { MenuModule } from './components/menu/menu.module';
+import { HomeComponent } from './containers/home/home.component';
+import { HotelsModule } from './containers/hotels/hotels.module';
+import { ForecastsModule } from './containers/forecasts/forecasts.module';
+import { LoginComponent } from './containers/login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,10 @@ import {StoreModule} from './store/store.module';
     HomeComponent,
     PageNotFoundComponent,
     SidebarComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
+    MenuModule,
     BrowserModule,
     ForecastsModule,
     FormsModule,

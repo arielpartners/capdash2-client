@@ -1,0 +1,33 @@
+<div [class.dropdown]="isDropdown">
+  <!-- menu label section -->
+  <label for="{{menu.id}}" class="dropdown-toggle f-s-14">
+    <i [ngClass]="menu.icon.class"></i>
+    <span class="label">4</span>
+  </label>
+
+  <!-- menu radio button section -->
+  <input type="radio" class="radio-hack" name="header"
+        [id]="menu.id"
+        (click)="toggleDropdown($event)">
+
+  <!-- dropdown section
+  <ul *ngIf="(isToggled | async)
+          && ((selectedDropdown | async) === (menu.id))"
+      class="dropdown-menu media-list pull-right animated fadeInDown"> -->
+
+
+  <!-- dropdown section -->
+  <ul class="dropdown-menu media-list pull-right animated fadeInDown">
+
+    <!-- menu item header section -->
+    <li class="dropdown-header">Notifications (4)</li>
+
+    <!-- menu items section -->
+    <cd-menu-item></cd-menu-item>
+
+    <!-- menu item footer section -->
+    <li class="dropdown-footer text-center">
+      <a href="javascript:">View more</a>
+    </li>
+  </ul>
+</div>
