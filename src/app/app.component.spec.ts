@@ -9,6 +9,7 @@ import { MockComponent } from 'ng2-mock-component';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
 
 import { HeaderActions } from './components/header/header.actions';
+import { ItemActions } from './core/ajax/item/item.actions';
 
 describe('AppComponent', () => {
   let app: AppComponent;
@@ -27,8 +28,14 @@ describe('AppComponent', () => {
         MockComponent({selector: 'cd-login'}),
         MockComponent({
           selector: 'cd-header',
-          inputs: ['isToggled', 'selectedDropdown'],
-          outputs: ['isToggled', 'selectedDropdown'],
+          inputs: [
+            'isToggled', 'selectedDropdown',
+            'userName', 'userProfile'
+          ],
+          outputs: [
+            'isToggled', 'selectedDropdown',
+            'userName', 'userProfile'
+          ]
         }),
         MockComponent({
           selector: 'cd-sidebar',
@@ -43,7 +50,7 @@ describe('AppComponent', () => {
         ]),
         NgReduxTestingModule
       ],
-      providers: [HeaderActions]
+      providers: [HeaderActions, ItemActions]
     });
     TestBed.compileComponents();
     MockNgRedux.reset();
@@ -115,5 +122,15 @@ describe('AppComponent', () => {
         expect(app.location.path()).toBe('');
       });
     })));
+
+    it('should set Authorization Bearer when token exist', async(() => {
+      const spy = spyOn(app, 'setRequestHeader');
+      fixture.whenStable().then(() => {
+        localStorage.setItem('reduxPersist:token', token);
+        fixture.detectChanges();
+      }).then(() => {
+        expect(spy).toHaveBeenCalled();
+      });
+    }));
   });
 });
