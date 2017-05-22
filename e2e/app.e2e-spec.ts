@@ -1,4 +1,5 @@
 import { Capdash2Page } from './app.po';
+import {} from 'jasmine';
 
 describe('capdash2 App', () => {
   let page: Capdash2Page;
@@ -7,8 +8,10 @@ describe('capdash2 App', () => {
     page = new Capdash2Page();
   });
 
-  it('should display message saying app works', () => {
+  it('should display login screen', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('cd works!');
+    page.getTextByCss('.btn-success').then(text => {
+      expect(text).toEqual('Sign me in');
+    });
   });
 });

@@ -5,7 +5,7 @@ export class Capdash2Page {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('cd-root h1')).getText();
+  getTextByCss(selector) {
+    return element(by.css(selector)).getText();
   }
 }
