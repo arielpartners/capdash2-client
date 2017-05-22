@@ -15,6 +15,8 @@ export class HeaderComponent implements OnInit {
 
   @Input() isToggled: Observable<boolean>;
   @Input() selectedDropdown: Observable<string>;
+  @Input() userName: Observable<string>;
+  @Input() userProfile: Observable<string>;
 
   constructor(
     private ngRedux: NgRedux<IAppState>,
