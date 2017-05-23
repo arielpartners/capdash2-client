@@ -18,7 +18,7 @@ export class LoginPage {
   getTitle() {
     return browser.getTitle();
   }
-  
+
   enterEmail(email) {
     let emailField = this.emailInputField;
 
