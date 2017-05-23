@@ -5,6 +5,6 @@ Feature: CapDash2 User Login
 
 Scenario: The user can login
   Given the user navigates to the CapDash2 homepage
-  When the user enters a valid username and password
+  When the user enters a valid email address and password
   And the user clicks the sign in button
   Then the user should see their personalized dashboard
