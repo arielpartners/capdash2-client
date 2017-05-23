@@ -49,8 +49,8 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
-  setRequestHeader(token) {
-   (function(open) {
+  setAuthorizationBearer(token: string) {
+    (function(open) {
       XMLHttpRequest.prototype.open = function () {
         open.apply(this, arguments);
         this.setRequestHeader('Authorization', 'Bearer ' + token);
@@ -65,7 +65,7 @@ export class AppComponent implements AfterViewInit {
     if (!token && this.location.path() !== loginUrl) {
       this.ngRouter.navigate([loginUrl]);
     } else {
-      this.setRequestHeader(token);
+      this.setAuthorizationBearer(token);
       this.ngRedux.dispatch(this.actions.loadItem(ITEM_TYPES.USER));
     }
 
