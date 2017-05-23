@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy, ElementRef } from '@
 import { Observable } from 'rxjs/Observable';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../store/root.types';
-import { HeaderActions } from './header.actions'
+import { HeaderActions } from './header.actions';
 
 @Component({
   selector: 'cd-header',

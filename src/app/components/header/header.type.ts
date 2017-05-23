@@ -1,4 +1,4 @@
 export interface HeaderType {
-  isToggled: boolean,
-  selectedDropdown: string
+  isToggled: boolean;
+  selectedDropdown: string;
 }
