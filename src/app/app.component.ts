@@ -53,6 +53,7 @@ export class AppComponent implements AfterViewInit {
     (function(open) {
       XMLHttpRequest.prototype.open = function () {
         open.apply(this, arguments);
+        console.log('calling setRequestHeader with: ', token);
         this.setRequestHeader('Authorization', 'Bearer ' + token);
       };
     })(XMLHttpRequest.prototype.open);

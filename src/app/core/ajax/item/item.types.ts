@@ -1,5 +1,6 @@
 export const ITEM_TYPES = {
   INFO: 'info',
+  LOGGED_OUT: 'logged-out',  // TODO: Move this up to core - not really item specific
   TOKEN: 'user_token',
   USER: 'user',
 };
