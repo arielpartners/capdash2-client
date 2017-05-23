@@ -1,5 +1,5 @@
 import { TestBed, ComponentFixture, async, inject } from '@angular/core/testing';
-import { Component, ReflectiveInjector } from '@angular/core';
+import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -7,7 +7,6 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { MockComponent } from 'ng2-mock-component';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
-import { NgRedux } from '@angular-redux/store';
 import { HeaderActions } from './components/header/header.actions';
 import { ItemActions } from './core/ajax/item/item.actions';
 import { ItemService } from './core/ajax/item/item.service';
@@ -15,15 +14,9 @@ import { ITEM_TYPES } from './core/ajax/item/item.types';
 
 import {
   HttpModule,
-  Http,
-  ConnectionBackend,
   BaseRequestOptions,
-  RequestOptions,
-  XHRBackend,
-  Headers
+  RequestOptions
 } from '@angular/http';
-
-import { MockBackend, MockConnection } from '@angular/http/testing';
 
 
 describe('AppComponent', () => {
@@ -33,14 +26,6 @@ describe('AppComponent', () => {
   const data = require('../../json-server/db.json');
   const token = JSON.stringify(data.user_token.jwt);
 
-  // const global = {
-  //   XMLHttpRequest: {
-  //     open: function () {
-  //       open.apply(this, arguments);
-  //       this.setRequestHeader('Authorization', 'Bearer ' + token);
-  //     }
-  //   }
-  // };
 
   @Component({
     template: ''
@@ -48,6 +33,8 @@ describe('AppComponent', () => {
   class DummyComponent { }
 
   beforeEach(() => {
+    spyOn(XMLHttpRequest.prototype, 'open').and.callThrough(); // Jasmine 2.x
+    spyOn(XMLHttpRequest.prototype, 'send');
 
     TestBed.configureTestingModule({
       declarations: [
@@ -83,7 +70,6 @@ describe('AppComponent', () => {
         HeaderActions,
         ItemActions,
         ItemService,
-        { provide: XHRBackend, useClass: MockBackend },
         { provide: RequestOptions, useClass: BaseRequestOptions },
       ]
     });
@@ -165,7 +151,7 @@ describe('AppComponent', () => {
     })));
 
     it('should have dispatch ItemActions.loadItem with ITEM_TYPES.USER', async(() => {
-      const spy = spyOn(MockNgRedux.mockInstance, 'dispatch');
+      const spy = spyOn(MockNgRedux.mockInstance, 'dispatch').and.callThrough();
       fixture.whenStable().then(() => {
         localStorage.setItem('reduxPersist:token', token);
         fixture.detectChanges();
@@ -174,8 +160,8 @@ describe('AppComponent', () => {
       });
     }));
 
-    it('should have called setAuthorizationBearer() when token exist', async(() => {
-      const spy = spyOn(app, 'setAuthorizationBearer');
+    fit('should have called setAuthorizationBearer() when token exist', async(() => {
+      const spy = spyOn(app, 'setAuthorizationBearer').and.callThrough();
       fixture.whenStable().then(() => {
         localStorage.setItem('reduxPersist:token', token);
         fixture.detectChanges();
