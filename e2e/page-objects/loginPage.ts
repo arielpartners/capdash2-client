@@ -15,6 +15,10 @@ export class LoginPage {
     return browser.get('/');
   }
 
+  getTitle() {
+    return browser.getTitle();
+  }
+  
   enterEmail(email) {
     let emailField = this.emailInputField;
 
