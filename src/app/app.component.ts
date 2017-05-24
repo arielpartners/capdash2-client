@@ -11,11 +11,17 @@ import { ITEM_TYPES } from './core/ajax/item/item.types';
 import { ItemActions } from './core/ajax/item/item.actions';
 import { HeaderActions } from './components/header/header.actions';
 
+import { AuthService } from './services/auth/auth.service';
+
 @Component({
   selector: 'cd-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less'],
-  providers: [HeaderActions, ItemActions],
+  providers: [
+    HeaderActions,
+    ItemActions,
+    AuthService
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements AfterViewInit {
@@ -37,6 +43,7 @@ export class AppComponent implements AfterViewInit {
     private ngRedux: NgRedux<IAppState>,
     private headerActions: HeaderActions,
     private actions: ItemActions,
+    private auth: AuthService,
     location: Location
   ) {
     this.location = location;
@@ -49,26 +56,24 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
-  setAuthorizationBearer(token: string) {
-    (function(open) {
-      XMLHttpRequest.prototype.open = function () {
-        open.apply(this, arguments);
-        console.log('calling setRequestHeader with: ', token);
-        this.setRequestHeader('Authorization', 'Bearer ' + token);
-      };
-    })(XMLHttpRequest.prototype.open);
-  }
+  // setAuthorizationBearer(token: string) {
+  //   (function(open) {
+  //     XMLHttpRequest.prototype.open = function () {
+  //       open.apply(this, arguments);
+  //       console.log('calling setRequestHeader with: ', token);
+  //       this.setRequestHeader('Authorization', 'Bearer ' + token);
+  //     };
+  //   })(XMLHttpRequest.prototype.open);
+  // }
 
   ngAfterViewInit() {
     const token = JSON.parse(localStorage.getItem('reduxPersist:token'));
     const loginUrl = 'login';
-
+    console.log('ngAfterViewInit()', token);
     if (!token && this.location.path() !== loginUrl) {
       this.ngRouter.navigate([loginUrl]);
     } else {
-      this.setAuthorizationBearer(token);
-      this.ngRedux.dispatch(this.actions.loadItem(ITEM_TYPES.USER));
+      this.auth.setAuthorizationBearer();
     }
-
   }
 }

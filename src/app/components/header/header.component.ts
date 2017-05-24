@@ -1,11 +1,10 @@
 import { Component, AfterViewInit, Input, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { NgRedux } from '@angular-redux/store';
-
 import { IAppState } from '../../store/root.types';
-import { LOGGED_OUT } from '../../core/core.types';
 import { ITEM_TYPES } from '../../core/ajax/item/item.types';
 import { ItemActions } from '../../core/ajax/item/item.actions';
+import { AuthService } from '../../services/auth/auth.service';
 import { HeaderActions } from './header.actions';
 
 @Component({
@@ -25,7 +24,8 @@ export class HeaderComponent implements AfterViewInit {
   constructor(
     private store: NgRedux<IAppState>,
     private actions: HeaderActions,
-    private ajax: ItemActions
+    private ajax: ItemActions,
+    private auth: AuthService
   ) {}
 
   ngAfterViewInit() {
@@ -33,8 +33,7 @@ export class HeaderComponent implements AfterViewInit {
   }
 
   logout() {
-    localStorage.clear();
-    this.store.dispatch({type: LOGGED_OUT});
+    this.auth.logout();
     this.store.dispatch(this.actions.closeToggle());
   }
 
