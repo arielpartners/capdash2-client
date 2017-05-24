@@ -10,6 +10,10 @@ export class LoginPage {
     return browser.getTitle();
   }
 
+  getTextByCss(selector) {
+    return element(by.css(selector)).getText();
+  }
+
   enterEmail(email) {
     const emailField = element(by.css('input[type=email]'));
 
@@ -25,6 +29,6 @@ export class LoginPage {
   signIn() {
     const btn = element(by.buttonText('Sign me in'));
 
-    btn.click();
+    return btn.click();
   }
 }
