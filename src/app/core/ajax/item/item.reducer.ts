@@ -1,6 +1,7 @@
 import { ItemActions } from './item.actions';
 import { IPayloadAction } from '../../utils/payload-action.types';
 import { IItem, ItemType, ITEM_TYPES } from './item.types';
+import { LOGGED_OUT } from '../../core.types';
 
 const INITIAL_STATE: IItem = {
   error: null,
@@ -14,7 +15,8 @@ const INITIAL_STATE: IItem = {
 export function createItemReducer(itemType: ItemType) {
   return function itemReducer(state: IItem = INITIAL_STATE,
                                 action: IPayloadAction<IItem, any>): IItem {
-    if ((!action.meta || action.meta.itemType !== itemType) && !(action.type === ITEM_TYPES.LOGGED_OUT)) {
+
+    if ((!action.meta || action.meta.itemType !== itemType) && !(action.type === LOGGED_OUT)) {
       return state;
     }
 
@@ -40,7 +42,7 @@ export function createItemReducer(itemType: ItemType) {
           itemType: null,
           loading: false,
         };
-      case ITEM_TYPES.LOGGED_OUT:
+      case LOGGED_OUT:
         return {
           error: null,
           item: null,
