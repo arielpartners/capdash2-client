@@ -25,10 +25,5 @@ exports.config = {
     strict: true,
     format: ['pretty'],
     require: '../e2e/feature/**/*.ts'
-  },
-  beforeLaunch: function() {
-    require('ts-node').register({
-      project: 'e2e/tsconfig.e2e.json'
-    });
   }
 }

@@ -1,15 +1,6 @@
 import { browser, element, by } from 'protractor';
 
 export class LoginPage {
-  public emailInputField: any;
-  public passwordInputField: any;
-  public signinButton: any;
-
-  constructor() {
-    this.emailInputField = element(by.css('input[type=email]'));
-    this.passwordInputField = element(by.css('input[type=password]'));
-    this.signinButton = element(by.buttonText('Sign me in'));
-  }
 
   navigateTo() {
     return browser.get('/');
@@ -20,19 +11,19 @@ export class LoginPage {
   }
 
   enterEmail(email) {
-    let emailField = this.emailInputField;
+    const emailField = element(by.css('input[type=email]'));
 
     emailField.sendKeys(email);
   }
 
   enterPassword(password) {
-    let passwordField = this.passwordInputField;
+    const passwordField = element(by.css('input[type=password]'));
 
     passwordField.sendKeys(password);
   }
 
   signIn() {
-    let btn = this.signinButton;
+    const btn = element(by.buttonText('Sign me in'));
 
     btn.click();
   }
