@@ -5,7 +5,7 @@ export class LoginPage {
   public passwordInputField: any;
   public signinButton: any;
 
-  constructor () {
+  constructor() {
     this.emailInputField = element(by.css('input[type=email]'));
     this.passwordInputField = element(by.css('input[type=password]'));
     this.signinButton = element(by.buttonText('Sign me in'));
@@ -32,6 +32,8 @@ export class LoginPage {
   }
 
   signIn() {
-    this.signinButton.click();
+    let btn = this.signinButton;
+
+    btn.click();
   }
 }

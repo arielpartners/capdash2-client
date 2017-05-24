@@ -3,10 +3,7 @@ import { Capdash2Page } from '../../../../page-objects/app.po';
 
 import { defineSupportCode } from 'cucumber';
 
-import chai from 'chai';
-import chaiAsPromised from 'chai-as-promised';
-chai.use(chaiAsPromised);
-const expect = chai.expect;
+import { expect } from 'chai';
 
 defineSupportCode(({Given, When, Then}) => {
   let page: LoginPage = new LoginPage();

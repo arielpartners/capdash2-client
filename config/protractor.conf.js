@@ -6,7 +6,7 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    '../e2e/features/*.feature'
+    '../e2e/feature/**/*.feature'
   ],
   capabilities: {
     'browserName': 'chrome'
@@ -24,11 +24,11 @@ exports.config = {
     compiler: 'ts:ts-node/register',
     strict: true,
     format: ['pretty'],
-    require: '../e2e/stepdefinitions/*.ts'
+    require: '../e2e/feature/**/*.ts'
   },
   beforeLaunch: function() {
     require('ts-node').register({
       project: 'e2e/tsconfig.e2e.json'
     });
   }
-};
+}
