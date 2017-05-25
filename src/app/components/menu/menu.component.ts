@@ -13,9 +13,16 @@ export class MenuComponent implements OnInit {
   menu = {
     id: 'media-list-checkbox',
     size: 'sm',
+    type: 'dropdown',
+    element: 'ul',
     icon: {
       class: ['fa fa-bell-o', 'text-white']
     },
+    header: {
+      text: 'Notification',
+      link: null,
+    },
+    footer: {},
     item: {
       class: 'media',
       header: {
@@ -56,7 +63,6 @@ export class MenuComponent implements OnInit {
         heading: 'Violations Reports Updated',
         subHeading: '3 minutes ago'
       }
-
     ]
   }
 
