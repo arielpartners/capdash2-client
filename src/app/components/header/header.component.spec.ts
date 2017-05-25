@@ -124,10 +124,6 @@ describe('HeaderComponent', () => {
       expect(spy).toHaveBeenCalled();
     }));
 
-    const testCases = {
-
-    }
-
     it('should open toggle when $event exist and localStorage has no value', () => {
       component.toggleDropdown({ target: button.nativeElement });
       fixture.detectChanges();

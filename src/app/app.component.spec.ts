@@ -12,13 +12,6 @@ import { ItemActions } from './core/ajax/item/item.actions';
 import { ITEM_TYPES } from './core/ajax/item/item.types';
 import { AuthService } from './services/auth/auth.service';
 
-// import {
-//   HttpModule,
-//   BaseRequestOptions,
-//   RequestOptions
-// } from '@angular/http';
-
-
 describe('AppComponent', () => {
   let app: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
@@ -68,7 +61,6 @@ describe('AppComponent', () => {
         HeaderActions,
         ItemActions,
         AuthService,
-        // { provide: RequestOptions, useClass: BaseRequestOptions },
       ]
     });
     TestBed.compileComponents();

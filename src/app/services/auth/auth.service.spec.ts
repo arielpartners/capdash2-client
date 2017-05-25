@@ -92,7 +92,6 @@ describe('AuthService', () => {
 
   describe('logout()', () => {
 
-    // localStorage.setItem('reduxPersist:token', token);
     it('should clear cached data in local storage', () => {
       spyOn(localStorage, 'clear');
       service.logout();
