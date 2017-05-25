@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
@@ -7,7 +7,8 @@ import { AuthService } from '../../services/auth/auth.service';
 @Component({
   selector: 'cd-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.less']
+  styleUrls: ['./login.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit {
 
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
     fb: FormBuilder,
     location: Location,
     private ngRouter: Router,
-    private service: AuthService
+    private auth: AuthService
   ) {
     // For our form, we’ll just have two fields and we’ll require both of them to be filled out before the form can be submitted
     this.loginForm = fb.group({
@@ -45,7 +46,9 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm(value: any) {
-    this.service.login(value.email, value.password);
+    if (value.email && value.password) {
+      this.auth.login(value.email, value.password);
+    }
   }
 
 }

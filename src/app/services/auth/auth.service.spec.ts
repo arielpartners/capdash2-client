@@ -108,14 +108,14 @@ describe('AuthService', () => {
 
   // Todo: why oh why??
   xdescribe('setAuthorizationBearer()', () => {
-    it('should have called XMLHttpRequest to set request header', () => {
-      const spy = spyOn(XMLHttpRequest.prototype, 'open').and.callThrough(); // Jasmine 2.x
+    it('should have called XMLHttpRequest to set request header', async(() => {
+      const spy = spyOn(XMLHttpRequest.prototype, 'open').and.callThrough();
       spyOn(XMLHttpRequest.prototype, 'send');
       localStorage.setItem('reduxPersist:token', token);
       service.setAuthorizationBearer();
       expect(spy).toHaveBeenCalled();
       // expect(XMLHttpRequest.prototype.send).toHaveBeenCalled();
-    });
+    }));
 
   });
 });

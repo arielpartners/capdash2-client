@@ -1,6 +1,5 @@
 import { HeaderType } from '../components/header/header.type';
 import { HeaderActions } from '../components/header/header.actions';
-// import { ItemActions } from '../core/ajax/item/item.actions';
 
 /* eslint-disable indent */
 const initialState: HeaderType = {

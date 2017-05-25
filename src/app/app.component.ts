@@ -56,20 +56,12 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
-  // setAuthorizationBearer(token: string) {
-  //   (function(open) {
-  //     XMLHttpRequest.prototype.open = function () {
-  //       open.apply(this, arguments);
-  //       console.log('calling setRequestHeader with: ', token);
-  //       this.setRequestHeader('Authorization', 'Bearer ' + token);
-  //     };
-  //   })(XMLHttpRequest.prototype.open);
-  // }
-
   ngAfterViewInit() {
     const token = JSON.parse(localStorage.getItem('reduxPersist:token'));
+    // const token = this.auth.token;
+    // console.log(token, this.auth.token);
     const loginUrl = 'login';
-    console.log('ngAfterViewInit()', token);
+    // console.log('ngAfterViewInit()', token);
     if (!token && this.location.path() !== loginUrl) {
       this.ngRouter.navigate([loginUrl]);
     } else {

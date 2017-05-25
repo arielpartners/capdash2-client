@@ -17,7 +17,7 @@ export class AuthService {
     return !!localStorage.getItem('reduxPersist:token');
   }
 
-  get token(): string {
+  get token(): string|boolean {
     return JSON.parse(localStorage.getItem('reduxPersist:token'));
   }
 
@@ -32,11 +32,11 @@ export class AuthService {
     })(XMLHttpRequest.prototype.open);
   }
 
-  login(email: string, password: string): void {
+  login(email: string, password: string) {
     this.store.dispatch(this.itemAction.submitForm(ITEM_TYPES.TOKEN, { 'auth': { email, password, }}));
   }
 
-  logout(): void {
+  logout() {
     localStorage.clear();
     this.store.dispatch({type: LOGGED_OUT});
   }

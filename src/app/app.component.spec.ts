@@ -9,14 +9,14 @@ import { MockComponent } from 'ng2-mock-component';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
 import { HeaderActions } from './components/header/header.actions';
 import { ItemActions } from './core/ajax/item/item.actions';
-import { ItemService } from './core/ajax/item/item.service';
 import { ITEM_TYPES } from './core/ajax/item/item.types';
+import { AuthService } from './services/auth/auth.service';
 
-import {
-  HttpModule,
-  BaseRequestOptions,
-  RequestOptions
-} from '@angular/http';
+// import {
+//   HttpModule,
+//   BaseRequestOptions,
+//   RequestOptions
+// } from '@angular/http';
 
 
 describe('AppComponent', () => {
@@ -25,7 +25,6 @@ describe('AppComponent', () => {
 
   const data = require('../../json-server/db.json');
   const token = JSON.stringify(data.user_token.jwt);
-
 
   @Component({
     template: ''
@@ -64,13 +63,12 @@ describe('AppComponent', () => {
           { path: 'login', component: DummyComponent }
         ]),
         NgReduxTestingModule,
-        HttpModule
       ],
       providers: [
         HeaderActions,
         ItemActions,
-        ItemService,
-        { provide: RequestOptions, useClass: BaseRequestOptions },
+        AuthService,
+        // { provide: RequestOptions, useClass: BaseRequestOptions },
       ]
     });
     TestBed.compileComponents();
@@ -97,35 +95,32 @@ describe('AppComponent', () => {
   }));
 
   describe('onClickApp()', () => {
-    let button, spy, headerActions;
+    it('should close header toggle when app is clicked', async(inject([HeaderActions], (actions: HeaderActions) => {
 
-    beforeEach( async(inject([HeaderActions], (actions: HeaderActions) => {
-      headerActions = actions;
-    })));
+      const spy = spyOn(MockNgRedux.mockInstance, 'dispatch');
+      const button = fixture.debugElement.query(By.css('.app'));
 
-    beforeEach(() => {
       localStorage.clear();
-      button = fixture.debugElement.query(By.css('.app'));
-      spy = spyOn(MockNgRedux.mockInstance, 'dispatch');
-    });
 
-    it('should close header toggle when app is clicked', () => {
-      localStorage.setItem('reduxPersist:header', JSON.stringify({
-        isToggled: true,
-        selectedDropdown: button.nativeElement.id
-      }));
-      app.onClickApp();
-      fixture.detectChanges();
-      expect(spy).toHaveBeenCalledWith(headerActions.closeToggle());
-    });
+      fixture.whenStable().then(() => {
+        localStorage.setItem('reduxPersist:header', JSON.stringify({
+          isToggled: true,
+          selectedDropdown: button.nativeElement.id
+        }));
+        app.onClickApp();
+        fixture.detectChanges();
+      }).then(() => {
+        expect(spy).toHaveBeenCalledWith(actions.closeToggle());
+      });
+    })));
   });
 
   describe('ngAfterViewInit()', () => {
 
     let actions;
 
-    beforeEach( async(inject([ItemActions], (ItemActions: ItemActions) => {
-      actions = ItemActions;
+    beforeEach( async(inject([ItemActions], (itemActions: ItemActions) => {
+      actions = itemActions;
     })));
 
     afterEach(() => {
@@ -149,103 +144,6 @@ describe('AppComponent', () => {
         expect(app.location.path()).toBe('');
       });
     })));
-
-    it('should have dispatch ItemActions.loadItem with ITEM_TYPES.USER', async(() => {
-      const spy = spyOn(MockNgRedux.mockInstance, 'dispatch').and.callThrough();
-      fixture.whenStable().then(() => {
-        localStorage.setItem('reduxPersist:token', token);
-        fixture.detectChanges();
-      }).then(() => {
-        expect(spy).toHaveBeenCalledWith(actions.loadItem(ITEM_TYPES.USER));
-      });
-    }));
-
-    fit('should have called setAuthorizationBearer() when token exist', async(() => {
-      const spy = spyOn(app, 'setAuthorizationBearer').and.callThrough();
-      fixture.whenStable().then(() => {
-        localStorage.setItem('reduxPersist:token', token);
-        fixture.detectChanges();
-      }).then(() => {
-        expect(spy).toHaveBeenCalled();
-      });
-    }));
-
-    // it('should have set request header with given token', async(inject([XHRBackend], (mockBackend) => {
-    //   // const spy = spyOn(MockNgRedux.mockInstance, 'dispatch');
-    //   let lastConnection;
-    //   mockBackend.connections.subscribe((connection: MockConnection) => {
-    //     lastConnection = connection;
-    //   });
-    //   fixture.whenStable().then(() => {
-    //     localStorage.setItem('reduxPersist:token', token);
-    //     fixture.detectChanges();
-    //   }).then(() => {
-    //     console.log('After ngAfterViewInit()', lastConnection);
-    //   });
-    // })));
-  });
-
-  describe('setAuthorizationBearer()', () => {
-
-    beforeEach(() => {
-      // this.injector = ReflectiveInjector.resolveAndCreate([
-      //   {provide: ConnectionBackend, useClass: MockBackend},
-      //   {provide: RequestOptions, useClass: BaseRequestOptions},
-      //   Http,
-      //   ItemService,
-      // ]);
-      // this.itemService = this.injector.get(ItemService);
-      // this.backend = this.injector.get(ConnectionBackend) as MockBackend;
-
-      // app.setAuthorizationBearer(token);
-
-      // this.backend.connections.subscribe((connection: any) => {
-      //   console.log('subscribe', connection);
-      //   this.lastConnection = connection;
-
-      //   console.log(connection.request.headers.keys());
-      //   // connection.mockRespond(new Response(new ResponseOptions({ body: JSON.stringify(mockResponse) })));
-      // });
-    });
-
-    // it('test', () => {
-    //   // const xhr = new XMLHttpRequest();
-    //   // app.setAuthorizationBearer(token);
-    //   // localStorage.clear();
-
-    //   const spy1 = spyOn(new XMLHttpRequest(), 'open');
-    //   const spy2 = spyOn(new XMLHttpRequest(), 'setRequestHeader');
-    //   app.setAuthorizationBearer(token);
-    //   expect(spy1).toHaveBeenCalled();
-    //   expect(spy2).toHaveBeenCalled();
-    //   // xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-    // });
-
-    // it('should have called setAuthorizationBearer() when token exist', async(() => {
-    //   const spy1 = spyOn(new XMLHttpRequest(), 'open');
-    //   const spy2 = spyOn(new XMLHttpRequest(), 'setRequestHeader');
-    //   fixture.whenStable().then(() => {
-    //     localStorage.setItem('reduxPersist:token', token);
-    //     app.setAuthorizationBearer(token);
-    //   }).then(() => {
-    //     expect(spy1).toHaveBeenCalled();
-    //     expect(spy2).toHaveBeenCalled();
-    //   });
-    // }));
-
-    // it('should have request header', () => {
-    //   // const headers = new Headers({ 'Accept': 'application/json' });
-    //   //   headers.append('Authorization', `Bearer ${token}`);
-    //   // const options = new RequestOptions({ headers: headers });
-
-    //   // app.setAuthorizationBearer(token);
-    //   const test = this.itemService.get(ITEM_TYPES.USER);
-
-    //   console.log('should have request header', this.lastConnection.request.headers.keys(), this.lastConnection);
-    //   // test.subscribe(res => {
-    //   // });
-    //   // expect(this.lastConnection).toBeDefined('no http service connection at all?');
-    // });
 
   });
 });

@@ -11,7 +11,11 @@ import { HeaderActions } from './header.actions';
   selector: 'cd-header',
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.scss'],
-  providers: [HeaderActions, ItemActions],
+  providers: [
+    HeaderActions,
+    ItemActions,
+    AuthService
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements AfterViewInit {
