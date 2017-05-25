@@ -1,8 +1,50 @@
 {
-  "name": "capdash2",
-  "version": "0.0.0",
+  "name": "capdash2-client",
+  "description": "Web front-end for Shelter Capacity Dashboard v2",
+  "version": "0.0.1",
   "license": "MIT",
-  "author": "Craeg Strong",
+  "author": {
+    "name": "Charles Fulnecky",
+    "email": "cfulnecky@arielpartners.com"
+  },
+  "contributors": [
+    {
+      "name": "Charles Fulnecky",
+      "email": "cfulnecky@arielpartners.com",
+      "url": "https://github.com/orgs/arielpartners/people/cmelion"
+    },
+    {
+      "name": "Graig Janssen",
+      "email": "graig.janssen@gmail.com",
+      "url": "https://github.com/orgs/arielpartners/people/graigjanssen"
+    },
+    {
+      "name": "Milo",
+      "email": "milowebmaster@gmail.com",
+      "url": "https://github.com/orgs/arielpartners/people/milokang"
+    },
+    {
+      "name": "Craeg Strong",
+      "email": "cstrong@arielpartners.com",
+      "url": "https://github.com/orgs/arielpartners/people/cstrong"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arielpartners/capdash2-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arielpartners/capdash2-client/issues",
+    "email": "cstrong@arielpartners.com"
+  },
+  "keywords": [
+    "angular4",
+    "redux",
+    "cucumberjs",
+    "jasmine",
+    "rxjs"
+  ],
+  "homepage": "https://github.com/arielpartners/capdash2-client#README.md",
   "scripts": {
     "build": "ng build",
     "e2e": "ng e2e",
