@@ -6,10 +6,6 @@ import { defineSupportCode } from 'cucumber';
 
 import { expect } from 'chai';
 
-defineSupportCode(function({setDefaultTimeout}) {
-  setDefaultTimeout(15000);
-});
-
 defineSupportCode(({Given, When, Then}) => {
   let page: LoginPage = new LoginPage();
   let app: Capdash2Page = new Capdash2Page();
@@ -27,15 +23,7 @@ defineSupportCode(({Given, When, Then}) => {
     page.signIn();
   });
 
-  When('the user clicks the sign in button', () => {
-
-  });
-
   Then('the user should see their personalized dashboard', () => {
-    browser.wait(() => {
-      return browser.isElementPresent(by.css('.page-header'));
-    });
-
     return browser.getCurrentUrl().then(url => {
       expect(url).to.equal('http://localhost:49152/');
     });
