@@ -1,4 +1,4 @@
-import { browser, element, by } from 'protractor';
+import { browser} from 'protractor';
 import { LoginPage } from '../../../../page-objects/login.po';
 import { Capdash2Page } from '../../../../page-objects/app.po';
 
@@ -20,12 +20,18 @@ defineSupportCode(({Given, When, Then}) => {
   When('the user logs in with valid credentials', () => {
     page.enterEmail('sample_user@dhs.nyc.gov');
     page.enterPassword('password');
-    page.signIn();
+    return page.signIn().then(() => {
+      browser.getCurrentUrl().then(url => {
+        expect(/login/.test(url)).not.to.equal(true);
+      });
+    });
   });
 
   Then('the user should see their personalized dashboard', () => {
-    return browser.getCurrentUrl().then(url => {
-      expect(url).to.equal('http://localhost:49152/');
+    return app.getAppHeader().then( header => {
+      header.isDisplayed().then(isDisplayed => {
+        expect(isDisplayed).to.equal(true);
+      });
     });
   });
 
