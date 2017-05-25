@@ -7,7 +7,7 @@ import { defineSupportCode } from 'cucumber';
 import { expect } from 'chai';
 
 defineSupportCode(function({setDefaultTimeout}) {
-  setDefaultTimeout(30 * 1000);
+  setDefaultTimeout(15000);
 });
 
 defineSupportCode(({Given, When, Then}) => {
@@ -21,22 +21,24 @@ defineSupportCode(({Given, When, Then}) => {
     });
   });
 
-  When('the user enters a valid email address and password', () => {
+  When('the user logs in with valid credentials', () => {
     page.enterEmail('sample_user@dhs.nyc.gov');
     page.enterPassword('password');
+    page.signIn();
   });
 
   When('the user clicks the sign in button', () => {
-    page.signIn().then(() => {
-      browser.driver.sleep(1000);
-      browser.waitForAngular();
-    });
+
   });
 
   Then('the user should see their personalized dashboard', () => {
+    browser.wait(() => {
+      return browser.isElementPresent(by.css('.page-header'));
+    });
+
     return browser.getCurrentUrl().then(url => {
       expect(url).to.equal('http://localhost:49152/');
-    })
+    });
   });
 
 });
