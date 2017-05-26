@@ -18,9 +18,7 @@ defineSupportCode(({Given, When, Then}) => {
   });
 
   When('the user logs in with valid credentials', () => {
-    page.enterEmail('sample_user@dhs.nyc.gov');
-    page.enterPassword('password');
-    return page.signIn().then(() => {
+    return page.login('sample_user@hra.nyc.gov', 'password').then(() => {
       browser.getCurrentUrl().then(url => {
         expect(/login/.test(url)).not.to.equal(true);
       });
