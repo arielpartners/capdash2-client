@@ -7,13 +7,21 @@ import { Observable } from 'rxjs/Observable';
 import { NgRedux } from '@angular-redux/store';
 
 import { IAppState } from './store/root.types';
+import { ITEM_TYPES } from './core/ajax/item/item.types';
+import { ItemActions } from './core/ajax/item/item.actions';
 import { HeaderActions } from './components/header/header.actions';
+
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'cd-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less'],
-  providers: [HeaderActions],
+  providers: [
+    HeaderActions,
+    ItemActions,
+    AuthService
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements AfterViewInit {
@@ -27,11 +35,15 @@ export class AppComponent implements AfterViewInit {
   @select(['info', 'error']) readonly error$: Observable<any>;
   @select(['header', 'isToggled']) readonly isToggled$: Observable<boolean>;
   @select(['header', 'selectedDropdown']) readonly selectedDropdown$: Observable<string>;
+  @select(['user', 'item', 'name']) readonly userName$: Observable<string>;
+  @select(['user', 'item', 'profile_image']) readonly userProfile$: Observable<string>;
 
   constructor(
     private ngRouter: Router,
     private ngRedux: NgRedux<IAppState>,
-    private actions: HeaderActions,
+    private headerActions: HeaderActions,
+    private actions: ItemActions,
+    private auth: AuthService,
     location: Location
   ) {
     this.location = location;
@@ -40,17 +52,20 @@ export class AppComponent implements AfterViewInit {
   onClickApp() {
     const header = JSON.parse(localStorage.getItem('reduxPersist:header'));
     if (header && header.isToggled) {
-      this.ngRedux.dispatch(this.actions.closeToggle());
+      this.ngRedux.dispatch(this.headerActions.closeToggle());
     }
   }
 
   ngAfterViewInit() {
     const token = JSON.parse(localStorage.getItem('reduxPersist:token'));
+    // const token = this.auth.token;
+    // console.log(token, this.auth.token);
     const loginUrl = 'login';
-
+    // console.log('ngAfterViewInit()', token);
     if (!token && this.location.path() !== loginUrl) {
       this.ngRouter.navigate([loginUrl]);
+    } else {
+      this.auth.setAuthorizationBearer();
     }
-
   }
 }

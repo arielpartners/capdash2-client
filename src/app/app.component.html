@@ -2,7 +2,9 @@
   <div *ngIf="token$ | async"
        class="app-header">
     <cd-header [isToggled]="isToggled$"
-               [selectedDropdown]="selectedDropdown$"></cd-header>
+               [selectedDropdown]="selectedDropdown$"
+               [userName]="userName$"
+               [userProfile]="userProfile$"></cd-header>
   </div>
   <div class="app-section" (click)="onClickApp()">
     <div *ngIf="token$ | async"

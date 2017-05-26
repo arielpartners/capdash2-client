@@ -7,12 +7,17 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { MockComponent } from 'ng2-mock-component';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
-
 import { HeaderActions } from './components/header/header.actions';
+import { ItemActions } from './core/ajax/item/item.actions';
+import { ITEM_TYPES } from './core/ajax/item/item.types';
+import { AuthService } from './services/auth/auth.service';
 
 describe('AppComponent', () => {
   let app: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
+
+  const data = require('../../json-server/db.json');
+  const token = JSON.stringify(data.user_token.jwt);
 
   @Component({
     template: ''
@@ -20,6 +25,9 @@ describe('AppComponent', () => {
   class DummyComponent { }
 
   beforeEach(() => {
+    spyOn(XMLHttpRequest.prototype, 'open').and.callThrough(); // Jasmine 2.x
+    spyOn(XMLHttpRequest.prototype, 'send');
+
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
@@ -27,8 +35,14 @@ describe('AppComponent', () => {
         MockComponent({selector: 'cd-login'}),
         MockComponent({
           selector: 'cd-header',
-          inputs: ['isToggled', 'selectedDropdown'],
-          outputs: ['isToggled', 'selectedDropdown'],
+          inputs: [
+            'isToggled', 'selectedDropdown',
+            'userName', 'userProfile'
+          ],
+          outputs: [
+            'isToggled', 'selectedDropdown',
+            'userName', 'userProfile'
+          ]
         }),
         MockComponent({
           selector: 'cd-sidebar',
@@ -41,9 +55,13 @@ describe('AppComponent', () => {
           { path: '', component: DummyComponent },
           { path: 'login', component: DummyComponent }
         ]),
-        NgReduxTestingModule
+        NgReduxTestingModule,
       ],
-      providers: [HeaderActions]
+      providers: [
+        HeaderActions,
+        ItemActions,
+        AuthService,
+      ]
     });
     TestBed.compileComponents();
     MockNgRedux.reset();
@@ -69,33 +87,37 @@ describe('AppComponent', () => {
   }));
 
   describe('onClickApp()', () => {
-    let button, spy, headerActions;
+    it('should close header toggle when app is clicked', async(inject([HeaderActions], (actions: HeaderActions) => {
 
-    beforeEach( async(inject([HeaderActions], (actions: HeaderActions) => {
-      headerActions = actions;
-    })));
+      const spy = spyOn(MockNgRedux.mockInstance, 'dispatch');
+      const button = fixture.debugElement.query(By.css('.app'));
 
-    beforeEach(() => {
       localStorage.clear();
-      button = fixture.debugElement.query(By.css('.app'));
-      spy = spyOn(MockNgRedux.mockInstance, 'dispatch');
-    });
 
-    it('should close header toggle when app is clicked', () => {
-      localStorage.setItem('reduxPersist:header', JSON.stringify({
-        isToggled: true,
-        selectedDropdown: button.nativeElement.id
-      }));
-      app.onClickApp();
-      fixture.detectChanges();
-      expect(spy).toHaveBeenCalledWith(headerActions.closeToggle());
-    });
+      fixture.whenStable().then(() => {
+        localStorage.setItem('reduxPersist:header', JSON.stringify({
+          isToggled: true,
+          selectedDropdown: button.nativeElement.id
+        }));
+        app.onClickApp();
+        fixture.detectChanges();
+      }).then(() => {
+        expect(spy).toHaveBeenCalledWith(actions.closeToggle());
+      });
+    })));
   });
 
   describe('ngAfterViewInit()', () => {
 
-    const data = require('../../json-server/db.json');
-    const token = JSON.stringify(data.user_token.jwt);
+    let actions;
+
+    beforeEach( async(inject([ItemActions], (itemActions: ItemActions) => {
+      actions = itemActions;
+    })));
+
+    afterEach(() => {
+      localStorage.clear();
+    });
 
     it('should redirect to login url when token has expired', async(inject([Router, Location], (router: Router, location: Location) => {
       fixture.whenStable().then(() => {
@@ -107,7 +129,6 @@ describe('AppComponent', () => {
     })));
 
     it('should stay on base url when token exist', async(inject([Router, Location], (router: Router, location: Location) => {
-
       fixture.whenStable().then(() => {
         localStorage.setItem('reduxPersist:token', token);
         fixture.detectChanges();
@@ -115,5 +136,6 @@ describe('AppComponent', () => {
         expect(app.location.path()).toBe('');
       });
     })));
+
   });
 });

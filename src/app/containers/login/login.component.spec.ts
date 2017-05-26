@@ -1,19 +1,17 @@
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject, fakeAsync, tick } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoginComponent } from './login.component';
+import { AuthService } from '../../services/auth/auth.service';
 import { ItemActions } from '../../core/ajax/item/item.actions';
 import { ITEM_TYPES } from '../../core/ajax/item/item.types';
 
-const data = require('../../../../json-server/db.json');
-
 describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
 
   @Component({
     template: '<router-outlet></router-outlet>'
@@ -27,6 +25,10 @@ describe('LoginComponent', () => {
 
   class DefaultComponent {}
 
+  let component: LoginComponent;
+  let fixture: ComponentFixture<LoginComponent>;
+  let auth: AuthService;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ RouteComponent, LoginComponent, DefaultComponent ],
@@ -39,25 +41,27 @@ describe('LoginComponent', () => {
         NgReduxTestingModule
       ],
       providers: [
-        {
-          provide: ItemActions,
-          useClass: ItemActions
-        }
+        AuthService,
+        ItemActions
       ],
     })
-    .compileComponents();
+    .compileComponents().then(() => {
+      fixture = TestBed.createComponent(LoginComponent);
+      component = fixture.componentInstance;
+    });
+
     MockNgRedux.reset();
+
+    auth = TestBed.get(AuthService);
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
+    localStorage.clear();
   });
 
-  it('should create', () => {
-    fixture.detectChanges();
+  it('should create', async(() => {
     expect(component).toBeTruthy();
-  });
+  }));
 
   describe('ngOnInit()', () => {
 
@@ -69,45 +73,62 @@ describe('LoginComponent', () => {
       routeComponent = routeFixture.componentInstance;
     });
 
-    it('should redirect to base url when token exist and current location is login url',
-        async(inject([Router, Location], (router: Router, location: Location) => {
-
-      const token = JSON.stringify(data.user_token.jwt);
-      router.navigate(['/']).then(() => {
-        expect(location.path()).toBe('/');
-        localStorage.setItem('reduxPersist:token', token)
-        return router.navigate(['/login']);
-      }).then(() => {
-        expect(location.path()).toBe('/');
-      });
-
-    })));
+    it('should redirect to base url when token exist and current location is login url', async(
+      inject([Router, Location], (router: Router, location: Location) => {
+        const data = require('../../../../json-server/db.json');
+        const token = JSON.stringify(data.user_token.jwt);
+        router.navigate(['/']).then(() => {
+          expect(location.path()).toBe('/');
+          localStorage.setItem('reduxPersist:token', token);
+          return router.navigate(['/login']);
+        }).then(() => {
+          expect(location.path()).toBe('/');
+        });
+      })
+    ));
   });
 
   describe('submitForm(authForm)', () => {
+    it('should exist', () => {
+      expect(component.submitForm).toBeTruthy();
+      expect(typeof component.submitForm).toBe('function');
+    });
 
-    it('should have been called store.dispatch', () => {
+    it('should have called when submit button is clicked', () => {
+      const button = fixture.debugElement.query(By.css('.btn-success'));
+      fakeAsync(() => {
+        button.triggerEventHandler('click', null);
+        tick();
+        fixture.detectChanges();
+        expect(component.submitForm).toHaveBeenCalled();
+      });
+    });
 
-      const spy = spyOn(MockNgRedux.mockInstance, 'dispatch');
+    it('should not called login() when argument is null', async(() => {
+      const spy = spyOn(auth, 'login');
       const form = {
-        auth: {
-          email: 'test@test.com',
-          password: '1234'
-        }
+        auth: { email: null, password: null }
       };
 
       component.submitForm({
         email: form.auth.email,
         password: form.auth.password
       });
+      expect(spy).not.toHaveBeenCalled();
+    }));
 
-      expect(spy).toHaveBeenCalledWith({
-        type: ItemActions.LOAD_STARTED,
-        meta: {
-          itemType: ITEM_TYPES.TOKEN
-        },
-        form
+    it('should have called login() from AuthService when form is submitted', async(() => {
+      const spy = spyOn(auth, 'login');
+      const form = {
+        auth: { email: 'test@test.com', password: '1234' }
+      };
+
+      component.submitForm({
+        email: form.auth.email,
+        password: form.auth.password
       });
-    });
+      expect(spy).toHaveBeenCalled();
+      expect(spy).toHaveBeenCalledWith(form.auth.email, form.auth.password);
+    }));
   });
 });

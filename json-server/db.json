@@ -10,6 +10,7 @@
   },
   "user": {
     "email": "sample_user@dhs.nyc.gov",
-    "name": "John Doe"
+    "name": "John Doe",
+    "profile_image": "/assets/img/user-rbs.jpg"
   }
 }
