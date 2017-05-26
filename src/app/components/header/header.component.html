@@ -201,8 +201,8 @@
     <!-- begin user dropdown menu -->
     <div   class="dropdown navbar-user">
       <label for="user-checkbox" class="flex-box-row f-s-14">
-        <img src="assets/img/user-rbs.jpg" alt="user-rbs" width="128" height="128">
-        <span class="hidden-xs text-white">Robert Santore</span> <b class="caret text-white"></b>
+        <img [src]="(userProfile | async)" alt="user-rbs" width="128" height="128">
+        <span class="hidden-xs text-white">{{userName | async}}</span> <b class="caret text-white"></b>
       </label>
       <input type="radio" class="radio-hack" name="header" id="user-checkbox" (click)="toggleDropdown($event)">
       <ul class="dropdown-menu animated fadeInLeft" *ngIf="(isToggled | async) && ((selectedDropdown | async) === 'user-checkbox')">

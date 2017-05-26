@@ -1,38 +1,47 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, Input, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../store/root.types';
-import { HeaderActions } from './header.actions'
+import { ITEM_TYPES } from '../../core/ajax/item/item.types';
+import { ItemActions } from '../../core/ajax/item/item.actions';
+import { AuthService } from '../../services/auth/auth.service';
+import { HeaderActions } from './header.actions';
 
 @Component({
   selector: 'cd-header',
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.scss'],
-  providers: [HeaderActions],
+  providers: [
+    HeaderActions,
+    ItemActions,
+    AuthService
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements AfterViewInit {
 
   @Input() isToggled: Observable<boolean>;
   @Input() selectedDropdown: Observable<string>;
+  @Input() userName: Observable<string>;
+  @Input() userProfile: Observable<string>;
 
   constructor(
-    private ngRedux: NgRedux<IAppState>,
-    private actions: HeaderActions
+    private store: NgRedux<IAppState>,
+    private actions: HeaderActions,
+    private ajax: ItemActions,
+    private auth: AuthService
   ) {}
 
-  logout() {
-    localStorage.clear();
-    this.ngRedux.dispatch({type: 'logged-out'});
-    this.ngRedux.dispatch(this.actions.closeToggle());
+  ngAfterViewInit() {
+    this.store.dispatch(this.ajax.loadItem(ITEM_TYPES.USER));
   }
 
-  ngOnInit() {
-    // Question: Do i need OnInit lifecycle?
+  logout() {
+    this.auth.logout();
+    this.store.dispatch(this.actions.closeToggle());
   }
 
   toggleDropdown(e) {
-
     const elem = e ? e.target : undefined,
           header = JSON.parse(localStorage.getItem('reduxPersist:header'));
 
@@ -44,12 +53,10 @@ export class HeaderComponent implements OnInit {
           : header.selectedDropdown !== elem.id
       : false;
 
-    // console.log('HeaderComponent | toggleDropdown(e)', elem, header, shouldOpen);
-
     if (shouldOpen) {
-      this.ngRedux.dispatch(this.actions.openToggle(elem.id));
+      this.store.dispatch(this.actions.openToggle(elem.id));
     } else {
-      this.ngRedux.dispatch(this.actions.closeToggle());
+      this.store.dispatch(this.actions.closeToggle());
     }
   }
 }
