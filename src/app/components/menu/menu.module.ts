@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 // Question: Do I need BrowserModule for this module?
-// import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 // Question: Do I need NgbModule for this module?
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MenuComponent } from './menu.component';
@@ -11,8 +11,9 @@ import { MenuItemComponent } from './menu-item/menu-item.component';
     MenuComponent
   ],
   imports: [
-    // BrowserModule,
+    BrowserModule,
     // NgbModule
-  ]
+  ],
+  exports: [ MenuComponent ],
 })
 export class MenuModule {}

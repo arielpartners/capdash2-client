@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { MenuType } from './menu.type';
+import { HeaderMenu } from './model/header-menu.model';
 
 @Component({
   selector: 'cd-menu',
@@ -9,71 +11,19 @@ import { Observable } from 'rxjs/Observable';
 export class MenuComponent implements OnInit {
 
   isDropdown: Boolean = true;
+  menu: MenuType;
+  size: string;
 
-  menu = {
-    id: 'media-list-checkbox',
-    size: 'sm',
-    type: 'dropdown',
-    element: 'ul',
-    icon: {
-      class: ['fa fa-bell-o', 'text-white']
-    },
-    header: {
-      text: 'Notification',
-      link: null,
-    },
-    footer: {},
-    item: {
-      class: 'media',
-      header: {
-        thumbnail: null,
-        link: 'javascript:',
-        icon: ['fa fa-warning', 'media-object', 'bg-red'],
-        heading: 'Violations Reports Updated',
-        subHeading: '3 minutes ago'
-      },
-      footer: {}
-    },
-    items: [
-      {
-        thumbnail: null,
-        link: 'javascript:',
-        icon: ['fa fa-warning', 'media-object', 'bg-red'],
-        heading: 'Violations Reports Updated',
-        subHeading: '3 minutes ago'
-      },
-      {
-        thumbnail: null,
-        link: 'javascript:',
-        icon: ['fa fa-warning', 'media-object', 'bg-red'],
-        heading: 'Violations Reports Updated',
-        subHeading: '3 minutes ago'
-      },
-      {
-        thumbnail: null,
-        link: 'javascript:',
-        icon: ['fa fa-warning', 'media-object', 'bg-red'],
-        heading: 'Violations Reports Updated',
-        subHeading: '3 minutes ago'
-      },
-      {
-        thumbnail: null,
-        link: 'javascript:',
-        icon: ['fa fa-warning', 'media-object', 'bg-red'],
-        heading: 'Violations Reports Updated',
-        subHeading: '3 minutes ago'
-      }
-    ]
+  // @Input() menu: Observable<MenuType[]>;
+  constructor() {
+    this.menu = HeaderMenu;
+    this.size = 'large';
   }
-
-  constructor() { }
 
   ngOnInit() {
   }
 
-  // types of menu
-  // 1. dropdown
-  // 2. routelink
-  // 3. no menu item??
+  // Todo: menu direction could be passdown from parent
+  // Todo: use Observable to receive data from parent
 }
 

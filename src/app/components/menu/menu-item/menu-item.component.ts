@@ -8,6 +8,18 @@ import { Observable } from 'rxjs/Observable';
 })
 export class MenuItemComponent implements OnInit {
 
+// Todo: menu item should render html according to it's type
+
+/*
+ * ==================
+ * types of menu item
+ * ==================
+ * header, item, footer
+ * all of them has text and link
+ * for notification header,
+ * there is number of notification,
+ * however, we could pass down calculated value
+ */
   constructor() { }
 
   ngOnInit() {

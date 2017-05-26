@@ -1,33 +1,48 @@
-<div [class.dropdown]="isDropdown">
+<div [class.dropdown]="isDropdown"
+  [class.dropdown-lg]="size === 'large'">
   <!-- menu label section -->
-  <label for="{{menu.id}}" class="dropdown-toggle f-s-14">
-    <i [ngClass]="menu.icon.class"></i>
-    <span class="label">4</span>
+  <label [for]="menu.button.id"
+    class="dropdown-toggle text-white">
+    <i [class]="menu.label.icon"></i>
+    {{menu.label.title}}
+    <b class="caret"></b>
   </label>
 
-  <!-- menu radio button section -->
+  <!-- menu button component -->
   <input type="radio" class="radio-hack" name="header"
-        [id]="menu.id"
+        [id]="menu.button.id"
         (click)="toggleDropdown($event)">
 
-  <!-- dropdown section
-  <ul *ngIf="(isToggled | async)
-          && ((selectedDropdown | async) === (menu.id))"
-      class="dropdown-menu media-list pull-right animated fadeInDown"> -->
+  <!-- submenu wrapper component -->
+  <div class="dropdown-menu dropdown-menu-lg"
+    *ngIf="size === 'large'">
+    <div class="row">
+      <div *ngFor="let submenu of menu.submenu"
+          [class]="submenu.class">
+        <h4 class="dropdown-header">
+          <i [class]="submenu.icon"></i>
+          {{submenu.name}}
+        </h4>
 
+        <div class="row"
+          *ngIf="submenu.itemsType === 'list-item'">
+          <ul class="nav">
+            <li *ngFor="let item of submenu.items">
+              <a [href]="item.link" class="text-ellipsis text-black">
+                <i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i>
+                {{item.name}}
+              </a>
+            </li>
+          </ul>
+        </div>
 
-  <!-- dropdown section -->
-  <ul class="dropdown-menu media-list pull-right animated fadeInDown">
-
-    <!-- menu item header section -->
-    <li class="dropdown-header">Notifications (4)</li>
-
-    <!-- menu items section -->
-    <cd-menu-item></cd-menu-item>
-
-    <!-- menu item footer section -->
-    <li class="dropdown-footer text-center">
-      <a href="javascript:">View more</a>
-    </li>
-  </ul>
+        <div
+          *ngIf="submenu.itemsType === 'paragraph'">
+          <p *ngFor="let item of submenu.items">
+            {{item.name}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
