@@ -24,6 +24,7 @@ exports.config = {
     compiler: 'ts:ts-node/register',
     strict: true,
     format: ['pretty'],
-    require: '../e2e/feature/**/*.ts'
+    require: ['../e2e/feature/**/*.ts', '../e2e/support/*.ts']
   }
+
 }
