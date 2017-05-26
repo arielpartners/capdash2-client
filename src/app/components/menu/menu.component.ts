@@ -1,23 +1,50 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MenuType } from './menu.type';
-import { HeaderMenu } from './model/header-menu.model';
+
+// requires location to identify current location,
+// we might need route module at some point to make menus that has routelink feature as well
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+
+interface LocationPathType {
+  protocol: string;
+  host: string;
+  origin: string;
+  path: string;
+}
 
 @Component({
   selector: 'cd-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  styleUrls: ['./menu.component.scss'],
+  providers: [
+    Location,
+    { provide: LocationStrategy, useClass: PathLocationStrategy }
+  ],
 })
+
 export class MenuComponent implements OnInit {
 
+  @Input() menu: MenuType;
+
   isDropdown: Boolean = true;
-  menu: MenuType;
   size: string;
 
+  currentLocation: LocationPathType;
+  location: Location;
   // @Input() menu: Observable<MenuType[]>;
-  constructor() {
-    this.menu = HeaderMenu;
+  constructor(location: Location) {
+    // this.menu = HeaderMenu;
     this.size = 'large';
+    this.location = location;
+    this.currentLocation = {
+      protocol: window.location.protocol,
+      host: window.location.host,
+      origin: window.location.origin,
+      path: location.path()
+    };
+
+    console.log(this.currentLocation);
   }
 
   ngOnInit() {

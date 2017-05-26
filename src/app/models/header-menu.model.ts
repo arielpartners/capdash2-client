@@ -1,14 +1,21 @@
-import { MenuType, MenuLabelType, MenuButtonType, SubMenuType } from '../menu.type';
+import { MenuType } from '../components/menu/menu.type';
 
 // Todo: model belongs to app not menu directory
-export const HeaderMenu: MenuType = {
+export const MainMenu: MenuType = {
+  class: 'dropdown-lg',
+  type: 'dropdown',
   label: {
+    class: 'dropdown-toggle text-white',
+    color: 'red', // red for testing white is original
     icon: 'fa fa-th-large fa-fw',
-    title: 'DSS Intranet Main Menu'
+    text: {
+      value: 'DSS Intranet Main Menu'
+    },
+    type: 'default'
   },
   button: {
     // need unique value for toggle
-    id: 'dropdown-menu-lg-test-checkbox',
+    id: 'dropdown-menu-lg-checkbox-test',
     type: 'radio',
     name: 'header',
   },
@@ -25,11 +32,12 @@ export const HeaderMenu: MenuType = {
         },
         {
           name: 'VETS Tracking System',
-          link: 'javascript:'
+          link: 'javascript:',
+          badge: 'update'
         },
         {
           name: 'Capacity & Planning (CapApp)',
-          link: 'javascript:'
+          link: 'http://localhost:4200'
         },
         {
           name: 'ORCA',
@@ -160,5 +168,76 @@ export const HeaderMenu: MenuType = {
       ]
     }
   ]
-}
+};
 
+export const NotificationMenu: MenuType = {
+  class: 'bell',
+  type: 'dropdown',
+  label: {
+    class: 'f-s-14',
+    icon: 'fa fa-bell-o',
+    text: { // Todo: calculate numbers of unread notifications
+      value: '4',
+      class: 'label'
+    },
+    type: 'mini'
+  },
+  button: {
+    id: 'media-list-checkbox-test',
+    type: 'radio',
+    name: 'header',
+  },
+  items: [
+
+  ]
+};
+
+export const LanguageMenu: MenuType = {
+  class: 'navbar-language',
+  type: 'dropdown',
+  label: {
+    class: 'f-s-14',
+    icon: 'fa fa-bell-o text-white',
+    text: {
+      value: 'EN',
+      class: 'name text-white'
+    },
+    type: 'item',
+    tag: 'us'
+  },
+  button: {
+    id: 'language-checkbox-test',
+    type: 'radio',
+    name: 'header',
+  },
+  items: [
+
+  ]
+};
+
+export const UserMenu: MenuType = {
+  class: 'navbar-language',
+  type: 'dropdown',
+  label: {
+    class: 'f-s-14',
+    icon: {
+      src: 'assets/img/user-rbs.jpg',
+      width: 128,
+      height: 128
+    },
+    text: {
+      value: 'Robert Santore',
+      class: 'hidden-xs text-white'
+    },
+    type: 'thumbnail',
+    tag: 'user-rbs',
+  },
+  button: {
+    id: 'media-list-checkbox-test',
+    type: 'radio',
+    name: 'header',
+  },
+  items: [
+
+  ]
+};

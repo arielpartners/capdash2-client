@@ -1,12 +1,14 @@
-<div [class.dropdown]="isDropdown"
-  [class.dropdown-lg]="size === 'large'">
-  <!-- menu label section -->
-  <label [for]="menu.button.id"
-    class="dropdown-toggle text-white">
-    <i [class]="menu.label.icon"></i>
-    {{menu.label.title}}
-    <b class="caret"></b>
-  </label>
+<div [class.dropdown]="menu.type == 'dropdown'"
+     [ngClass]="menu.class">
+  <!-- menu label section
+  <label [for]="label.for"
+       [ngClass]="menu.class"
+       [ngSwitch]="label.type"
+        class="dropdown-toggle text-white">
+  </label> -->
+
+  <cd-menu-label  [for]="menu.button.id"
+                  [label]="menu.label"></cd-menu-label>
 
   <!-- menu button component -->
   <input type="radio" class="radio-hack" name="header"
@@ -29,8 +31,12 @@
           <ul class="nav">
             <li *ngFor="let item of submenu.items">
               <a [href]="item.link" class="text-ellipsis text-black">
-                <i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i>
+                <i class="fa fa-fw fa-lg text-inverse"
+                   [class.fa-chevron-circle-right]="currentLocation.origin == item.link"
+                   [class.fa-angle-right]="currentLocation.origin != item.link"></i>
                 {{item.name}}
+                <!-- badge -->
+                <span *ngIf="(item.badge) && (item.badge == 'update')" class="badge badge-success">UPDATE</span>
               </a>
             </li>
           </ul>

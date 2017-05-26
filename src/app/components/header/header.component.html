@@ -10,7 +10,16 @@
   </div>
   <!-- end mobile sidebar expand / collapse button -->
 
-  <cd-menu></cd-menu>
+  <div class="header-nav-left flex-box-row" id="top-navbar">
+    <cd-menu [menu]="menu.main"></cd-menu>
+    <cd-menu [menu]="menu.notification"></cd-menu>
+    <cd-menu [menu]="menu.language"></cd-menu>
+    <cd-menu [menu]="menu.user"></cd-menu>
+    <div>
+      <a href="#" class="text-white ng-binding"><i class="fa fa-envelope-o"></i> Contact DSS OIT</a>
+    </div>
+  </div>
+
   <!-- begin navbar-collapse -->
   <!-- begin mega menu -->
   <div class="header-nav-left flex-box-row" id="top-navbar">

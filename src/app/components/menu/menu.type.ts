@@ -1,7 +1,6 @@
-export interface MenuLabelType {
-  icon: string;
-  title: string;
-}
+// import { Type } from '@angular/core';
+
+import { MenuLabelType } from './menu-label/menu-label.type';
 
 export interface MenuButtonType {
   id: string;
@@ -9,9 +8,10 @@ export interface MenuButtonType {
   name: string;
 }
 
-export interface SubMenuItemType {
+export interface MenuItemType {
   name: string;
   link: string;
+  badge?: string;
 }
 
 export interface SubMenuType {
@@ -19,12 +19,14 @@ export interface SubMenuType {
   icon: string;
   class: string;
   itemsType: string;
-  items: SubMenuItemType[];
+  items: MenuItemType[];
 }
 
 export interface MenuType {
+  class?: string;
+  type: string;
   label: MenuLabelType;
   button: MenuButtonType;
-  submenu: SubMenuType[];
-
+  submenu?: SubMenuType[];
+  items?: MenuItemType[];
 }

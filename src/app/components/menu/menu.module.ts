@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 // Question: Do I need NgbModule for this module?
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MenuComponent } from './menu.component';
-import { MenuItemComponent } from './menu-item/menu-item.component';
+import { MenuLabelModule } from './menu-label/menu-label.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import { MenuItemComponent } from './menu-item/menu-item.component';
   ],
   imports: [
     BrowserModule,
-    // NgbModule
+    MenuLabelModule
   ],
   exports: [ MenuComponent ],
 })
