@@ -47,7 +47,7 @@
   "homepage": "https://github.com/arielpartners/capdash2-client#README.md",
   "scripts": {
     "build": "ng build",
-    "e2e": "ng build --no-progress && concurrently \"npm run json-server\" \"ng e2e\" --kill-others --success first",
+    "e2e": "ng build --no-progress && concurrently \"npm run json-server\" \"ng e2e --proxy-config config/proxy.conf.json\" --kill-others --success first",
     "e2e-no-server": "ng e2e --no-serve --proxy-config config/proxy.conf.json",
     "hmr": "ng serve --open --hmr -e=hmr --proxy-config config/proxy.conf.json",
     "json-server": "nodemon --watch ./json-server/ ./json-server/server.js --delay 2",
