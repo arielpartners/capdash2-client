@@ -25,8 +25,6 @@ describe('AppComponent', () => {
   class DummyComponent { }
 
   beforeEach(() => {
-    spyOn(XMLHttpRequest.prototype, 'open').and.callThrough(); // Jasmine 2.x
-    spyOn(XMLHttpRequest.prototype, 'send');
 
     TestBed.configureTestingModule({
       declarations: [
