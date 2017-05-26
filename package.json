@@ -100,6 +100,7 @@
     "chai-as-promised": "^6.0.0",
     "codelyzer": "~3.0.1",
     "cucumber": "^2.1.0",
+    "cucumber-html-reporter": "^0.4.2",
     "jasmine-core": "~2.6.1",
     "jasmine-spec-reporter": "~4.1.0",
     "json-server": "0.10.0",
