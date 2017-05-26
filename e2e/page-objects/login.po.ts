@@ -31,4 +31,11 @@ export class LoginPage {
 
     return btn.click();
   }
+
+  login(email, password) {
+    this.enterEmail(email);
+    this.enterPassword(password);
+
+    return this.signIn();
+  }
 }
