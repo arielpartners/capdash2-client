@@ -104,7 +104,7 @@ describe('AuthService', () => {
     });
   });
 
-  fdescribe('setAuthorizationBearer()', () => {
+  describe('setAuthorizationBearer()', () => {
     it('should have called XMLHttpRequest to set request headers', async(() => {
       const spy = spyOn(XMLHttpRequest.prototype, 'setRequestHeader').and.callThrough();
       const req = new XMLHttpRequest();
