@@ -10,106 +10,10 @@
   </div>
   <!-- end mobile sidebar expand / collapse button -->
 
-  <div class="header-nav-left flex-box-row" id="top-navbar">
-    <cd-menu [menu]="menu.main"></cd-menu>
-    <cd-menu [menu]="menu.notification"></cd-menu>
-    <cd-menu [menu]="menu.language"></cd-menu>
-    <cd-menu [menu]="menu.user"></cd-menu>
-    <div>
-      <a href="#" class="text-white ng-binding"><i class="fa fa-envelope-o"></i> Contact DSS OIT</a>
-    </div>
-  </div>
-
   <!-- begin navbar-collapse -->
   <!-- begin mega menu -->
   <div class="header-nav-left flex-box-row" id="top-navbar">
-    <div class="dropdown dropdown-lg">
-      <label for="dropdown-menu-lg-checkbox" class="dropdown-toggle text-white ng-binding">
-        <i class="fa fa-th-large fa-fw"></i> DSS Intranet Main Menu <b class="caret"></b>
-      </label>
-      <input type="radio" class="radio-hack" name="header" id="dropdown-menu-lg-checkbox" (click)="toggleDropdown($event)">
-      <div class="dropdown-menu dropdown-menu-lg"
-        *ngIf="(isToggled | async) && ((selectedDropdown | async) === 'dropdown-menu-lg-checkbox')">
-        <div class="row">
-          <!-- Apps Menu -->
-          <div class="col-md-2 col-sm-2">
-            <h4 class="dropdown-header"><i class="fa fa-desktop"></i> Apps </h4>
-            <div class="row">
-              <ul class="nav">
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Cares</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> VETS Tracking System <span class="badge badge-success">UPDATE</span></a></li>
-                <li><a href="index.html" class="text-ellipsis text-black ng-binding"><i class="fa fa-chevron-circle-right fa-fw fa-lg text-inverse"></i> Capacity &amp; Planning (CapApp)</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> ORCA</a></li>
-              </ul>
-            </div>
-          </div>
-          <!-- Resources Menu -->
-          <div class="col-md-2 col-sm-2">
-            <h4 class="dropdown-header"><i class="fa fa-book"></i> Resources </h4>
-            <div class="row">
-              <ul class="nav">
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> City Share</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Help Desk</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> FAQs</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Policy &amp; Procedures</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> DEOA</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Office of the Ombudsman</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Staff Directory</a></li>
-              </ul>
-            </div>
-          </div>
-          <!-- Programs Menu -->
-          <div class="col-md-2 col-sm-2">
-            <h4 class="dropdown-header"><i class="fa fa-diamond"></i> Programs </h4>
-            <div class="row">
-              <ul class="nav">
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Adults </a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Capacity Planning &amp; Development</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Communications &amp; External Affairs</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Families</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Policy &amp; Planning</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Prevention</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Security &amp; Emergency Operations</a></li>
-              </ul>
-            </div>
-          </div>
-          <!-- Administration Menu -->
-          <div class="col-md-2 col-sm-2">
-            <h4 class="dropdown-header"><i class="fa fa-building"></i> Administration </h4>
-            <div class="row">
-              <ul class="nav">
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Administrative Division </a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Fiscal Procurment</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Fleet Services</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Human Resources</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> Legal Affairs</a></li>
-                <li><a href="javascript:" class="text-ellipsis text-black"><i class="fa fa-angle-right fa-fw fa-lg text-inverse"></i> OIT</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- News Menu -->
-          <div class="col-md-4 col-sm-4">
-            <h4 class="dropdown-header"><i class="fa fa-newspaper-o"></i> Latest News</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis libero purus, fermentum at libero convallis, auctor dignissim mauris. Nunc laoreet pellentesque turpis sodales ornare. Nunc vestibulum nunc lorem, at sodales velit malesuada congue. Nam est tortor, tincidunt sit amet eros vitae, aliquam finibus mauris.
-            </p>
-            <p>
-              Fusce ac ligula laoreet ante dapibus mattis. Nam auctor vulputate aliquam. Suspendisse efficitur, felis sed elementum eleifend, ipsum tellus sodales nisi, ut condimentum nisi sem in nibh. Phasellus suscipit vulputate purus at venenatis. Quisque luctus tincidunt tempor.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Help Desk Menu -->
-    <!-- <li>
-        <a href="http://cityshare.nycnet/html/my-desk/html/home/home.shtml" class=" text-white"><i class="fa fa-th-large fa-life-buoy"></i> {{$state.current.data.agencyTitle}} Help Desk </a>
-    </li> -->
-    <!-- Staff Directory Menu -->
-    <!-- <li>
-        <a href="https://intranet.dhs.nycnet/Search/Pages/PeopleSearch.aspx" class=" text-white"><i class="fa fa-th-large fa-users"></i> Staff Directory </a>
-    </li> -->
-    <!-- Contact Menu -->
+    <cd-menu [menu]="menu.main"></cd-menu>
     <div>
       <a href="#" class="text-white ng-binding"><i class="fa fa-envelope-o"></i> Contact DSS OIT</a>
     </div>
@@ -131,7 +35,11 @@
     <!-- ./end header global search -->
     <!-- begin notifications dropdown menu -->
 
+    <!--
+    <cd-menu [menu]="menu.language"></cd-menu>
+    <cd-menu [menu]="menu.user"></cd-menu> -->
 
+    <cd-menu [menu]="menu.notification"></cd-menu>
     <div class="dropdown bell">
       <label for="media-list-checkbox" class="dropdown-toggle f-s-14">
         <i class="fa fa-bell-o text-white"></i>

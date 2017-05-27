@@ -4,8 +4,8 @@ import { MenuLabelType } from './menu-label.type';
 @Component({
   selector: 'cd-default-menu-label',
   template: `
-              <i [class]="label.icon"></i>
-              {{label.value}}
+              <i [ngClass]="label.icon"></i>
+              {{label.text.value}}
               <b class="caret"></b>
             `
 })
@@ -19,7 +19,7 @@ export class DefaultMenuLabelComponent {
 @Component({
   selector: 'cd-mini-menu-label',
   template: `
-              <i [class]="label.icon"></i>
+              <i [ngClass]="label.icon"></i>
               <span [class]="label.text.class">{{label.text.value}}</span>
             `
 })
@@ -32,8 +32,8 @@ export class MiniMenuLabelComponent {
 @Component({
   selector: 'cd-item-menu-label',
   template: `
-              <span [class]="label.icon" [title]="label.tag"></span>
-              <span [class]="label.text.class">{{label.text.value}}</span>
+              <span [ngClass]="label.icon" [title]="label.tag"></span>
+              <span [ngClass]="label.text.class">{{label.text.value}}</span>
               <b class="caret"></b>
             `
 })
@@ -58,7 +58,7 @@ export class ItemMenuLabelComponent {
                 [alt]="label.tag"
                 [width]="label.icon.width"
                 [height]="label.icon.height">
-              <span [class]="label.text.class">{{label.text.value}}</span>
+              <span [ngClass]="label.text.class">{{label.text.value}}</span>
               <b class="caret"></b>
             `
 })

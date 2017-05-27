@@ -1,21 +1,11 @@
+import { TextType, ImageType } from '../../../core/utils/common.types';
+
 export interface MenuLabelType {
   class?: string;
   color?: string;
-  icon: string | ThumbnailType;
+  icon: string | ImageType;
   tag?: string;
-  text: MenuLabelTextType;
-  thumbnail?: ThumbnailType;
+  text: TextType;
+  thumbnail?: ImageType;
   type: string; // enum: ['mini', 'item', 'thumbnail', 'default']
-}
-
-export interface ThumbnailType {
-  alt?: string;
-  height: number;
-  src: string;
-  width: number;
-}
-
-export interface MenuLabelTextType {
-  class?: string;
-  value: string;
 }

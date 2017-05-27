@@ -3,7 +3,8 @@ import { MenuLabelType } from './menu-label.type';
 
 @Component({
   selector: 'cd-menu-label',
-  templateUrl: './menu-label.component.html'
+  templateUrl: './menu-label.component.html',
+  styleUrls: ['menu-label.component.scss'],
 })
 export class MenuLabelComponent {
   @Input() label: MenuLabelType;

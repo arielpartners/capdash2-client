@@ -1,11 +1,5 @@
 <div [class.dropdown]="menu.type == 'dropdown'"
-     [ngClass]="menu.class">
-  <!-- menu label section
-  <label [for]="label.for"
-       [ngClass]="menu.class"
-       [ngSwitch]="label.type"
-        class="dropdown-toggle text-white">
-  </label> -->
+     [ngClass]="menu.container.class">
 
   <cd-menu-label  [for]="menu.button.id"
                   [label]="menu.label"></cd-menu-label>
@@ -15,9 +9,10 @@
         [id]="menu.button.id"
         (click)="toggleDropdown($event)">
 
-  <!-- submenu wrapper component -->
-  <div class="dropdown-menu dropdown-menu-lg"
-    *ngIf="size === 'large'">
+  <!-- large size dropdown begins -->
+  <div  [class.dropdown-menu]="menu.type == 'dropdown'"
+        [ngClass]="menu.itemWrapper.class"
+        *ngIf="menu.size && (menu.size === 'large')">
     <div class="row">
       <div *ngFor="let submenu of menu.submenu"
           [class]="submenu.class">
@@ -51,4 +46,12 @@
       </div>
     </div>
   </div>
+  <!-- large size dropdown ends -->
+
+  <!-- default size dropdown begins -->
+  <ul [class.dropdown-menu]="menu.type == 'dropdown'"
+      [ngClass]="menu.itemWrapper.class">
+
+  </ul>
+  <!-- default size dropdown ends -->
 </div>

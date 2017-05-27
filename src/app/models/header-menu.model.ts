@@ -2,7 +2,13 @@ import { MenuType } from '../components/menu/menu.type';
 
 // Todo: model belongs to app not menu directory
 export const MainMenu: MenuType = {
-  class: 'dropdown-lg',
+  container: {
+    class: 'dropdown-lg',
+  },
+  itemWrapper: {
+    class: 'dropdown-menu-lg',
+  },
+  size: 'large',
   type: 'dropdown',
   label: {
     class: 'dropdown-toggle text-white',
@@ -15,7 +21,7 @@ export const MainMenu: MenuType = {
   },
   button: {
     // need unique value for toggle
-    id: 'dropdown-menu-lg-checkbox-test',
+    id: 'dropdown-menu-lg-checkbox',
     type: 'radio',
     name: 'header',
   },
@@ -171,7 +177,12 @@ export const MainMenu: MenuType = {
 };
 
 export const NotificationMenu: MenuType = {
-  class: 'bell',
+  container: {
+    class: 'bell',
+  },
+  itemWrapper: {
+    class: 'media-list pull-right animated fadeInDown',
+  },
   type: 'dropdown',
   label: {
     class: 'f-s-14',
@@ -188,12 +199,20 @@ export const NotificationMenu: MenuType = {
     name: 'header',
   },
   items: [
-
+    {
+      name: 'string',
+      link: 'string'
+    }
   ]
 };
 
 export const LanguageMenu: MenuType = {
-  class: 'navbar-language',
+  container: {
+    class: 'navbar-language',
+  },
+  itemWrapper: {
+    class: 'animated fadeInRight p-b-0',
+  },
   type: 'dropdown',
   label: {
     class: 'f-s-14',
@@ -216,7 +235,12 @@ export const LanguageMenu: MenuType = {
 };
 
 export const UserMenu: MenuType = {
-  class: 'navbar-language',
+  container: {
+    class: 'navbar-user',
+  },
+  itemWrapper: {
+    class: 'animated fadeInLeft pull-right',
+  },
   type: 'dropdown',
   label: {
     class: 'f-s-14',
