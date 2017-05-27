@@ -1,6 +1,5 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
-import { IAppState } from '../../store/root.types';
 import { ItemActions } from '../../core/ajax/item/item.actions';
 import { ITEM_TYPES } from '../../core/ajax/item/item.types';
 import { LOGGED_OUT } from '../../core/core.types';
@@ -105,15 +104,17 @@ describe('AuthService', () => {
     });
   });
 
-  // Todo: why oh why??
-  xdescribe('setAuthorizationBearer()', () => {
-    it('should have called XMLHttpRequest to set request header', async(() => {
-      const spy = spyOn(XMLHttpRequest.prototype, 'open').and.callThrough();
-      spyOn(XMLHttpRequest.prototype, 'send');
+  describe('setAuthorizationBearer()', () => {
+    it('should have called XMLHttpRequest to set request headers', async(() => {
+      const spy = spyOn(XMLHttpRequest.prototype, 'setRequestHeader').and.callThrough();
+      const req = new XMLHttpRequest();
+
       localStorage.setItem('reduxPersist:token', token);
       service.setAuthorizationBearer();
-      expect(spy).toHaveBeenCalled();
-      // expect(XMLHttpRequest.prototype.send).toHaveBeenCalled();
+      req.open('GET', '/');
+      const bearer = 'Bearer ' + token;
+      expect(spy).toHaveBeenCalledWith('Authorization', bearer.replace(/"/gi, ''));
+      expect(spy).toHaveBeenCalledWith('content-type', 'application/json; charset=utf-8');
     }));
 
   });

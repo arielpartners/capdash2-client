@@ -26,8 +26,8 @@ export class AuthService {
     (function(open) {
       XMLHttpRequest.prototype.open = function () {
         open.apply(this, arguments);
-        console.log('calling setRequestHeader with: ', token);
         this.setRequestHeader('Authorization', 'Bearer ' + token);
+        this.setRequestHeader('content-type', 'application/json; charset=utf-8');
       };
     })(XMLHttpRequest.prototype.open);
   }
