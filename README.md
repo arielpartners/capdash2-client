@@ -15,7 +15,7 @@ This project was originally generated with [Angular CLI](https://github.com/angu
 
 
 ## Development server
-Run `npm run json-server` along one of the following:
+Run `npm run json-server` along with one of the following:
 
 - `npm start` for standard build
 - `npm run hmr` for hot module reloading. Preferred option for development, recompiles changed files only.
