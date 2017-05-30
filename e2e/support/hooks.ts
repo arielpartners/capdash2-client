@@ -2,7 +2,7 @@ const Cucumber = require('cucumber');
 const os = require('os');
 import { browser } from 'protractor';
 import * as fs from 'fs';
-import { defineSupportCode } from "cucumber";
+import { defineSupportCode } from 'cucumber';
 import * as reporter from 'cucumber-html-reporter';
 import { mkdirp } from 'mkdirp';
 
@@ -14,29 +14,29 @@ const hostname = os.hostname();
 
 defineSupportCode(function ({ registerHandler, registerListener, After, setDefaultTimeout }) {
     setDefaultTimeout(10 * 1000);
-    let jsonReports = process.cwd() + "/e2e/reports/json";
-    let htmlReports = process.cwd() + "/e2e/reports/html";
-    let targetJson = jsonReports + "/feature_test_report.json";
+    const jsonReports = process.cwd() + '/e2e/reports/json';
+    const htmlReports = process.cwd() + '/e2e/reports/html';
+    const targetJson = jsonReports + '/feature_test_report.json';
 
     registerHandler('BeforeFeature', function (event, callback) {
         browser.get(baseUrl);
         setTimeout(callback, 5000);
     });
 
-    let cucumberReporterOptions = {
-        theme: "bootstrap",
+    const cucumberReporterOptions = {
+        theme: 'bootstrap',
         jsonFile: targetJson,
-        output: htmlReports + "/feature_test_report.html",
+        output: htmlReports + '/feature_test_report.html',
         reportSuiteAsScenarios: true,
         metadata: {
-          "App": appName,
-          "Version": appVersion,
-          "Hostname": hostname,
-          "Platform": platform
+          'App': appName,
+          'Version': appVersion,
+          'Hostname': hostname,
+          'Platform': platform
         }
     };
 
-    let logFn = string => {
+    const logFn = string => {
         if (!fs.existsSync(jsonReports)) {
             mkdirp.sync(jsonReports);
         }
@@ -52,7 +52,7 @@ defineSupportCode(function ({ registerHandler, registerListener, After, setDefau
             }
         }
     };
-    let jsonformatter = new Cucumber.JsonFormatter({
+    const jsonformatter = new Cucumber.JsonFormatter({
         log: logFn
     });
     registerListener(jsonformatter);

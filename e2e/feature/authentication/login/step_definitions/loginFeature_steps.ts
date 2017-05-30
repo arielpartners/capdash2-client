@@ -7,8 +7,8 @@ import { defineSupportCode } from 'cucumber';
 import { expect } from 'chai';
 
 defineSupportCode(({Given, When, Then}) => {
-  let page: LoginPage = new LoginPage();
-  let app: Capdash2Page = new Capdash2Page();
+  const page: LoginPage = new LoginPage();
+  const app: Capdash2Page = new Capdash2Page();
 
   Given('the user navigates to the CapDash2 homepage', () => {
     page.navigateTo();
