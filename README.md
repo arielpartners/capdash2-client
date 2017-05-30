@@ -36,6 +36,8 @@ Run `npm build` to build the project. The build artifacts will be stored in the 
 
 Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
+Please note that the `npm test` command will run `ng lint` after running unit tests.
+
 Run `npm run coverage` to generate a unit test coverage report.  `npm run coverage-open` will open the coverage report in a new browser tab.
 
 ## Running end-to-end tests
@@ -47,6 +49,10 @@ Before running the tests make sure you are serving the app via `npm run json-ser
 For much faster e2e execution, use `npm run e2e-no-server`.  Before doing so, run `npm run json-server` along with `npm run hmr`.
 
 E2E test results are available in HTML format.  Run `npm run e2e-report` to run e2e tests (using e2e-no-server) and open the newly created report after completion.  Run `npm run e2e-report-open` to simply open the most recent report.  
+
+## Code Linting
+
+Run `npm run lint` to run Typescript linter across all project files, including e2e specs.
 
 ## Further help
 
