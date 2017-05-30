@@ -6,9 +6,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MenuComponent } from './menu.component';
 import { MenuLabelModule } from './menu-label/menu-label.module';
 
+import { DropdownComponent } from './menu-style/dropdown.component';
+
 @NgModule({
   declarations: [
-    MenuComponent
+    MenuComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,

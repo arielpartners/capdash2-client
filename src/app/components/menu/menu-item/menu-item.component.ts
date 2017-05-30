@@ -1,28 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { MenuItemType } from './menu-item.type';
+import { TextType, ImageType, LinkType, ContainerType, ClassType } from '../../../core/utils/common.types';
 
 @Component({
   selector: 'cd-menu-item',
   templateUrl: './menu-item.component.html',
-  styleUrls: ['./menu-item.component.scss']
+  styleUrls: ['./menu-item.component.less']
 })
-export class MenuItemComponent implements OnInit {
 
-// Todo: menu item should render html according to it's type
+export class MenuItemComponent {
 
-/*
- * ==================
- * types of menu item
- * ==================
- * header, item, footer
- * all of them has text and link
- * for notification header,
- * there is number of notification,
- * however, we could pass down calculated value
- */
+  @Input() icon: ClassType | ImageType;
+  @Input() text: TextType;
+  @Input() link: LinkType;
+  @Input() badge: string;
+  @Input() onClickItem: void;
+
   constructor() { }
-
-  ngOnInit() {
-  }
 }
 

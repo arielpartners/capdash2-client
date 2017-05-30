@@ -13,7 +13,7 @@
   <!-- begin navbar-collapse -->
   <!-- begin mega menu -->
   <div class="header-nav-left flex-box-row" id="top-navbar">
-    <cd-menu [menu]="menu.main"></cd-menu>
+    <cd-menu [menu]="menu.main" type="dropdown"></cd-menu>
     <div>
       <a href="#" class="text-white ng-binding"><i class="fa fa-envelope-o"></i> Contact DSS OIT</a>
     </div>
@@ -38,82 +38,12 @@
     <!--
     <cd-menu [menu]="menu.language"></cd-menu>
     <cd-menu [menu]="menu.user"></cd-menu> -->
-
-    <cd-menu [menu]="menu.notification"></cd-menu>
-    <div class="dropdown bell">
-      <label for="media-list-checkbox" class="dropdown-toggle f-s-14">
-        <i class="fa fa-bell-o text-white"></i>
-        <span class="label">4</span>
-      </label>
-      <input type="radio" class="radio-hack" name="header" id="media-list-checkbox"
-      (click)="toggleDropdown($event)">
-      <ul class="dropdown-menu media-list pull-right animated fadeInDown"  *ngIf="(isToggled | async) && ((selectedDropdown | async) === 'media-list-checkbox')">
-        <li class="dropdown-header">Notifications (4)</li>
-        <li class="media">
-          <a href="javascript:">
-            <div class="media-left"><i class="fa fa-warning media-object bg-red"></i></div>
-            <div class="media-body">
-              <h6 class="media-heading">Violations Reports Updated</h6>
-              <div class="text-muted f-s-11">3 minutes ago</div>
-            </div>
-          </a>
-        </li>
-        <li class="media">
-          <a href="javascript:">
-            <div class="media-left"><img src="assets/img/user-ka.jpg" class="media-object" alt=""></div>
-            <div class="media-body">
-              <h6 class="media-heading">Kari Auer</h6>
-              <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
-              <div class="text-muted f-s-11">25 minutes ago</div>
-            </div>
-          </a>
-        </li>
-        <li class="media">
-          <a href="javascript:">
-            <div class="media-left"><img src="assets/img/user-mj.jpg" class="media-object" alt=""></div>
-            <div class="media-body">
-              <h6 class="media-heading">Michael Jabbour</h6>
-              <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
-              <div class="text-muted f-s-11">35 minutes ago</div>
-            </div>
-          </a>
-        </li>
-        <li class="media">
-          <a href="javascript:">
-            <div class="media-left"><i class="fa fa-warning media-object bg-green"></i></div>
-            <div class="media-body">
-              <h6 class="media-heading"> Cleared Violations Today</h6>
-              <div class="text-muted f-s-11">14</div>
-            </div>
-          </a>
-        </li>
-        <li class="dropdown-footer text-center">
-          <a href="javascript:">View more</a>
-        </li>
-      </ul>
-    </div>
+    <cd-menu [menu]="menu.notification" type="dropdown"></cd-menu>
     <!-- ./end notifications dropdown menu -->
 
     <!-- begin language dropdown menu -->
     <!-- ngIf: setting.layout.pageLanguageBar === true -->
-    <div class="dropdown navbar-language ng-scope" ng-if="setting.layout.pageLanguageBar === true">
-      <label for="language-checkbox" class="dropdown-toggle f-s-14">
-        <span class="flag-icon flag-icon-us" title="us"></span>
-        <span class="name text-white">EN</span> <b class="caret text-white"></b>
-      </label>
-      <input type="radio" class="radio-hack" name="header" id="language-checkbox"
-      (click)="toggleDropdown($event)">
-      <ul class="dropdown-menu animated fadeInRight p-b-0"  *ngIf="(isToggled | async) && ((selectedDropdown | async) === 'language-checkbox')">
-        <li class="arrow"></li>
-        <li><a href="javascript:"><span class="flag-icon flag-icon-us" title="us"></span> English</a></li>
-        <li><a href="javascript:"><span class="flag-icon flag-icon-es" title="es"></span> Spanish</a></li>
-        <li><a href="javascript:"><span class="flag-icon flag-icon-fr" title="fr"></span> French</a></li>
-        <li><a href="javascript:"><span class="flag-icon flag-icon-ru" title="ru"></span> Russian</a></li>
-        <li><a href="javascript:"><span class="flag-icon flag-icon-in" title="in"></span> Hindi</a></li>
-        <li class="divider m-b-0"></li>
-        <li class="text-center"><a href="javascript:"><i class="fa fa-sliders"></i> More Options</a></li>
-      </ul>
-    </div><!-- end ngIf: setting.layout.pageLanguageBar === true -->
+    <cd-menu [menu]="menu.language" type="dropdown"></cd-menu>
     <!-- ./end language dropdown menu -->
 
     <!-- begin user dropdown menu -->

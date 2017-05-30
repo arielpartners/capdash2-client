@@ -4,8 +4,13 @@ export interface TextType {
   class?: string;
 }
 
+export interface IconType {
+  class: string;
+  background?: string;
+}
+
 export interface LinkType {
-  link: string;
+  href: string;
   class?: string;
 }
 
@@ -23,4 +28,12 @@ export interface ContainerType {
 
 export interface ClassType {
   class: string;
+  title?: string;
+}
+
+export interface LocationPathType {
+  protocol: string;
+  host: string;
+  origin: string;
+  path: string;
 }

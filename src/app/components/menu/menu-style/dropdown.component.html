@@ -1,0 +1,109 @@
+<div class="dropdown" [ngClass]="container.class" [ngSwitch]="items.type">
+
+  <cd-menu-label  [for]="button.id"
+                  [label]="label"></cd-menu-label>
+
+  <!-- menu button component -->
+  <input type="radio" class="radio-hack" name="header"
+        [id]="button.id"
+        (click)="toggleDropdown($event)">
+
+  <!-- Sub-menu dropdown begins -->
+    <div  *ngSwitchCase="'sub-menu'"
+          [ngClass]="items.container.class"
+          class="dropdown-menu">
+      <div class="row">
+        <div *ngFor="let submenu of items.list"
+            [class]="submenu.class"
+            [ngSwitch]="submenu.items.type">
+
+          <h4 class="dropdown-header">
+            <i [class]="submenu.icon"></i>
+            {{submenu.name}}
+          </h4>
+
+          <!-- ngSwitch list-item -->
+          <div class="row" *ngSwitchCase="'list-item'">
+            <ul class="nav">
+              <li *ngFor="let item of submenu.items.list">
+                <a [href]="item.link.href" class="text-ellipsis text-black">
+                  <i class="fa fa-fw fa-lg text-inverse"
+                     [class.fa-chevron-circle-right]="currentLocation.origin === item.link.href"
+                     [class.fa-angle-right]="currentLocation.origin !== item.link.href"></i>
+                  {{item.text.value}}
+                  <!-- badge -->
+                  <span *ngIf="(item.badge) && (item.badge == 'update')" class="badge badge-success">UPDATE</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- ngSwitch paragraph -->
+          <div *ngSwitchCase="'paragraph'">
+            <p *ngFor="let item of submenu.items.list">
+              {{item.text.value}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- Sub-menu dropdown ends -->
+
+  <!-- Notification dropdown begins -->
+    <ul *ngSwitchCase="'notification'"
+        [ngClass]="items.container.class"
+        class="dropdown-menu">
+
+      <li class="dropdown-header">
+        Notifications {{items.list.length}}
+      </li>
+
+      <li *ngFor="let item of items.list" class="media">
+        <a [href]="item.link.href">
+          <div class="media-left">
+            <!-- Show img thumbnail if src exist -->
+            <i *ngIf="!item.icon.src"
+              [ngClass]="item.icon.class"></i>
+            <img *ngIf="item.icon.src"
+                [src]="item.icon.src"
+                class="media-object"
+                alt="" />
+          </div>
+
+          <div class="media-body">
+            <h6 class="media-heading">{{item.body.heading.value}}</h6>
+            <p *ngIf="item.body.text.value">{{item.body.text.value}}</p>
+            <div class="text-muted f-s-11">{{item.body.time.value}}</div>
+          </div>
+        </a>
+      </li>
+
+      <li class="dropdown-footer text-center">
+        <a href="javascript:">View more</a>
+      </li>
+    </ul>
+  <!-- Notification dropdown ends -->
+
+  <!-- Language dropdown begins -->
+    <ul *ngSwitchCase="'selected-item'"
+        [ngClass]="items.container.class"
+        class="dropdown-menu">
+      <li *ngFor="let item of items.list">
+        <a [href]="item.link.href">
+          <span [ngClass]="item.icon.class"></span>
+          {{item.text.value}}
+        </a>
+      </li>
+      <li class="divider m-b-0"></li>
+      <li class="text-center">
+        <a href="javascript:"><i class="fa fa-sliders"></i>
+        More Options</a>
+      </li>
+    </ul>
+  <!-- Language dropdown ends -->
+
+    <ul class="dropdown-menu" *ngSwitchDefault>
+      <li *ngSwitchCase="'item'"></li>
+      <li *ngSwitchCase="'na'"></li>
+    </ul>
+</div>

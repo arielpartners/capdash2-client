@@ -1,57 +1,10 @@
-<div [class.dropdown]="menu.type == 'dropdown'"
-     [ngClass]="menu.container.class">
-
-  <cd-menu-label  [for]="menu.button.id"
-                  [label]="menu.label"></cd-menu-label>
-
-  <!-- menu button component -->
-  <input type="radio" class="radio-hack" name="header"
-        [id]="menu.button.id"
-        (click)="toggleDropdown($event)">
-
-  <!-- large size dropdown begins -->
-  <div  [class.dropdown-menu]="menu.type == 'dropdown'"
-        [ngClass]="menu.itemWrapper.class"
-        *ngIf="menu.size && (menu.size === 'large')">
-    <div class="row">
-      <div *ngFor="let submenu of menu.submenu"
-          [class]="submenu.class">
-        <h4 class="dropdown-header">
-          <i [class]="submenu.icon"></i>
-          {{submenu.name}}
-        </h4>
-
-        <div class="row"
-          *ngIf="submenu.itemsType === 'list-item'">
-          <ul class="nav">
-            <li *ngFor="let item of submenu.items">
-              <a [href]="item.link" class="text-ellipsis text-black">
-                <i class="fa fa-fw fa-lg text-inverse"
-                   [class.fa-chevron-circle-right]="currentLocation.origin == item.link"
-                   [class.fa-angle-right]="currentLocation.origin != item.link"></i>
-                {{item.name}}
-                <!-- badge -->
-                <span *ngIf="(item.badge) && (item.badge == 'update')" class="badge badge-success">UPDATE</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div
-          *ngIf="submenu.itemsType === 'paragraph'">
-          <p *ngFor="let item of submenu.items">
-            {{item.name}}
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- large size dropdown ends -->
-
-  <!-- default size dropdown begins -->
-  <ul [class.dropdown-menu]="menu.type == 'dropdown'"
-      [ngClass]="menu.itemWrapper.class">
-
-  </ul>
-  <!-- default size dropdown ends -->
+<div [ngSwitch]="type">
+  <cd-dropdown *ngSwitchCase="'dropdown'"
+    [container]="menu.container"
+    [label]="menu.label"
+    [button]="menu.button"
+    [items]="menu.items"
+    [currentLocation]="currentLocation"
+  ></cd-dropdown>
+  <!-- Todo: case route-link menu for sidebar -->
 </div>

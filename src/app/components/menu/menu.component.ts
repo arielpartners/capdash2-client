@@ -14,9 +14,17 @@ interface LocationPathType {
 }
 
 @Component({
+  selector: 'cd-dropdown',
+  templateUrl: './menu.component.html',
+})
+export class DropdownComponent {
+
+}
+
+@Component({
   selector: 'cd-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss'],
+  styleUrls: ['./menu.component.less'],
   providers: [
     Location,
     { provide: LocationStrategy, useClass: PathLocationStrategy }
@@ -26,6 +34,7 @@ interface LocationPathType {
 export class MenuComponent implements OnInit {
 
   @Input() menu: MenuType;
+  @Input() type: string;
 
   isDropdown: Boolean = true;
   size: string;
@@ -53,4 +62,6 @@ export class MenuComponent implements OnInit {
   // Todo: menu direction could be passdown from parent
   // Todo: use Observable to receive data from parent
 }
+
+
 

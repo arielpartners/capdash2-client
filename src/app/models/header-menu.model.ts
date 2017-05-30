@@ -5,11 +5,6 @@ export const MainMenu: MenuType = {
   container: {
     class: 'dropdown-lg',
   },
-  itemWrapper: {
-    class: 'dropdown-menu-lg',
-  },
-  size: 'large',
-  type: 'dropdown',
   label: {
     class: 'dropdown-toggle text-white',
     color: 'red', // red for testing white is original
@@ -25,165 +20,177 @@ export const MainMenu: MenuType = {
     type: 'radio',
     name: 'header',
   },
-  submenu: [
-    {
-      name: 'Apps',
-      icon: 'fa fa-desktop',
-      class: 'col-md-2 col-sm-2',
-      itemsType: 'list-item',
-      items: [
-        {
-          name: 'Cares',
-          link: 'javascript:'
-        },
-        {
-          name: 'VETS Tracking System',
-          link: 'javascript:',
-          badge: 'update'
-        },
-        {
-          name: 'Capacity & Planning (CapApp)',
-          link: 'http://localhost:4200'
-        },
-        {
-          name: 'ORCA',
-          link: 'javascript:'
+  items: {
+    type: 'sub-menu',
+    container: {
+      class: 'dropdown-menu-lg',
+    },
+    list: [
+      {
+        name: 'Apps',
+        icon: 'fa fa-desktop',
+        class: 'col-md-2 col-sm-2',
+        items: {
+          type: 'list-item',
+          list: [
+            {
+              text: { value: 'Cares' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'VETS Tracking System' },
+              link: { href: 'javascript:' },
+              badge: 'update'
+            },
+            {
+              text: { value: 'Capacity & Planning (CapApp)' },
+              link: { href: 'http://localhost:4200' }
+            },
+            {
+              text: { value: 'ORCA' },
+              link: { href: 'javascript:' }
+            },
+          ]
         }
-      ]
-    },
-    {
-      name: 'Resources',
-      icon: 'fa fa-book',
-      class: 'col-md-2 col-sm-2',
-      itemsType: 'list-item',
-      items: [
-        {
-          name: 'City Share',
-          link: 'javascript:'
-        },
-        {
-          name: 'Help Desk',
-          link: 'javascript:'
-        },
-        {
-          name: 'FAQs',
-          link: 'javascript:'
-        },
-        {
-          name: 'Policy & Procedures',
-          link: 'javascript:'
-        },
-        {
-          name: 'DEOA',
-          link: 'javascript:'
-        },
-        {
-          name: 'Office of the Ombudsman',
-          link: 'javascript:'
-        },
-        {
-          name: 'Staff Directory',
-          link: 'javascript:'
+      },
+      {
+        name: 'Resources',
+        icon: 'fa fa-book',
+        class: 'col-md-2 col-sm-2',
+        items: {
+          type: 'list-item',
+          list: [
+            {
+              text: { value: 'City Share' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'Help Desk' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'FAQs' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'Policy & Procedures' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'DEOA' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'Office of the Ombudsman' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'Staff Directory' },
+              link: { href: 'javascript:' }
+            }
+          ]
         }
-      ]
-    },
-    {
-      name: 'Programs',
-      icon: 'fa fa-diamond',
-      class: 'col-md-2 col-sm-2',
-      itemsType: 'list-item',
-      items: [
-        {
-          name: 'Adults',
-          link: 'javascript:'
-        },
-        {
-          name: 'Capacity Planning & Development',
-          link: 'javascript:'
-        },
-        {
-          name: 'Communications & External Affairs',
-          link: 'javascript:'
-        },
-        {
-          name: 'Families',
-          link: 'javascript:'
-        },
-        {
-          name: 'Policy & Planning',
-          link: 'javascript:'
-        },
-        {
-          name: 'Prevention',
-          link: 'javascript:'
-        },
-        {
-          name: 'Security & Emergency Operations',
-          link: 'javascript:'
-        },
-      ]
-    },
-    {
-      name: 'Administration',
-      icon: 'fa fa-building',
-      class: 'col-md-2 col-sm-2',
-      itemsType: 'list-item',
-      items: [
-        {
-          name: 'Administrative Division',
-          link: 'javascript:'
-        },
-        {
-          name: 'Fiscal Procurment',
-          link: 'javascript:'
-        },
-        {
-          name: 'Fleet Services',
-          link: 'javascript:'
-        },
-        {
-          name: 'Human Resources',
-          link: 'javascript:'
-        },
-        {
-          name: 'Legal Affairs',
-          link: 'javascript:'
-        },
-        {
-          name: 'OIT',
-          link: 'javascript:'
+      },
+      {
+        name: 'Programs',
+        icon: 'fa fa-diamond',
+        class: 'col-md-2 col-sm-2',
+        items: {
+          type: 'list-item',
+          list: [
+            {
+              text: { value: 'Adults' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'Capacity Panning & Development' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'Communications & External Affairs' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'Families' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'Policy & Planning' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'Prevention' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'Security & Emergency Operations' },
+              link: { href: 'javascript:' }
+            },
+          ]
         }
-      ]
-    },
-    {
-      name: 'Latest News',
-      icon: 'fa fa-newspaper-o',
-      class: 'col-md-4 col-sm-4',
-      itemsType: 'paragraph',
-      items: [
-        {
-          /* tslint:disable:max-line-length */
-          name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis libero purus, fermentum at libero convallis, auctor dignissim mauris. Nunc laoreet pellentesque turpis sodales ornare. Nunc vestibulum nunc lorem, at sodales velit malesuada congue. Nam est tortor, tincidunt sit amet eros vitae, aliquam finibus mauris.',
-          link: null
-        },
-        {
-          name: 'Fusce ac ligula laoreet ante dapibus mattis. Nam auctor vulputate aliquam. Suspendisse efficitur, felis sed elementum eleifend, ipsum tellus sodales nisi, ut condimentum nisi sem in nibh. Phasellus suscipit vulputate purus at venenatis. Quisque luctus tincidunt tempor.',
-          link: null
-          /* tslint:enable:max-line-length */
-        },
-      ]
-    }
-  ]
+      },
+      {
+        name: 'Administration',
+        icon: 'fa fa-building',
+        class: 'col-md-2 col-sm-2',
+        items: {
+          type: 'list-item',
+          list: [
+            {
+              text: { value: 'Administrative Division' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'Fiscal Procurment' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'Fleet Services' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'Human Resources' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'Legal Affairs' },
+              link: { href: 'javascript:' }
+            },
+            {
+              text: { value: 'OIT' },
+              link: { href: 'javascript:' }
+            },
+          ]
+        }
+      },
+      {
+        name: 'Latest News',
+        icon: 'fa fa-newspaper-o',
+        class: 'col-md-4 col-sm-4',
+        items: {
+          type: 'paragraph',
+          list: [
+            {
+              /* tslint:disable:max-line-length */
+              text: { value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis libero purus, fermentum at libero convallis, auctor dignissim mauris. Nunc laoreet pellentesque turpis sodales ornare. Nunc vestibulum nunc lorem, at sodales velit malesuada congue. Nam est tortor, tincidunt sit amet eros vitae, aliquam finibus mauris.' },
+              link: { href: null }
+            },
+            {
+              text: { value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis libero purus, fermentum at libero convallis, auctor dignissim mauris. Nunc laoreet pellentesque turpis sodales ornare. Nunc vestibulum nunc lorem, at sodales velit malesuada congue. Nam est tortor, tincidunt sit amet eros vitae, aliquam finibus mauris.' },
+              link: { href: null }
+              /* tslint:enable:max-line-length */
+            },
+          ]
+        }
+      }
+    ]
+  }
 };
 
 export const NotificationMenu: MenuType = {
   container: {
     class: 'bell',
   },
-  itemWrapper: {
-    class: 'media-list pull-right animated fadeInDown',
-  },
-  type: 'dropdown',
   label: {
     class: 'f-s-14',
     icon: 'fa fa-bell-o',
@@ -198,25 +205,59 @@ export const NotificationMenu: MenuType = {
     type: 'radio',
     name: 'header',
   },
-  items: [
-    {
-      name: 'string',
-      link: 'string'
-    }
-  ]
+  items: {
+    type: 'notification',
+    container: {
+      class: 'media-list pull-right animated fadeInDown',
+    },
+    list: [
+      {
+        icon: { class: 'fa fa-warning media-object bg-red'},
+        link: { href: 'javascript:'},
+        body: {
+          heading: { value: 'Violations Reports Updated' },
+          text: { value: null },
+          time: { value: '3 minutes ago' },
+        }
+      },
+      {
+        icon: { src: 'assets/img/user-ka.jpg'},
+        link: { href: 'javascript:'},
+        body: {
+          heading: { value: 'Kari Auer' },
+          text: { value: 'Quisque pulvinar tellus sit amet sem scelerisque tincidunt.' },
+          time: { value: '25 minutes ago' },
+        }
+      },
+      {
+        icon: { src: 'assets/img/user-mj.jpg'},
+        link: { href: 'javascript:'},
+        body: {
+          heading: { value: 'Michael Jabbour' },
+          text: { value: 'Quisque pulvinar tellus sit amet sem scelerisque tincidunt.' },
+          time: { value: '35 minutes ago' },
+        }
+      },
+      {
+        icon: { class: 'fa fa-warning media-object bg-green'},
+        link: { href: 'javascript:'},
+        body: {
+          heading: { value: 'Cleared Violations Today' },
+          text: { value: null },
+          time: { value: '14' },
+        }
+      },
+    ]
+  }
 };
 
 export const LanguageMenu: MenuType = {
   container: {
     class: 'navbar-language',
   },
-  itemWrapper: {
-    class: 'animated fadeInRight p-b-0',
-  },
-  type: 'dropdown',
   label: {
     class: 'f-s-14',
-    icon: 'fa fa-bell-o text-white',
+    icon: 'flag-icon flag-icon-us',
     text: {
       value: 'EN',
       class: 'name text-white'
@@ -229,19 +270,60 @@ export const LanguageMenu: MenuType = {
     type: 'radio',
     name: 'header',
   },
-  items: [
-
-  ]
+  items: {
+    container: {
+      class: 'animated fadeInRight p-b-0',
+    },
+    type: 'selected-item',
+    list: [
+      {
+        icon: {
+          class: 'flag-icon flag-icon-us',
+          title: 'us'
+        },
+        text: { value: 'English' },
+        link: { href: 'javascript:' },
+      },
+      {
+        icon: {
+          class: 'flag-icon flag-icon-es',
+          title: 'es'
+        },
+        text: { value: 'Spanish' },
+        link: { href: 'javascript:' },
+      },
+      {
+        icon: {
+          class: 'flag-icon flag-icon-fr',
+          title: 'fr'
+        },
+        text: { value: 'French' },
+        link: { href: 'javascript:' },
+      },
+      {
+        icon: {
+          class: 'flag-icon flag-icon-ru',
+          title: 'ru'
+        },
+        text: { value: 'Russian' },
+        link: { href: 'javascript:' },
+      },
+      {
+        icon: {
+          class: 'flag-icon flag-icon-in',
+          title: 'in'
+        },
+        text: { value: 'Hindi' },
+        link: { href: 'javascript:' },
+      }
+    ]
+  }
 };
 
 export const UserMenu: MenuType = {
   container: {
     class: 'navbar-user',
   },
-  itemWrapper: {
-    class: 'animated fadeInLeft pull-right',
-  },
-  type: 'dropdown',
   label: {
     class: 'f-s-14',
     icon: {
@@ -261,7 +343,21 @@ export const UserMenu: MenuType = {
     type: 'radio',
     name: 'header',
   },
-  items: [
-
-  ]
+  items: {
+    type: 'user',
+    container: {
+      class: 'animated fadeInLeft pull-right',
+    },
+    list: [
+      {
+        icon: { class: 'asfdfsd'},
+        link: { href: 'asdfsdaf'},
+        body: {
+          heading: { value: 'asdfsda' },
+          text: { value: 'asdfsda' },
+          time: { value: 'asdfsda' },
+        }
+      }
+    ]
+  }
 };

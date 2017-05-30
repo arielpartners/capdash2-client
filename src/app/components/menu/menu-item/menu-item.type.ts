@@ -2,7 +2,7 @@ import { TextType, ImageType, LinkType, ContainerType, ClassType } from '../../.
 
 // For header main & language & user menu item
 interface DefaultItemType {
-  icon: ClassType;
+  icon?: ClassType;
   text: TextType;
   link: LinkType;
   badge?: string;
@@ -21,8 +21,16 @@ interface NoitificationBodyType {
   time: TextType;
 }
 
-export interface MenuItemType {
-  container: ContainerType;
-  list: DefaultItemType[] | NotificationItemType[];
+export interface SubMenuItemType {
+  name: string;
+  icon: string;
+  class: string;
+  type?: string;
+  items: MenuItemsType;
+}
+export interface MenuItemsType {
+  type: string;
+  container?: ContainerType;
+  list: DefaultItemType[] | NotificationItemType[] | SubMenuItemType[];
 }
 

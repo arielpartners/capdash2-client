@@ -1,0 +1,12 @@
+/* Checkbox/Radio input hack */
+input[type=radio].radio-hack {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+/* Toggled State */
+input[type=radio].radio-hack:checked ~ div,
+input[type=radio].radio-hack:checked ~ ul {
+  display: block;
+}

@@ -9,7 +9,7 @@ import { MainMenu, NotificationMenu, LanguageMenu, UserMenu } from '../../models
 @Component({
   selector: 'cd-header',
   templateUrl: 'header.component.html',
-  styleUrls: ['header.component.scss'],
+  styleUrls: ['header.component.less'],
   providers: [HeaderActions],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
       main: MainMenu,
       notification: NotificationMenu,
       language: LanguageMenu,
-      user: UserMenu
+      // user: UserMenu
     };
   }
 
