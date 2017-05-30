@@ -1,4 +1,5 @@
 const Cucumber = require('cucumber');
+const os = require('os');
 import { browser } from 'protractor';
 import * as fs from 'fs';
 import { defineSupportCode } from "cucumber";
@@ -6,6 +7,10 @@ import * as reporter from 'cucumber-html-reporter';
 import { mkdirp } from 'mkdirp';
 
 const baseUrl = 'http://localhost:4200/';
+const platform = process.platform;
+const appName = process.env.npm_package_name;
+const appVersion = process.env.npm_package_version;
+const hostname = os.hostname();
 
 defineSupportCode(function ({ registerHandler, registerListener, After, setDefaultTimeout }) {
     setDefaultTimeout(10 * 1000);
@@ -22,7 +27,13 @@ defineSupportCode(function ({ registerHandler, registerListener, After, setDefau
         theme: "bootstrap",
         jsonFile: targetJson,
         output: htmlReports + "/feature_test_report.html",
-        reportSuiteAsScenarios: true
+        reportSuiteAsScenarios: true,
+        metadata: {
+          "App": appName,
+          "Version": appVersion,
+          "Hostname": hostname,
+          "Platform": platform
+        }
     };
 
     let logFn = string => {

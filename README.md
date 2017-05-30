@@ -8,7 +8,7 @@ This project was originally generated with [Angular CLI](https://github.com/angu
 * [Redux](http://redux.js.org/) predictable state container for JavaScript apps
 * [Redux Observables](https://redux-observable.js.org/) RxJS 5-based middleware for Redux.
 * [Jasmine](https://jasmine.github.io/) Behavior-driven development framework for unit testing JavaScript code
-* [Protractor](http://www.protractortest.org/#/) end-to-end test framework for Angular and AngularJS applications; runs tests against your application running in a real browser, interacting with it as a user would. 
+* [Protractor](http://www.protractortest.org/#/) end-to-end test framework for Angular and AngularJS applications; runs tests against your application running in a real browser, interacting with it as a user would.
 * [CucumberJS](https://cucumber.io/docs/reference/javascript) Cucumber implementation written in pure JavaScript, for feature tests.
 
 ## Architectural Notes
