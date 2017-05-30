@@ -22,6 +22,8 @@ Run `npm run json-server` along with one of the following:
 
 Open your browser and navigate to http://localhost:4200/
 
+NOTE: JSON-Server is a substitute for actual Ruby on Rails backend and is not needed if running the Rails server.
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.

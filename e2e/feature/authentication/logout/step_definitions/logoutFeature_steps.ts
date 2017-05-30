@@ -6,7 +6,7 @@ import { defineSupportCode } from 'cucumber';
 import { expect } from 'chai';
 
 defineSupportCode(({Given, Then, When}) => {
-  let header: HeaderPage = new HeaderPage();
+  const header: HeaderPage = new HeaderPage();
 
   Given('the user is logged in', () => {
     header.navigateTo();
