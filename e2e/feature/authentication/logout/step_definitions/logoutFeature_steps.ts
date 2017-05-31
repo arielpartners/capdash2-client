@@ -1,5 +1,6 @@
 import { browser, element, by } from 'protractor';
 import { HeaderPage } from '../../../../page-objects/header.po';
+import { LoginPage } from '../../../../page-objects/login.po';
 
 import { defineSupportCode } from 'cucumber';
 
@@ -7,9 +8,15 @@ import { expect } from 'chai';
 
 defineSupportCode(({Given, Then, When}) => {
   const header: HeaderPage = new HeaderPage();
+  const loginPage: LoginPage = new LoginPage();
 
   Given('the user is logged in', () => {
-    header.navigateTo();
+    browser.getCurrentUrl().then(url => {
+      if (/login/.test(url)) {
+        loginPage.login('sample_user@hra.nyc.gov', 'password');
+      }
+    });
+
     return browser.getCurrentUrl().then(url => {
       expect(/login/.test(url)).not.to.equal(true);
     });

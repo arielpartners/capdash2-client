@@ -56,4 +56,4 @@ defineSupportCode(function ({ registerHandler, registerListener, After, setDefau
         log: logFn
     });
     registerListener(jsonformatter);
-})
+});
