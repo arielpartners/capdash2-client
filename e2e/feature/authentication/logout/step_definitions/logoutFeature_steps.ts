@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 import { HeaderPage } from '../../../../page-objects/header.po';
-import { LoginPage } from '../../../../page-objects/login.po';
+import { E2EHelpers } from '../../../../support/e2eHelpers';
 
 import { defineSupportCode } from 'cucumber';
 
@@ -8,14 +8,10 @@ import { expect } from 'chai';
 
 defineSupportCode(({Given, Then, When}) => {
   const header: HeaderPage = new HeaderPage();
-  const loginPage: LoginPage = new LoginPage();
+  const helpers: E2EHelpers = new E2EHelpers();
 
   Given('the user is logged in', () => {
-    browser.getCurrentUrl().then(url => {
-      if (/login/.test(url)) {
-        loginPage.login('sample_user@hra.nyc.gov', 'password');
-      }
-    });
+    helpers.confirmLogin();
 
     return browser.getCurrentUrl().then(url => {
       expect(/login/.test(url)).not.to.equal(true);
