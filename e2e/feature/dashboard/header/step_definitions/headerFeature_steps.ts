@@ -26,4 +26,10 @@ defineSupportCode(({Given, When, Then}) => {
       expect(present).to.equal(false);
     });
   });
+
+  Then('the user should see the user dropdown menu', () => {
+    return header.logoutEl.isPresent().then(present => {
+      expect(present).to.equal(true);
+    });
+  });
 });
