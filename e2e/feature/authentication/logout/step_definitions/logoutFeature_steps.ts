@@ -19,11 +19,11 @@ defineSupportCode(({Given, Then, When}) => {
   });
 
   When('the user selects the user dropdown menu', () => {
-    return header.clickUserDropdown();
+    return header.clickUserMenu();
   });
 
   Then('the user should see the option to log out', () => {
-    return header.logoutEl.isDisplayed().then(displayed => {
+    return header.logout.isDisplayed().then(displayed => {
       expect(displayed).to.equal(true);
     });
   });

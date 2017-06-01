@@ -1,27 +1,27 @@
 import { browser, element, by } from 'protractor';
 
 export class HeaderPage {
-  megaMenuDropdownEl = element(by.css('.dropdown-lg'));
+  megaMenu = element(by.css('.dropdown-lg'));
   dropdownHeader = element(by.css('.dropdown-header'));
-  notificationDropdown = element(by.css('.bell'));
+  notificationMenu = element(by.css('.bell'));
   mediaList = element(by.css('.media-list'));
-  userDropdownEl = element(by.css('.navbar-user'));
-  logoutEl = element(by.css('.logout'));
+  userMenu = element(by.css('.navbar-user'));
+  logout = element(by.css('.logout'));
 
   clickMegaMenu () {
-    return this.megaMenuDropdownEl.click();
+    return this.megaMenu.click();
   }
 
-  clickNotificationDropdown () {
-    return this.notificationDropdown.click();
+  clickNotificationMenu () {
+    return this.notificationMenu.click();
   }
 
-  clickUserDropdown () {
-    return this.userDropdownEl.click();
+  clickUserMenu () {
+    return this.userMenu.click();
   }
 
   clickLogout () {
-    return this.logoutEl.click();
+    return this.logout.click();
   }
 
   navigateTo () {

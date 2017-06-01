@@ -1,5 +1,6 @@
 import { browser, element, by } from 'protractor';
 import { HeaderPage } from '../../../../page-objects/header.po';
+import { Capdash2Page } from '../../../../page-objects/app.po';
 import { E2EHelpers } from '../../../../support/e2eHelpers';
 
 import { defineSupportCode } from 'cucumber';
@@ -8,8 +9,15 @@ import { expect } from 'chai';
 
 defineSupportCode(({Given, When, Then}) => {
   const header: HeaderPage = new HeaderPage();
+  const app: Capdash2Page = new Capdash2Page();
 
-  // Given the user is logged in: See logoutFeature_steps step 1
+  Given('the Capacity Dashboard header is loaded', () => {
+    return app.getAppHeader().then( header => {
+      header.isDisplayed().then(isDisplayed => {
+        expect(isDisplayed).to.equal(true);
+      });
+    });
+  });
 
   When(/the user selects the Main Menu dropdown/, () => {
     return header.clickMegaMenu();
@@ -28,13 +36,13 @@ defineSupportCode(({Given, When, Then}) => {
   });
 
   Then('the user should see the user dropdown menu', () => {
-    return header.logoutEl.isPresent().then(present => {
+    return header.logout.isPresent().then(present => {
       expect(present).to.equal(true);
     });
   });
 
   When(/the user selects the notification menu/, () => {
-    return header.clickNotificationDropdown();
+    return header.clickNotificationMenu();
   });
 
   Then('the user should see the notification menu', () => {
