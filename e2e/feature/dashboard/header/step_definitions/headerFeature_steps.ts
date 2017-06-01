@@ -19,39 +19,39 @@ defineSupportCode(({Given, When, Then}) => {
     });
   });
 
-  When(/the user selects the Main Menu dropdown/, () => {
+  When(/the user selects the mega-menu menu/, () => {
     return header.clickMegaMenu();
   });
 
-  Then('the user should see the mega menu', () => {
+  Then('the user should see the mega-menu menu', () => {
     return header.dropdownHeader.isPresent().then(present => {
       expect(present).to.equal(true);
     });
   });
 
-  Then('the user should not see the mega menu', () => {
+  Then('the user should not see the mega-menu menu', () => {
     return header.dropdownHeader.isPresent().then(present => {
       expect(present).to.equal(false);
     });
   });
 
-  Then('the user should see the user dropdown menu', () => {
+  Then('the user should see the user menu', () => {
     return header.logout.isPresent().then(present => {
       expect(present).to.equal(true);
     });
   });
 
-  When(/the user selects the notification menu/, () => {
+  When(/the user selects the notifications menu/, () => {
     return header.clickNotificationMenu();
   });
 
-  Then('the user should see the notification menu', () => {
+  Then('the user should see the notifications menu', () => {
     return header.mediaList.isPresent().then(present => {
       expect(present).to.equal(true);
     });
   });
 
-  Then('the user should not see the notification menu', () => {
+  Then('the user should not see the notifications menu', () => {
     return header.mediaList.isPresent().then(present => {
       expect(present).to.equal(false);
     });

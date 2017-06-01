@@ -6,24 +6,22 @@ Feature: Capacity Dashboard Header
 Background:
   Given the user is logged in
 
-Scenario: The user can show and hide the mega menu
+Scenario Outline: The user can access header menus
   Given the Capacity Dashboard header is loaded
-  When the user selects the Main Menu dropdown
-  Then the user should see the mega menu
-  When the user selects the Main Menu dropdown again
-  Then the user should not see the mega menu
+  When the user selects the <menu> menu
+  Then the user should see the <menu> menu
+  When the user selects the <menu> menu again
+  Then the user should not see the <menu> menu
 
-Scenario: The user can show and hide the notifications menu
-  Given the Capacity Dashboard header is loaded
-  When the user selects the notification menu
-  Then the user should see the notification menu
-  When the user selects the notification menu again
-  Then the user should not see the notification menu
+  Examples:
+    | menu |
+    | mega-menu |
+    | notifications |
 
 Scenario: The user can switch between header menus
   Given the Capacity Dashboard header is loaded
-  When the user selects the Main Menu dropdown
-  Then the user should see the mega menu
-  When the user selects the user dropdown menu
-  Then the user should see the user dropdown menu
-  And the user should not see the mega menu
+  When the user selects the mega-menu menu
+  Then the user should see the mega-menu menu
+  When the user selects the user menu
+  Then the user should see the user menu
+  And the user should not see the mega-menu menu

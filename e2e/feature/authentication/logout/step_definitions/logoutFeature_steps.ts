@@ -18,7 +18,7 @@ defineSupportCode(({Given, Then, When}) => {
     });
   });
 
-  When('the user selects the user dropdown menu', () => {
+  When('the user selects the user menu', () => {
     return header.clickUserMenu();
   });
 
