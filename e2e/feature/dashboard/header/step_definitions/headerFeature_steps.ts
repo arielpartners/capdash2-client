@@ -32,4 +32,20 @@ defineSupportCode(({Given, When, Then}) => {
       expect(present).to.equal(true);
     });
   });
+
+  When(/the user selects the notification menu/, () => {
+    return header.clickNotificationDropdown();
+  });
+
+  Then('the user should see the notification menu', () => {
+    return header.mediaList.isPresent().then(present => {
+      expect(present).to.equal(true);
+    });
+  });
+
+  Then('the user should not see the notification menu', () => {
+    return header.mediaList.isPresent().then(present => {
+      expect(present).to.equal(false);
+    });
+  });
 });

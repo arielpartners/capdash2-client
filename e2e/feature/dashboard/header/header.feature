@@ -10,6 +10,13 @@ Scenario: The user can show and hide the mega menu
   When the user selects the Main Menu dropdown again
   Then the user should not see the mega menu
 
+Scenario: The user can show and hide the notifications menu
+  Given the user is logged in
+  When the user selects the notification menu
+  Then the user should see the notification menu
+  When the user selects the notification menu again
+  Then the user should not see the notification menu
+
 Scenario: The user can switch between header menus
   Given the user is logged in
   When the user selects the Main Menu dropdown
