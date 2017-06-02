@@ -3,8 +3,6 @@ import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../store/root.types';
 import { MenuActions } from './menu.actions';
 
-
-
 @Injectable()
 export class MenuService {
 
