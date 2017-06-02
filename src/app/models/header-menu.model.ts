@@ -172,7 +172,47 @@ export const MainMenu = {
   ]
 };
 
-export const NotificationMenu: MenuType = {
+export const NotificationMenu = {
+  container: 'bell',
+  menu: {
+    id: 'media-list',
+    name: 'header',
+    icon: 'fa fa-bell-o',
+  },
+  // Todo: determine how response would look like for notification API endpoint
+  items: [
+    {
+      icon: {
+        background: 'red'
+      },
+      link: 'javascript:',
+      text: 'Violations Reports Updated',
+    },
+    {
+      icon: {
+        thumbnail: 'assets/img/user-ka.jpg'
+      },
+      link: 'javascript:',
+      text: 'Violations Reports Updated'
+    },
+    {
+      icon: {
+        thumbnail: 'assets/img/user-mj.jpg'
+      },
+      link: 'javascript:',
+      text: 'Violations Reports Updated'
+    },
+    {
+      icon: {
+        background: 'green'
+      },
+      link: 'javascript:',
+      text: 'Violations Reports Updated'
+    }
+  ]
+};
+
+export const NotificationMenuCopy: MenuType = {
   container: {
     class: 'bell',
   },
