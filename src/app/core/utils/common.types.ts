@@ -21,6 +21,12 @@ export interface ImageType {
   width?: number;
 }
 
+export interface BadgeType {
+  class?: string;
+  value?: string | number | void;
+  right?: boolean;
+}
+
 export interface ContainerType {
   id?: string;
   class?: string;

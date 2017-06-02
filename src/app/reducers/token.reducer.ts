@@ -1,5 +1,5 @@
-import { ITEM_TYPES, ItemType } from '../core/ajax/item/item.types';
-import {ItemActions} from '../core/ajax/item/item.actions';
+import { ItemActions } from '../core/ajax/item/item.actions';
+import { LOGGED_OUT } from '../core/core.types';
 // -------------------------------------------------------------------
 // TOKEN STORE
 // -------------------------------------------------------------------
@@ -16,7 +16,7 @@ export const token = (state = null, {type, payload}) => {
       }
       break;
 
-    case 'logged-out':
+    case LOGGED_OUT:
       jwt = null;
       break;
 

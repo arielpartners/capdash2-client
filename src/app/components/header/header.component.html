@@ -1,4 +1,4 @@
-<div id="header" class="flex-box-row navbar" ng-controller="headerController" (click)="toggleDropdown($event)">
+<div id="header" class="flex-box-row navbar" ng-controller="headerController" (click)="menu.toggleDropdown($event)">
   <!-- begin mobile sidebar expand / collapse button -->
   <div>
     <a href="'http://intranet.dhs.nycnet:4444'" class="navbar-brand"><img src="assets/img/dss_logo_white_sm.png" alt="dhs_logo" width="190" height="33"></a>
@@ -13,7 +13,41 @@
   <!-- begin navbar-collapse -->
   <!-- begin mega menu -->
   <div class="header-nav-left flex-box-row" id="top-navbar">
-    <cd-menu [menu]="menu.main" type="dropdown"></cd-menu>
+    <div class="dropdown" [ngClass]="headerMenu.main.container">
+      <cd-menu-button [id]="headerMenu.main.menu.id" [name]="headerMenu.main.menu.header">
+        <i [ngClass]="headerMenu.main.menu.icon"></i>
+        {{headerMenu.main.menu.label}}
+        <b class="caret"></b>
+      </cd-menu-button>
+      <cd-menu [classNames]="headerMenu.main.menu.id"
+               [triggerBy]="headerMenu.main.menu.id">
+        <div class="row">
+          <div *ngFor="let submenu of headerMenu.main.items"
+               [ngClass]="submenu.container"
+               [ngSwitch]="submenu.type">
+
+            <cd-menu-header [icon]="submenu.header.icon" [text]="submenu.header.text"></cd-menu-header>
+
+            <div class="row" *ngSwitchCase="'list'">
+              <cd-list classNames="nav">
+                <cd-list-item type="location" [link]="item.href"
+                              *ngFor="let item of submenu.items">
+                  {{item.text}}
+                  <cd-badge *ngIf="item.badge" [status]="item.badge.class" [value]="item.badge.value"></cd-badge>
+                </cd-list-item>
+              </cd-list>
+            </div>
+
+            <div class="row" *ngSwitchCase="'paragraph'">
+              <p *ngFor="let item of submenu.items.list">
+                {{item.text.value}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </cd-menu>
+    </div>
+    <!--<cd-menu [menu]="headerMenu.main" type="dropdown" ></cd-menu>-->
     <div>
       <a href="#" class="text-white ng-binding"><i class="fa fa-envelope-o"></i> Contact DSS OIT</a>
     </div>
@@ -33,43 +67,11 @@
       </form>
     </div>
     <!-- ./end header global search -->
-    <!-- begin notifications dropdown menu -->
 
-    <!--
-    <cd-menu [menu]="menu.language"></cd-menu>
-    <cd-menu [menu]="menu.user"></cd-menu> -->
-    <cd-menu [menu]="menu.notification" type="dropdown"></cd-menu>
-    <!-- ./end notifications dropdown menu -->
-
-    <!-- begin language dropdown menu -->
+    <!--<cd-menu [menu]="headerMenu.notification" type="dropdown"></cd-menu>-->
     <!-- ngIf: setting.layout.pageLanguageBar === true -->
-    <cd-menu [menu]="menu.language" type="dropdown"></cd-menu>
-    <!-- ./end language dropdown menu -->
-
-    <!-- begin user dropdown menu -->
-    <div   class="dropdown navbar-user">
-      <label for="user-checkbox" class="flex-box-row f-s-14">
-        <img src="assets/img/user-rbs.jpg" alt="user-rbs" width="128" height="128">
-        <span class="hidden-xs text-white">Robert Santore</span> <b class="caret text-white"></b>
-      </label>
-      <input type="radio" class="radio-hack" name="header" id="user-checkbox" (click)="toggleDropdown($event)">
-      <ul class="dropdown-menu animated fadeInLeft" *ngIf="(isToggled | async) && ((selectedDropdown | async) === 'user-checkbox')">
-        <li class="arrow"></li>
-        <li><a ui-sref="app.extra.profile" href="#/app/extra/profile"><i class="fa fa-pencil-square-o"></i> Edit Profile</a></li>
-        <li><a href="javascript:"><span class="badge badge-danger pull-right">3</span> <i class="fa fa-folder-open"></i> New Assigned</a></li>
-        <li><a ui-sref="app.work_orders.calendar" href="#/app/work_orders/work_orders/calendar"><i class="fa fa-calendar"></i> Work Orders Schedule</a></li>
-        <li><a href="./#/app/settings/settings/app_settings" class="ng-binding"><i class="fa fa-cogs"></i> CapApp Setting</a></li>
-        <li class="divider"></li>
-        <li><a (click)="logout(); false"
-               [routerLink]="['login']"
-               class="ng-binding logout"><i class="fa fa-sign-out"></i> Log Out of CapApp</a></li>
-      </ul>
-    </div>
-    <!-- ./end user dropdown menu -->
-
-    <!-- begin right side bar menu -->
-    <!-- ngIf: setting.layout.pageTwoSidebar === true -->
-    <!-- ./end right side bar menu -->
+    <!--<cd-menu [menu]="headerMenu.language" type="dropdown"></cd-menu>-->
+    <!--<cd-menu [menu]="headerMenu.user" type="dropdown"></cd-menu>-->
   </div>
   <!-- end header navigation right -->
 </div>

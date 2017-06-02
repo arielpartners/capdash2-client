@@ -1,65 +1,40 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ElementRef } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../store/root.types';
-import { HeaderActions } from './header.actions';
-
 import { MainMenu, NotificationMenu, LanguageMenu, UserMenu } from '../../models/header-menu.model';
+
+import { ITEM_TYPES } from '../../core/ajax/item/item.types';
+import { ItemActions } from '../../core/ajax/item/item.actions';
+import { MenuService } from '../../services/menu/menu.service';
 
 @Component({
   selector: 'cd-header',
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.less'],
-  providers: [HeaderActions],
+  providers: [
+    ItemActions,
+    MenuService
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class HeaderComponent implements OnInit {
 
-  @Input() isToggled: Observable<boolean>;
-  @Input() selectedDropdown: Observable<string>;
-
-  menu: any;
+  headerMenu: any;
   constructor(
-    private ngRedux: NgRedux<IAppState>,
-    private actions: HeaderActions
+    private store: NgRedux<IAppState>,
+    private ajax: ItemActions,
+    public menu: MenuService,
   ) {
-    this.menu = {
+    this.headerMenu = {
       main: MainMenu,
       notification: NotificationMenu,
       language: LanguageMenu,
-      // user: UserMenu
+      user: UserMenu
     };
   }
 
-  logout() {
-    localStorage.clear();
-    this.ngRedux.dispatch({type: 'logged-out'});
-    this.ngRedux.dispatch(this.actions.closeToggle());
-  }
-
   ngOnInit() {
-    // Question: Do i need OnInit lifecycle?
-  }
-
-  toggleDropdown(e) {
-
-    const elem = e ? e.target : undefined,
-          header = JSON.parse(localStorage.getItem('reduxPersist:header'));
-
-    const shouldOpen = elem
-      ? !header
-        ? true
-        : !header.isToggled
-          ? true
-          : header.selectedDropdown !== elem.id
-      : false;
-
-    // console.log('HeaderComponent | toggleDropdown(e)', elem, header, shouldOpen);
-
-    if (shouldOpen) {
-      this.ngRedux.dispatch(this.actions.openToggle(elem.id));
-    } else {
-      this.ngRedux.dispatch(this.actions.closeToggle());
-    }
+    this.store.dispatch(this.ajax.loadItem(ITEM_TYPES.USER));
   }
 }

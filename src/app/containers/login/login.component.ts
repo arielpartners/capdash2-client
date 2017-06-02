@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {NgRedux} from '@angular-redux/store';
-import {Router} from '@angular/router';
-import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import {IAppState} from '../../store/root.types';
-import {ITEM_TYPES} from '../../core/ajax/item/item.types';
-import {ItemActions} from '../../core/ajax/item/item.actions';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'cd-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.less']
+  styleUrls: ['./login.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit {
 
@@ -19,22 +17,21 @@ export class LoginComponent implements OnInit {
   // object that will hold the user data.
   location: Location;
   loginForm: FormGroup;
-  store: NgRedux<IAppState>;
+  // store: NgRedux<IAppState>;
   // user : Object;
 
-  constructor(fb: FormBuilder,
-              ngRedux: NgRedux<IAppState>,
-              location: Location,
-              private ngRouter: Router,
-              private actions: ItemActions) {
-
+  constructor(
+    fb: FormBuilder,
+    location: Location,
+    private ngRouter: Router,
+    private auth: AuthService
+  ) {
     // For our form, we’ll just have two fields and we’ll require both of them to be filled out before the form can be submitted
     this.loginForm = fb.group({
       'email': [null, Validators.required],
       'password': [null, Validators.required],
     });
 
-    this.store = ngRedux;
     this.location = location;
   }
 
@@ -49,15 +46,9 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm(value: any) {
-    // Once the form is submitted and we get the users email and password we’ll format our request based on the Auth0 API.
-    const form = {
-      'auth': {
-        'email': value.email,
-        'password': value.password,
-      }
-    };
-
-    this.store.dispatch(this.actions.submitForm(ITEM_TYPES.TOKEN, form));
+    if (value.email && value.password) {
+      this.auth.login(value.email, value.password);
+    }
   }
 
 }

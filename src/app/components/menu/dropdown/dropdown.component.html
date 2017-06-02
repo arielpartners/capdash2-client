@@ -6,10 +6,12 @@
   <!-- menu button component -->
   <input type="radio" class="radio-hack" name="header"
         [id]="button.id"
-        (click)="toggleDropdown($event)">
+        (click)="service.toggleDropdown($event)">
 
   <!-- Sub-menu dropdown begins -->
     <div  *ngSwitchCase="'sub-menu'"
+          show-toggled
+          [class.show]="(isToggled$ | async) && ((selectedDropdown$ | async) == (button.id))"
           [ngClass]="items.container.class"
           class="dropdown-menu">
       <div class="row">
@@ -26,13 +28,14 @@
           <div class="row" *ngSwitchCase="'list-item'">
             <ul class="nav">
               <li *ngFor="let item of submenu.items.list">
-                <a [href]="item.link.href" class="text-ellipsis text-black">
+                <a [href]="item.link.href" class="text-ellipsis text-black" cdCloseToggle>
                   <i class="fa fa-fw fa-lg text-inverse"
                      [class.fa-chevron-circle-right]="currentLocation.origin === item.link.href"
                      [class.fa-angle-right]="currentLocation.origin !== item.link.href"></i>
                   {{item.text.value}}
                   <!-- badge -->
-                  <span *ngIf="(item.badge) && (item.badge == 'update')" class="badge badge-success">UPDATE</span>
+                  <cd-badge *ngIf="item.badge" [status]="item.badge.class" [value]="item.badge.value"></cd-badge>
+
                 </a>
               </li>
             </ul>
@@ -52,6 +55,7 @@
   <!-- Notification dropdown begins -->
     <ul *ngSwitchCase="'notification'"
         [ngClass]="items.container.class"
+        [class.show]="(isToggled$ | async) && ((selectedDropdown$ | async) == (button.id))"
         class="dropdown-menu">
 
       <li class="dropdown-header">
@@ -59,7 +63,7 @@
       </li>
 
       <li *ngFor="let item of items.list" class="media">
-        <a [href]="item.link.href">
+        <a [href]="item.link.href" cdCloseToggle>
           <div class="media-left">
             <!-- Show img thumbnail if src exist -->
             <i *ngIf="!item.icon.src"
@@ -79,7 +83,7 @@
       </li>
 
       <li class="dropdown-footer text-center">
-        <a href="javascript:">View more</a>
+        <a href="javascript:" cdCloseToggle>View more</a>
       </li>
     </ul>
   <!-- Notification dropdown ends -->
@@ -87,9 +91,10 @@
   <!-- Language dropdown begins -->
     <ul *ngSwitchCase="'selected-item'"
         [ngClass]="items.container.class"
+        [class.show]="(isToggled$ | async) && ((selectedDropdown$ | async) == (button.id))"
         class="dropdown-menu">
       <li *ngFor="let item of items.list">
-        <a [href]="item.link.href">
+        <a [href]="item.link.href" cdCloseToggle>
           <span [ngClass]="item.icon.class"></span>
           {{item.text.value}}
         </a>
@@ -102,7 +107,36 @@
     </ul>
   <!-- Language dropdown ends -->
 
-    <ul class="dropdown-menu" *ngSwitchDefault>
+  <!-- User dropdown begins -->
+    <ul *ngSwitchCase="'user'"
+        [ngClass]="items.container.class"
+        [class.show]="(isToggled$ | async) && ((selectedDropdown$ | async) == (button.id))"
+        class="dropdown-menu">
+      <li class="arrow"></li>
+      <li *ngFor="let item of items.list">
+
+        <a [href]="item.link.href" cdCloseToggle>
+          <cd-badge *ngIf="item.badge"
+                    [status]="item.badge.class"
+                    [value]="item.badge.value"
+                    right="true"></cd-badge>
+          <i [ngClass]="item.icon.class"></i>
+          {{item.text.value}}
+        </a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a cdLogoutBtn cdCloseToggle
+          [routerLink]="['login']"
+          class="ng-binding logout">
+          <i class="fa fa-sign-out"></i> Log Out of CapApp
+        </a>
+      </li>
+    </ul>
+  <!-- User dropdown ends -->
+
+    <ul class="dropdown-menu" *ngSwitchDefault
+        [class.show]="(isToggled$ | async) && ((selectedDropdown$ | async) == (button.id))">
       <li *ngSwitchCase="'item'"></li>
       <li *ngSwitchCase="'na'"></li>
     </ul>

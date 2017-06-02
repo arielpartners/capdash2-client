@@ -7,6 +7,7 @@ import { MenuLabelType } from './menu-label.type';
   styleUrls: ['menu-label.component.less'],
 })
 export class MenuLabelComponent {
+
   @Input() label: MenuLabelType;
   @Input() for: string;
 

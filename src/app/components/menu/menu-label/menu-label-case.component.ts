@@ -50,21 +50,26 @@ export class ItemMenuLabelComponent {
  * case (label.type == 'thumbnail')
  * @Input MenuLabelType
  */
+import { Observable } from 'rxjs/Observable';
+import { select } from '@angular-redux/store';
+
 @Component({
   selector: 'cd-thumbnail-menu-label',
   template: `
               <img
-                [src]="label.icon.src"
+                [src]="(userProfile$ | async) || ''"
                 [alt]="label.tag"
                 [width]="label.icon.width"
                 [height]="label.icon.height">
-              <span [ngClass]="label.text.class">{{label.text.value}}</span>
+              <span [ngClass]="label.text.class">{{userName$ | async}}</span>
               <b class="caret"></b>
             `
 })
 
 export class ThumbnailMenuLabelComponent {
   @Input() label: MenuLabelType;
+  @select(['user', 'item', 'name']) readonly userName$: Observable<string>;
+  @select(['user', 'item', 'profile_image']) readonly userProfile$: Observable<string>;
   constructor() {}
 }
 

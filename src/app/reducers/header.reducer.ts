@@ -1,17 +1,16 @@
-import { HeaderType } from '../components/header/header.type';
-import { HeaderActions } from '../components/header/header.actions';
-import { ItemActions } from '../core/ajax/item/item.actions';
+import { MenuType } from '../services/menu/menu.type';
+import { MenuActions } from '../services/menu/menu.actions';
 
 /* eslint-disable indent */
-const initialState: HeaderType = {
+const initialState: MenuType = {
   isToggled: false,
   selectedDropdown: ''
-}
+};
 
 export const header = (state = initialState, { type, payload }) => {
   let newState = Object.assign({}, state);
   switch (type) {
-    case HeaderActions.TOGGLE:
+    case MenuActions.TOGGLE:
       newState = payload;
       break;
 

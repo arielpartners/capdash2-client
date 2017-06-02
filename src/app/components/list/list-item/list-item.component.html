@@ -1,0 +1,39 @@
+<!--<ng-container *ngTemplateOutlet="locationListItem"></ng-container>-->
+<!--<ng-container *ngTemplateOutlet="customListItem"></ng-container>-->
+<!--<ng-container *ngTemplateOutlet="mediaListItem"></ng-container>-->
+<!--<ng-container *ngTemplateOutlet="defaultListItem"></ng-container>-->
+
+<!--<ng-template #locationListItem>-->
+  <li [ngClass]="classNames">
+    <a [href]="link" class="text-ellipsis text-black" cdCloseToggle>
+      <i class="fa fa-fw fa-lg text-inverse"
+         [class.fa-chevron-circle-right]="currentLocation.origin === link"
+         [class.fa-angle-right]="currentLocation.origin !== link"></i>
+      <ng-content></ng-content>
+      <!-- badge -->
+      <cd-badge *ngIf="badge" [status]="badge.class" [value]="badge.value"></cd-badge>
+    </a>
+  </li>
+<!--</ng-template>-->
+
+<!--<ng-template #mediaListItem *ngIf="(type === 'media')">-->
+  <!--<li [ngClass]="classNames">-->
+    <!--<a [href]="link.href" class="text-ellipsis text-black" cdCloseToggle>-->
+      <!--<ng-content></ng-content>-->
+    <!--</a>-->
+  <!--</li>-->
+<!--</ng-template>-->
+<!--<ng-template #customListItem *ngIf="(type === 'custom')">-->
+  <!--<li [ngClass]="classNames">-->
+    <!--<a [href]="link.href" class="text-ellipsis text-black" cdCloseToggle>-->
+      <!--<ng-content></ng-content>-->
+    <!--</a>-->
+  <!--</li>-->
+<!--</ng-template>-->
+<!--<ng-template #defaultListItem *ngIf="(!type) || (type === 'default')">-->
+  <!--<li [ngClass]="classNames">-->
+    <!--<a [href]="link.href" class="text-ellipsis text-black" cdCloseToggle>-->
+      <!--<ng-content></ng-content>-->
+    <!--</a>-->
+  <!--</li>-->
+<!--</ng-template>-->

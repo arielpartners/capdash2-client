@@ -1,190 +1,175 @@
 import { MenuType } from '../components/menu/menu.type';
 
-// Todo: model belongs to app not menu directory
-export const MainMenu: MenuType = {
-  container: {
-    class: 'dropdown-lg',
-  },
-  label: {
-    class: 'dropdown-toggle text-white',
-    color: 'red', // red for testing white is original
-    icon: 'fa fa-th-large fa-fw',
-    text: {
-      value: 'DSS Intranet Main Menu'
-    },
-    type: 'default'
-  },
-  button: {
-    // need unique value for toggle
-    id: 'dropdown-menu-lg-checkbox',
-    type: 'radio',
+export const MainMenu = {
+  container: 'dropdown-lg',
+  menu: {
+    id: 'dropdown-menu-lg',
     name: 'header',
+    icon: 'fa fa-th-large fa-fw',
+    label: 'DSS Intranet Main Menu'
   },
-  items: {
-    type: 'sub-menu',
-    container: {
-      class: 'dropdown-menu-lg',
-    },
-    list: [
-      {
-        name: 'Apps',
+  items: [
+    {
+      container: 'col-md-2 col-sm-2',
+      type: 'list',
+      header: {
         icon: 'fa fa-desktop',
-        class: 'col-md-2 col-sm-2',
-        items: {
-          type: 'list-item',
-          list: [
-            {
-              text: { value: 'Cares' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'VETS Tracking System' },
-              link: { href: 'javascript:' },
-              badge: 'update'
-            },
-            {
-              text: { value: 'Capacity & Planning (CapApp)' },
-              link: { href: 'http://localhost:4200' }
-            },
-            {
-              text: { value: 'ORCA' },
-              link: { href: 'javascript:' }
-            },
-          ]
-        }
+        text: 'APP'
       },
-      {
-        name: 'Resources',
+      items: [
+        {
+          text: 'Cares',
+          href: 'javascript:'
+        },
+        {
+          text: 'VETS Tracking System',
+          href: 'javascript:',
+          badge: {
+            class: 'success',
+            value: 'UPDATE'
+          }
+        },
+        {
+          text: 'Capacity & Planning (CapApp)',
+          href: 'http://localhost:4200',
+        },
+        {
+          text: 'ORCA',
+          href: 'javascript:',
+        }
+      ]
+    },
+    {
+      container: 'col-md-2 col-sm-2',
+      type: 'list',
+      header: {
         icon: 'fa fa-book',
-        class: 'col-md-2 col-sm-2',
-        items: {
-          type: 'list-item',
-          list: [
-            {
-              text: { value: 'City Share' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'Help Desk' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'FAQs' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'Policy & Procedures' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'DEOA' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'Office of the Ombudsman' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'Staff Directory' },
-              link: { href: 'javascript:' }
-            }
-          ]
-        }
+        text: 'Resources'
       },
-      {
-        name: 'Programs',
+      items: [
+        {
+          text: 'City Share',
+          href: 'javascript:',
+        },
+        {
+          text: 'Help Desk',
+          href: 'javascript:',
+        },
+        {
+          text: 'FAQs',
+          href: 'javascript:',
+        },
+        {
+          text: 'Policy & Procedures',
+          href: 'javascript:',
+        },
+        {
+          text: 'DEOA',
+          href: 'javascript:',
+        },
+        {
+          text: 'Office of the Ombudsman',
+          href: 'javascript:',
+        },
+        {
+          text: 'Staff Directory',
+          href: 'javascript:',
+        },
+      ]
+    },
+    {
+      container: 'col-md-2 col-sm-2',
+      type: 'list',
+      header: {
         icon: 'fa fa-diamond',
-        class: 'col-md-2 col-sm-2',
-        items: {
-          type: 'list-item',
-          list: [
-            {
-              text: { value: 'Adults' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'Capacity Panning & Development' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'Communications & External Affairs' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'Families' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'Policy & Planning' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'Prevention' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'Security & Emergency Operations' },
-              link: { href: 'javascript:' }
-            },
-          ]
-        }
+        text: 'Programs',
       },
-      {
-        name: 'Administration',
+      items: [
+        {
+          text: 'Adults',
+          href: 'javascript:',
+        },
+        {
+          text: 'Capacity Panning & Development',
+          href: 'javascript:',
+        },
+        {
+          text: 'Communications & External Affairs',
+          href: 'javascript:',
+        },
+        {
+          text: 'Families',
+          href: 'javascript:',
+        },
+        {
+          text: 'Policy & Planning',
+          href: 'javascript:',
+        },
+        {
+          text: 'Prevention',
+          href: 'javascript:',
+        },
+        {
+          text: 'Security & Emergency Operations',
+          href: 'javascript:',
+        },
+      ]
+    },
+    {
+      container: 'col-md-2 col-sm-2',
+      type: 'list',
+      header: {
+        text: 'Administration',
         icon: 'fa fa-building',
-        class: 'col-md-2 col-sm-2',
-        items: {
-          type: 'list-item',
-          list: [
-            {
-              text: { value: 'Administrative Division' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'Fiscal Procurment' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'Fleet Services' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'Human Resources' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'Legal Affairs' },
-              link: { href: 'javascript:' }
-            },
-            {
-              text: { value: 'OIT' },
-              link: { href: 'javascript:' }
-            },
-          ]
-        }
       },
-      {
-        name: 'Latest News',
+      items: [
+        {
+          text: 'Administrative Division',
+          link: 'javascript:'
+        },
+        {
+          text: 'Fiscal Procurment',
+          link: 'javascript:'
+        },
+        {
+          text: 'Fleet Services',
+          link: 'javascript:'
+        },
+        {
+          text: 'Human Resources',
+          link: 'javascript:'
+        },
+        {
+          text: 'Legal Affairs',
+          link: 'javascript:'
+        },
+        {
+          text: 'OIT',
+          link: 'javascript:'
+        },
+      ]
+    },
+    {
+      container: 'col-md-4 col-sm-4',
+      type: 'paragraph',
+      header: {
+        text: 'Latest News',
         icon: 'fa fa-newspaper-o',
-        class: 'col-md-4 col-sm-4',
-        items: {
-          type: 'paragraph',
-          list: [
-            {
-              /* tslint:disable:max-line-length */
-              text: { value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis libero purus, fermentum at libero convallis, auctor dignissim mauris. Nunc laoreet pellentesque turpis sodales ornare. Nunc vestibulum nunc lorem, at sodales velit malesuada congue. Nam est tortor, tincidunt sit amet eros vitae, aliquam finibus mauris.' },
-              link: { href: null }
-            },
-            {
-              text: { value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis libero purus, fermentum at libero convallis, auctor dignissim mauris. Nunc laoreet pellentesque turpis sodales ornare. Nunc vestibulum nunc lorem, at sodales velit malesuada congue. Nam est tortor, tincidunt sit amet eros vitae, aliquam finibus mauris.' },
-              link: { href: null }
-              /* tslint:enable:max-line-length */
-            },
-          ]
+      },
+      items: [
+        {
+          /* tslint:disable:max-line-length */
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis libero purus, fermentum at libero convallis, auctor dignissim mauris. Nunc laoreet pellentesque turpis sodales ornare. Nunc vestibulum nunc lorem, at sodales velit malesuada congue. Nam est tortor, tincidunt sit amet eros vitae, aliquam finibus mauris.',
+          link: null
+        },
+        {
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis libero purus, fermentum at libero convallis, auctor dignissim mauris. Nunc laoreet pellentesque turpis sodales ornare. Nunc vestibulum nunc lorem, at sodales velit malesuada congue. Nam est tortor, tincidunt sit amet eros vitae, aliquam finibus mauris.',
+          link: null
+          /* tslint:enable:max-line-length */
         }
-      }
-    ]
-  }
+      ]
+    },
+  ]
 };
 
 export const NotificationMenu: MenuType = {
@@ -327,19 +312,19 @@ export const UserMenu: MenuType = {
   label: {
     class: 'f-s-14',
     icon: {
-      src: 'assets/img/user-rbs.jpg',
+      src: null,
       width: 128,
-      height: 128
+      height: 128,
     },
     text: {
-      value: 'Robert Santore',
+      value: null,
       class: 'hidden-xs text-white'
     },
     type: 'thumbnail',
     tag: 'user-rbs',
   },
   button: {
-    id: 'media-list-checkbox-test',
+    id: 'user-checkbox',
     type: 'radio',
     name: 'header',
   },
@@ -350,14 +335,32 @@ export const UserMenu: MenuType = {
     },
     list: [
       {
-        icon: { class: 'asfdfsd'},
-        link: { href: 'asdfsdaf'},
-        body: {
-          heading: { value: 'asdfsda' },
-          text: { value: 'asdfsda' },
-          time: { value: 'asdfsda' },
+        icon: { class: 'fa fa-pencil-square-o' },
+        text: { value: 'Edit Profile' },
+        link: { href: '#/app/extra/profile' }
+      },
+      {
+        icon: { class: 'fa fa-folder-open' },
+        text: { value: 'New Assigned' },
+        link: { href: 'javascript:' },
+        badge: {
+          class: 'danger',
+          value: '3',
+          right: true
         }
+      },
+      {
+        icon: { class: 'fa fa-calendar' },
+        text: { value: 'Work Orders Schedule' },
+        link: { href: '#/app/work_orders/work_orders/calendar' }
+      },
+      {
+        icon: { class: 'fa fa-cogs' },
+        text: { value: 'CapApp Setting' },
+        link: { href: './#/app/settings/settings/app_settings' }
       }
     ]
   }
 };
+
+

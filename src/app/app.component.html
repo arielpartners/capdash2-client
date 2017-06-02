@@ -1,10 +1,9 @@
 <div class="app">
   <div *ngIf="token$ | async"
        class="app-header">
-    <cd-header [isToggled]="isToggled$"
-               [selectedDropdown]="selectedDropdown$"></cd-header>
+    <cd-header></cd-header>
   </div>
-  <div class="app-section" (click)="onClickApp()">
+  <div class="app-section" cdCloseToggle>
     <div *ngIf="token$ | async"
          class="app-nav">
       <cd-sidebar [version]="version$"

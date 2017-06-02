@@ -22,6 +22,7 @@ import { HomeComponent } from './containers/home/home.component';
 import { HotelsModule } from './containers/hotels/hotels.module';
 import { ForecastsModule } from './containers/forecasts/forecasts.module';
 import { LoginComponent } from './containers/login/login.component';
+import { ListModule } from './components/list/list.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { LoginComponent } from './containers/login/login.component';
     LoginComponent,
   ],
   imports: [
+    ListModule,
     MenuModule,
     BrowserModule,
     ForecastsModule,
