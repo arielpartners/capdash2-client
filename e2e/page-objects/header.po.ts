@@ -1,25 +1,38 @@
 import { browser, element, by } from 'protractor';
 
 export class HeaderPage {
-  megaMenu = element(by.css('.dropdown-lg'));
-  dropdownHeader = element(by.css('.dropdown-header'));
-  notificationsMenu = element(by.css('.bell'));
-  mediaList = element(by.css('.media-list'));
-  languagesMenu = element(by.css('.navbar-language'));
-  languagesList = element(by.css('.languages-menu'));
-  userMenu = element(by.css('.navbar-user'));
-  logout = element(by.css('.logout'));
+  megaMenu = {
+    parent: element(by.css('.dropdown-lg')),
+    child: element(by.css('.dropdown-header'))
+  }
+
+  notificationsMenu = {
+    parent: element(by.css('.bell')),
+    child: element(by.css('.media-list'))
+  }
+
+  languagesMenu = {
+    parent: element(by.css('.navbar-language')),
+    child: element(by.css('.languages-menu'))
+  }
+
+  userMenu = {
+    parent: element(by.css('.navbar-user')),
+    child: element(by.css('.logout'))
+  }
 
   getElement (name, getChild) {
+    let element = getChild ? 'child' : 'parent';
+
     switch (name) {
       case 'mega-menu':
-        return getChild ? this.dropdownHeader : this.megaMenu;
+        return this.megaMenu[element];
       case 'notifications':
-        return getChild ? this.mediaList : this.notificationsMenu;
+        return this.notificationsMenu[element];
       case 'languages':
-        return getChild ? this.languagesList : this.languagesMenu;
+        return this.languagesMenu[element];
       case 'user':
-        return getChild ? this.logout : this.userMenu;
+        return this.userMenu[element];
     }
   }
 
