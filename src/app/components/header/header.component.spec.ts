@@ -8,7 +8,6 @@ import { IAppState } from '../../store/root.types';
 import { ITEM_TYPES } from '../../core/ajax/item/item.types';
 import { ItemActions } from '../../core/ajax/item/item.actions';
 import { AuthService } from '../../services/auth/auth.service';
-
 import { HeaderComponent } from './header.component';
 import { MenuActions } from '../../services/menu/menu.actions';
 import { MenuService } from '../../services/menu/menu.service';

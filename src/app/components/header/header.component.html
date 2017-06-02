@@ -32,6 +32,11 @@
               <cd-list classNames="nav">
                 <cd-list-item type="location" [link]="item.href"
                               *ngFor="let item of submenu.items">
+                  <cd-icon class="fa fa-fw fa-lg fa-angle-right"
+                           activeClass="fa-chevron-circle-right"
+                           [activeUrl]="item.href"
+                           cdActiveLocaton
+                           cdTextInverse></cd-icon>
                   {{item.text}}
                   <cd-badge *ngIf="item.badge" [status]="item.badge.class" [value]="item.badge.value"></cd-badge>
                 </cd-list-item>
@@ -70,6 +75,7 @@
 
     <!--<cd-menu [menu]="headerMenu.notification" type="dropdown"></cd-menu>-->
     <!-- ngIf: setting.layout.pageLanguageBar === true -->
+
     <!--<cd-menu [menu]="headerMenu.language" type="dropdown"></cd-menu>-->
     <!--<cd-menu [menu]="headerMenu.user" type="dropdown"></cd-menu>-->
   </div>

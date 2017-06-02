@@ -1,12 +1,11 @@
 import { Component, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
-
 import { AuthService } from './services/auth/auth.service';
 import { MenuService } from './services/menu/menu.service';
+
 
 @Component({
   selector: 'cd-root',

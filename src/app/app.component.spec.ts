@@ -9,7 +9,7 @@ import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing'
 import { AuthService } from './services/auth/auth.service';
 import { MenuModule } from './components/menu/menu.module';
 import { ItemModule } from './core/ajax/item/item.module';
-import {HttpModule} from '@angular/http';
+import { HttpModule } from '@angular/http';
 
 describe('AppComponent', () => {
   let app: AppComponent;

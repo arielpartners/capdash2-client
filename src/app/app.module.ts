@@ -23,6 +23,7 @@ import { HotelsModule } from './containers/hotels/hotels.module';
 import { ForecastsModule } from './containers/forecasts/forecasts.module';
 import { LoginComponent } from './containers/login/login.component';
 import { ListModule } from './components/list/list.module';
+import {IconModule} from './components/icon/icon.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ListModule } from './components/list/list.module';
   imports: [
     ListModule,
     MenuModule,
+    IconModule,
     BrowserModule,
     ForecastsModule,
     FormsModule,
