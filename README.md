@@ -42,13 +42,21 @@ Run `npm run coverage` to generate a unit test coverage report.  `npm run covera
 
 ## Running end-to-end tests
 
-Run `npm run e2e` to execute the end-to-end tests via [CucumberJS](https://cucumber.io/docs/reference/javascript) and [Protractor](http://www.protractortest.org/).
+End-to-end tests are executed with [CucumberJS](https://cucumber.io/docs/reference/javascript) and [Protractor](http://www.protractortest.org/).
 
-Before running the tests make sure you are serving the app via `npm run json-server`.
+There are two ways to run the tests:
 
-For much faster e2e execution, use `npm run e2e-no-server`.  Before doing so, run `npm run json-server` along with `npm run hmr`.
+1. For a one time execution
+  - Serve the front end with `npm start`
+  - In another terminal window, run the tests with `npm run e2e`
 
-E2E test results are available in HTML format.  Run `npm run e2e-report` to run e2e tests (using e2e-no-server) and open the newly created report after completion.  Run `npm run e2e-report-open` to simply open the most recent report.  
+2. For development watch mode
+  - Run `npm run json-server` and `npm run hmr` in two terminal windows
+  - In a third terminal window, run the tests with `npm run e2e-no-server`
+
+The second option is best suited for development, as it does not require rebuilding from scratch every time the tests run.
+
+E2E test results are available in HTML format.  Run `npm run e2e-report` to run e2e tests (using option 2 above) and open the newly created report after completion.  Run `npm run e2e-report-open` to simply open the most recent report.  
 
 ## Code Linting
 
