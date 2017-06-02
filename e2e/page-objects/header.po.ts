@@ -11,7 +11,7 @@ export class HeaderPage {
   logout = element(by.css('.logout'));
 
   getElement (name) {
-    switch(name){
+    switch (name) {
       case 'mega-menu':
         return this.megaMenu;
       case 'notifications':
@@ -21,26 +21,6 @@ export class HeaderPage {
       case 'user':
         return this.userMenu;
     }
-  }
-
-  clickMegaMenu () {
-    return this.megaMenu.click();
-  }
-
-  clickNotificationsMenu () {
-    return this.notificationsMenu.click();
-  }
-
-  clickLanguagesMenu () {
-    return this.languagesMenu.click();
-  }
-
-  clickUserMenu () {
-    return this.userMenu.click();
-  }
-
-  clickLogout () {
-    return this.logout.click();
   }
 
   navigateTo () {

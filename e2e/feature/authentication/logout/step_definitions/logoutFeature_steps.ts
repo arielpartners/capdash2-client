@@ -25,7 +25,7 @@ defineSupportCode(({Given, Then, When}) => {
   });
 
   When('the user selects log out', () => {
-    return header.clickLogout();
+    return header.logout.click();
   });
 
   Then('the user should see the login page', () => {
