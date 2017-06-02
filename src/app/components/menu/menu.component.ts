@@ -30,7 +30,7 @@ export class MenuComponent {
   }
   _classList: any = {};
 
-  @Input('class')
+  @Input('className')
   set classList(classes: string) {
     this._classList = classes.split(' ').reduce((obj: any, className: string) => {
       obj[className] = true;
