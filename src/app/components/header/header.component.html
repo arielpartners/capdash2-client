@@ -30,8 +30,7 @@
 
             <div class="row" *ngSwitchCase="'list'">
               <cd-list classNames="nav">
-                <cd-list-item type="location" [link]="item.href"
-                              *ngFor="let item of submenu.items">
+                <cd-list-item [link]="item.href" *ngFor="let item of submenu.items">
                   <cd-icon class="fa fa-fw fa-lg fa-angle-right"
                            activeClass="fa-chevron-circle-right"
                            [activeUrl]="item.href"
@@ -44,8 +43,8 @@
             </div>
 
             <div class="row" *ngSwitchCase="'paragraph'">
-              <p *ngFor="let item of submenu.items.list">
-                {{item.text.value}}
+              <p *ngFor="let item of submenu.items">
+                {{item.text}}
               </p>
             </div>
           </div>
