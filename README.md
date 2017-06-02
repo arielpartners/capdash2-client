@@ -52,7 +52,7 @@ As of today, there is no separate unit test report generated; all unit test resu
 
 ### Unit Test Coverage
 
-Run `npm run coverage` to generate a unit test coverage report using the Chrome based tests.  Results can be found in `coverage/index.html`.  `npm run coverage-open` will open the coverage report in a new browser tab.
+Run `npm run coverage` to generate a unit test coverage report using the PhantomJS based tests.  Results can be found in `coverage/index.html`.  `npm run coverage-open` will open the coverage report in a new browser tab.
 
 ## Running end-to-end tests
 
