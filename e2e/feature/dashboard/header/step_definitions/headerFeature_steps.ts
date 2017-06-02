@@ -11,29 +11,6 @@ defineSupportCode(({Given, When, Then}) => {
   const header: HeaderPage = new HeaderPage();
   const app: Capdash2Page = new Capdash2Page();
 
-  const menus = [
-    {
-      name: 'mega-menu',
-      select: () => { header.clickMegaMenu() },
-      element: header.dropdownHeader
-    },
-    {
-      name: 'notifications',
-      select: () => { header.clickNotificationsMenu() },
-      element: header.mediaList
-    },
-    {
-      name: 'languages',
-      select: () => { header.clickLanguagesMenu() },
-      element: header.languagesList
-    },
-    {
-      name: 'user',
-      select: () => { header.clickUserMenu() },
-      element: header.logout
-    }
-  ]
-
   Given('the Capacity Dashboard header is loaded', () => {
     return app.getAppHeader().then( appHeader => {
       appHeader.isDisplayed().then(isDisplayed => {
@@ -42,12 +19,17 @@ defineSupportCode(({Given, When, Then}) => {
     });
   });
 
-  menus.forEach( menu => {
-
-    When(new RegExp('the user selects the ' + menu.name + ' menu'), () => {
-      return menu.select();
-    });
-
+  When('the user selects the {menu} menu', (menu) => {
+    switch(menu){
+      case 'mega-menu':
+        return header.megaMenu.click();
+      case 'notifications':
+        return header.notificationsMenu.click();
+      case 'languages':
+        return header.languagesMenu.click();
+      case 'user':
+        return header.userMenu.click();
+    }
   });
 
   Then('the user should see the mega-menu menu', () => {

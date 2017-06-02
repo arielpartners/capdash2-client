@@ -10,7 +10,7 @@ Scenario Outline: The user can access header menus
   Given the Capacity Dashboard header is loaded
   When the user selects the <menu> menu
   Then the user should see the <menu> menu
-  When the user selects the <menu> menu again
+  When the user selects the <menu> menu
   Then the user should not see the <menu> menu
 
   Examples:
