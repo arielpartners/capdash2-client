@@ -11,6 +11,37 @@ defineSupportCode(({Given, When, Then}) => {
   const header: HeaderPage = new HeaderPage();
   const app: Capdash2Page = new Capdash2Page();
 
+  const menus = [
+    {
+      name: 'mega-menu',
+      select: header.clickMegaMenu,
+      element: header.dropdownHeader
+    },
+    {
+      name: 'notifications',
+      select: header.clickNotificationsMenu,
+      element: header.mediaList
+    },
+    {
+      name: 'languages',
+      select: header.clickLanguagesMenu,
+      element: header.languagesList
+    },
+    {
+      name: 'user',
+      select: header.userMenu,
+      element: header.logout
+    }
+  ]
+
+  menus.forEach( menu => {
+
+    When(/the user selects the mega-menu menu/, () => {
+      return header.clickMegaMenu();
+    });
+
+  });
+
   Given('the Capacity Dashboard header is loaded', () => {
     return app.getAppHeader().then( appHeader => {
       appHeader.isDisplayed().then(isDisplayed => {
@@ -36,16 +67,9 @@ defineSupportCode(({Given, When, Then}) => {
       expect(present).to.equal(true);
     });
   });
-
   Then('the user should not see the mega-menu menu', () => {
     return header.dropdownHeader.isPresent().then(present => {
       expect(present).to.equal(false);
-    });
-  });
-
-  Then('the user should see the user menu', () => {
-    return header.logout.isPresent().then(present => {
-      expect(present).to.equal(true);
     });
   });
 
@@ -73,9 +97,18 @@ defineSupportCode(({Given, When, Then}) => {
     });
   });
 
+  Then('the user should see the user menu', () => {
+    return header.logout.isPresent().then(present => {
+      expect(present).to.equal(true);
+    });
+  });
+
   Then('the user should not see the user menu', () => {
     return header.logout.isPresent().then(present => {
       expect(present).to.equal(false);
     });
   });
 });
+
+// Menu name | Click Function | Element
+// mega-menu | clickMegaMenu() | dropdownHeader
