@@ -20,53 +20,19 @@ defineSupportCode(({Given, When, Then}) => {
   });
 
   When('the user selects the {menu} menu', (menu) => {
-    return header.getElement(menu).click();
+    return header.getElement(menu, false).click();
   });
 
-  Then('the user should see the mega-menu menu', () => {
-    return header.dropdownHeader.isPresent().then(present => {
-      expect(present).to.equal(true);
-    });
-  });
-  Then('the user should not see the mega-menu menu', () => {
-    return header.dropdownHeader.isPresent().then(present => {
-      expect(present).to.equal(false);
-    });
-  });
-
-  Then('the user should see the notifications menu', () => {
-    return header.mediaList.isPresent().then(present => {
+  Then('the user should see the {menu} menu', (menu) => {
+    return header.getElement(menu, true).isPresent().then(present => {
       expect(present).to.equal(true);
     });
   });
 
-  Then('the user should not see the notifications menu', () => {
-    return header.mediaList.isPresent().then(present => {
+  Then('the user should not see the {menu} menu', (menu) => {
+    return header.getElement(menu, true).isPresent().then(present => {
       expect(present).to.equal(false);
     });
   });
 
-  Then('the user should see the languages menu', () => {
-    return header.languagesList.isPresent().then(present => {
-      expect(present).to.equal(true);
-    });
-  });
-
-  Then('the user should not see the languages menu', () => {
-    return header.languagesList.isPresent().then(present => {
-      expect(present).to.equal(false);
-    });
-  });
-
-  Then('the user should see the user menu', () => {
-    return header.logout.isPresent().then(present => {
-      expect(present).to.equal(true);
-    });
-  });
-
-  Then('the user should not see the user menu', () => {
-    return header.logout.isPresent().then(present => {
-      expect(present).to.equal(false);
-    });
-  });
 });
