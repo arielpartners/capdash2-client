@@ -1,17 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewEncapsulation
+} from '@angular/core';
 
 @Component({
   selector: 'cd-menu-item',
-  templateUrl: './menu-item.component.html',
-  styleUrls: ['./menu-item.component.less']
+  template: `
+    <li [ngClass]="_classList">
+      <a [href]="link" cdCloseToggle>
+        <ng-content></ng-content>
+      </a>
+    </li>
+  `,
+  styleUrls: ['./menu-item.component.less'],
+  encapsulation: ViewEncapsulation.None,
 })
-export class MenuItemComponent implements OnInit {
 
-  constructor() { }
+export class MenuItemComponent {
 
-  ngOnInit() {
+  @Input() link: string;
+
+  _classList: any = {};
+
+  @Input('class')
+  set classList(classes: string) {
+    this._classList = classes.split(' ').reduce((obj: any, className: string) => {
+      obj[className] = true;
+      return obj;
+    }, {});
   }
-
 }
-
-

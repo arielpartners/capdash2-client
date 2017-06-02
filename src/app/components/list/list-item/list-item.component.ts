@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'cd-list-item',
   template: `
-    <li [ngClass]="classList">
+    <li [ngClass]="_classList">
       <a [href]="link" class="text-ellipsis text-black" cdCloseToggle>
         <ng-content></ng-content>
       </a>
