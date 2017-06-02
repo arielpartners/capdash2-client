@@ -70,7 +70,9 @@ There are two ways to run the tests:
 
 The second option is best suited for development, as it does not require rebuilding from scratch every time the tests run.
 
-E2E test results are available in HTML format.  Run `npm run e2e-report` to run e2e tests (using option 2 above) and open the newly created report after completion.  Run `npm run e2e-report-open` to simply open the most recent report.  
+After running tests, the feature test report is saved to `e2e/reports/html/feature_test_report.html`.
+
+Run `npm run e2e-report` to run e2e tests (using option 2 above) and open the newly created report after completion.  Run `npm run e2e-report-open` to open the most recent report.  
 
 ## Code Linting
 
