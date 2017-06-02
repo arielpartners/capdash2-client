@@ -47,7 +47,7 @@ End-to-end tests are executed with [CucumberJS](https://cucumber.io/docs/referen
 There are two ways to run the tests:
 
 1. For a one time execution
-  - Serve the front end with `npm start`
+  - Serve the front end with `npm start` (or `npm run hmr`)
   - In another terminal window, run the tests with `npm run e2e`
 
 2. For development watch mode
