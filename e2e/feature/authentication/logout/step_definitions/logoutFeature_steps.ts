@@ -19,13 +19,13 @@ defineSupportCode(({Given, Then, When}) => {
   });
 
   Then('the user should see the option to log out', () => {
-    return header.getElement('user', true).isDisplayed().then(displayed => {
+    return header.getElement('user', 'child').isDisplayed().then(displayed => {
       expect(displayed).to.equal(true);
     });
   });
 
   When('the user selects log out', () => {
-    return header.getElement('user', true).click();
+    return header.getElement('user', 'child').click();
   });
 
   Then('the user should see the login page', () => {

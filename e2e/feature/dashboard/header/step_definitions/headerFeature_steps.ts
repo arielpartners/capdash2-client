@@ -20,17 +20,17 @@ defineSupportCode(({Given, When, Then}) => {
   });
 
   When('the user selects the {menu} menu', (menu) => {
-    return header.getElement(menu, false).click();
+    return header.getElement(menu, 'parent').click();
   });
 
   Then('the user should see the {menu} menu', (menu) => {
-    return header.getElement(menu, true).isPresent().then(present => {
+    return header.getElement(menu, 'child').isPresent().then(present => {
       expect(present).to.equal(true);
     });
   });
 
   Then('the user should not see the {menu} menu', (menu) => {
-    return header.getElement(menu, true).isPresent().then(present => {
+    return header.getElement(menu, 'child').isPresent().then(present => {
       expect(present).to.equal(false);
     });
   });

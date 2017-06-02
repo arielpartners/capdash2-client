@@ -21,18 +21,17 @@ export class HeaderPage {
     child: element(by.css('.logout'))
   }
 
-  getElement (name, getChild) {
-    const element = getChild ? 'child' : 'parent';
+  getElement (name, elementType) {
 
     switch (name) {
       case 'mega-menu':
-        return this.megaMenu[element];
+        return this.megaMenu[elementType];
       case 'notifications':
-        return this.notificationsMenu[element];
+        return this.notificationsMenu[elementType];
       case 'languages':
-        return this.languagesMenu[element];
+        return this.languagesMenu[elementType];
       case 'user':
-        return this.userMenu[element];
+        return this.userMenu[elementType];
     }
   }
 
