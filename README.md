@@ -34,9 +34,13 @@ Run `npm build` to build the project. The build artifacts will be stored in the 
 
 ## Running unit tests
 
-Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Unit tests are executed via [Karma](https://karma-runner.github.io) and use the [Jasmine](https://jasmine.github.io/) assertion library.
 
-Please note that the `npm test` command will run `ng lint` after running unit tests.
+The tests can be run headless using PhantomJS or with Chrome.
+- To run headless, use `npm test`
+- To run with Chrome, use `npm run test-browser`
+
+Please note that linting will be triggered after unit test execution.
 
 Run `npm run coverage` to generate a unit test coverage report.  `npm run coverage-open` will open the coverage report in a new browser tab.
 
