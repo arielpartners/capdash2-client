@@ -22,7 +22,7 @@ export class HeaderPage {
   }
 
   getElement (name, getChild) {
-    let element = getChild ? 'child' : 'parent';
+    const element = getChild ? 'child' : 'parent';
 
     switch (name) {
       case 'mega-menu':
