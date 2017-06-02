@@ -32,15 +32,29 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `npm build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
+## Running Unit Tests
 
 Unit tests are executed via [Karma](https://karma-runner.github.io) and use the [Jasmine](https://jasmine.github.io/) assertion library.
 
-The tests can be run headless using PhantomJS or with Chrome.
+The tests can be run in a Chrome or headless using PhantomJS.  Headless is used for the CI server, but may also be used during development.
 - To run headless, use `npm test`
 - To run with Chrome, use `npm run test-browser`
 
-Please note that linting will be triggered after unit test execution.
+Please note that linting will be triggered after unit test execution in both cases.
+
+As of today, there is no separate unit test report generated; all unit test results are output to stdout.
+
+**TBD** FIXME: We will need to generate an output file that can be read in by Bamboo in order to publish unit test results.
+
+### Configuring WebStorm for Debugging Unit Tests
+
+**TBD** FIXME: instructions to be added here
+
+### Unit Test Coverage
+
+Unit test coverage can be run in Chrome or headless using PhantomJS.
+
+**TBD** FIXME: does the below run in chrome or headless?  Where is the coverage report generated?
 
 Run `npm run coverage` to generate a unit test coverage report.  `npm run coverage-open` will open the coverage report in a new browser tab.
 
