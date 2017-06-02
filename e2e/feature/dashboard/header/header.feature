@@ -17,6 +17,8 @@ Scenario Outline: The user can access header menus
     | menu |
     | mega-menu |
     | notifications |
+    | languages |
+    | user |
 
 Scenario: The user can switch between header menus
   Given the Capacity Dashboard header is loaded
