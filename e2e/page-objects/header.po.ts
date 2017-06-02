@@ -10,6 +10,19 @@ export class HeaderPage {
   userMenu = element(by.css('.navbar-user'));
   logout = element(by.css('.logout'));
 
+  getElement (name) {
+    switch(name){
+      case 'mega-menu':
+        return this.megaMenu;
+      case 'notifications':
+        return this.notificationsMenu;
+      case 'languages':
+        return this.languagesMenu;
+      case 'user':
+        return this.userMenu;
+    }
+  }
+
   clickMegaMenu () {
     return this.megaMenu.click();
   }

@@ -20,16 +20,7 @@ defineSupportCode(({Given, When, Then}) => {
   });
 
   When('the user selects the {menu} menu', (menu) => {
-    switch(menu){
-      case 'mega-menu':
-        return header.megaMenu.click();
-      case 'notifications':
-        return header.notificationsMenu.click();
-      case 'languages':
-        return header.languagesMenu.click();
-      case 'user':
-        return header.userMenu.click();
-    }
+    return header.getElement(menu).click();
   });
 
   Then('the user should see the mega-menu menu', () => {
