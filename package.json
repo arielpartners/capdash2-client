@@ -57,8 +57,7 @@
     "ng": "ng",
     "start": "ng serve --proxy-config config/proxy.conf.json",
     "test": "NODE_ENV=test ng test --watch=false",
-    "test-browser": "ng test --watch=false",
-    "test:watch": "ng test",
+    "test-browser": "ng test",
     "coverage": "ng test -cc",
     "coverage-open": "open ./coverage/index.html",
     "posttest": "npm run lint"
