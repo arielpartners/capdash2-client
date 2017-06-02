@@ -1,9 +1,48 @@
-.dropdown-menu > cd-menu-item > li > a {
-  display: block;
-  padding: 3px 20px;
-  clear: both;
-  font-weight: normal;
-  line-height: 1.42857143;
-  color: #333333;
-  white-space: nowrap;
+cd-menu-item {
+  &> li > a{
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: inherit;
+    line-height: 1.42857143;
+    color: #333333;
+    white-space: nowrap;
+
+    &:hover, &:focus {
+      background: #edf0f5;
+    }
+  }
+
+  &> .media {
+    margin-top: 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin-bottom: -1px;
+
+    &>a {
+      display: block;
+      padding: 10px 20px !important;
+    }
+
+    .media-object {
+      height: 36px;
+      width: 36px;
+      line-height: 36px;
+      font-size: 14px;
+      color: #fff;
+      text-align: center;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+  }
+
+  &> li.dropdown-footer > a {
+    padding: 0 !important;
+    display: inline !important;
+
+    &:hover, &:footer {
+      background: none !important;
+      text-decoration: underline !important;
+    }
+  }
 }

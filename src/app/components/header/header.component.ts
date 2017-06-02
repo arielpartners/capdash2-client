@@ -1,11 +1,11 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux, select } from '@angular-redux/store';
 import { IAppState } from '../../store/root.types';
 import { MainMenu, NotificationMenu, LanguageMenu, UserMenu } from '../../models/header-menu.model';
-
 import { ITEM_TYPES } from '../../core/ajax/item/item.types';
 import { ItemActions } from '../../core/ajax/item/item.actions';
 import { MenuService } from '../../services/menu/menu.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'cd-header',
@@ -19,6 +19,10 @@ import { MenuService } from '../../services/menu/menu.service';
 })
 
 export class HeaderComponent implements OnInit {
+
+
+  @select(['user', 'item', 'name']) readonly userName$: Observable<string>;
+  @select(['user', 'item', 'profile_image']) readonly userProfile$: Observable<string>;
 
   headerMenu: any;
   constructor(

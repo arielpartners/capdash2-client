@@ -177,7 +177,7 @@ export const NotificationMenu = {
   menu: {
     id: 'media-list',
     name: 'header',
-    icon: 'fa fa-bell-o',
+    icon: 'fa fa-bell-o f-s-14',
   },
   // Todo: determine how response would look like for notification API endpoint
   items: [
@@ -212,195 +212,78 @@ export const NotificationMenu = {
   ]
 };
 
-export const NotificationMenuCopy: MenuType = {
-  container: {
-    class: 'bell',
-  },
-  label: {
-    class: 'f-s-14',
-    icon: 'fa fa-bell-o',
-    text: { // Todo: calculate numbers of unread notifications
-      value: '4',
-      class: 'label'
-    },
-    type: 'mini'
-  },
-  button: {
-    id: 'media-list-checkbox-test',
-    type: 'radio',
+export const LanguageMenu = {
+  container: 'navbar-language',
+  menu: {
+    id: 'language',
     name: 'header',
   },
-  items: {
-    type: 'notification',
-    container: {
-      class: 'media-list pull-right animated fadeInDown',
-    },
-    list: [
-      {
-        icon: { class: 'fa fa-warning media-object bg-red'},
-        link: { href: 'javascript:'},
-        body: {
-          heading: { value: 'Violations Reports Updated' },
-          text: { value: null },
-          time: { value: '3 minutes ago' },
-        }
-      },
-      {
-        icon: { src: 'assets/img/user-ka.jpg'},
-        link: { href: 'javascript:'},
-        body: {
-          heading: { value: 'Kari Auer' },
-          text: { value: 'Quisque pulvinar tellus sit amet sem scelerisque tincidunt.' },
-          time: { value: '25 minutes ago' },
-        }
-      },
-      {
-        icon: { src: 'assets/img/user-mj.jpg'},
-        link: { href: 'javascript:'},
-        body: {
-          heading: { value: 'Michael Jabbour' },
-          text: { value: 'Quisque pulvinar tellus sit amet sem scelerisque tincidunt.' },
-          time: { value: '35 minutes ago' },
-        }
-      },
-      {
-        icon: { class: 'fa fa-warning media-object bg-green'},
-        link: { href: 'javascript:'},
-        body: {
-          heading: { value: 'Cleared Violations Today' },
-          text: { value: null },
-          time: { value: '14' },
-        }
-      },
-    ]
-  }
-};
-
-export const LanguageMenu: MenuType = {
-  container: {
-    class: 'navbar-language',
-  },
-  label: {
-    class: 'f-s-14',
+  selected: {
     icon: 'flag-icon flag-icon-us',
-    text: {
-      value: 'EN',
-      class: 'name text-white'
-    },
-    type: 'item',
-    tag: 'us'
+    title: 'us',
+    text: 'EN'
   },
-  button: {
-    id: 'language-checkbox-test',
-    type: 'radio',
+  items: [
+    {
+      icon: 'flag-icon flag-icon-us',
+      title: 'us',
+      text: 'English'
+    },
+    {
+      icon: 'flag-icon flag-icon-es',
+      title: 'es',
+      text: 'Spanish'
+    },
+    {
+      icon: 'flag-icon flag-icon-fr',
+      title: 'fr',
+      text: 'French'
+    },
+    {
+      icon: 'flag-icon flag-icon-ru',
+      title: 'ru',
+      text: 'Russian'
+    },
+    {
+      icon: 'flag-icon flag-icon-in',
+      title: 'in',
+      text: 'Hindi'
+    }
+  ]
+}
+
+
+export const UserMenu = {
+  container: 'navbar-user',
+  menu: {
+    id: 'user',
     name: 'header',
   },
-  items: {
-    container: {
-      class: 'animated fadeInRight p-b-0',
+  items: [
+    {
+      icon: 'fa fa-pencil-square-o',
+      text: 'Edit Profile',
+      link: '#/app/extra/profile'
     },
-    type: 'selected-item',
-    list: [
-      {
-        icon: {
-          class: 'flag-icon flag-icon-us',
-          title: 'us'
-        },
-        text: { value: 'English' },
-        link: { href: 'javascript:' },
-      },
-      {
-        icon: {
-          class: 'flag-icon flag-icon-es',
-          title: 'es'
-        },
-        text: { value: 'Spanish' },
-        link: { href: 'javascript:' },
-      },
-      {
-        icon: {
-          class: 'flag-icon flag-icon-fr',
-          title: 'fr'
-        },
-        text: { value: 'French' },
-        link: { href: 'javascript:' },
-      },
-      {
-        icon: {
-          class: 'flag-icon flag-icon-ru',
-          title: 'ru'
-        },
-        text: { value: 'Russian' },
-        link: { href: 'javascript:' },
-      },
-      {
-        icon: {
-          class: 'flag-icon flag-icon-in',
-          title: 'in'
-        },
-        text: { value: 'Hindi' },
-        link: { href: 'javascript:' },
+    {
+      icon: 'fa fa-folder-open',
+      text: 'New Assigned',
+      link: 'javascript:',
+      badge: {
+        class: 'danger',
+        value: '3',
+        right: true
       }
-    ]
-  }
+    },
+    {
+      icon: 'fa fa-calendar',
+      text: 'Work Orders Schedule',
+      link: '#/app/work_orders/work_orders/calendar'
+    },
+    {
+      icon: 'fa fa-cogs',
+      text: 'CapApp Setting',
+      link: './#/app/settings/settings/app_settings'
+    }
+  ]
 };
-
-export const UserMenu: MenuType = {
-  container: {
-    class: 'navbar-user',
-  },
-  label: {
-    class: 'f-s-14',
-    icon: {
-      src: null,
-      width: 128,
-      height: 128,
-    },
-    text: {
-      value: null,
-      class: 'hidden-xs text-white'
-    },
-    type: 'thumbnail',
-    tag: 'user-rbs',
-  },
-  button: {
-    id: 'user-checkbox',
-    type: 'radio',
-    name: 'header',
-  },
-  items: {
-    type: 'user',
-    container: {
-      class: 'animated fadeInLeft pull-right',
-    },
-    list: [
-      {
-        icon: { class: 'fa fa-pencil-square-o' },
-        text: { value: 'Edit Profile' },
-        link: { href: '#/app/extra/profile' }
-      },
-      {
-        icon: { class: 'fa fa-folder-open' },
-        text: { value: 'New Assigned' },
-        link: { href: 'javascript:' },
-        badge: {
-          class: 'danger',
-          value: '3',
-          right: true
-        }
-      },
-      {
-        icon: { class: 'fa fa-calendar' },
-        text: { value: 'Work Orders Schedule' },
-        link: { href: '#/app/work_orders/work_orders/calendar' }
-      },
-      {
-        icon: { class: 'fa fa-cogs' },
-        text: { value: 'CapApp Setting' },
-        link: { href: './#/app/settings/settings/app_settings' }
-      }
-    ]
-  }
-};
-
-
