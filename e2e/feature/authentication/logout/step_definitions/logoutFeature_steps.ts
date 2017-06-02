@@ -18,10 +18,6 @@ defineSupportCode(({Given, Then, When}) => {
     });
   });
 
-  When(/the user selects the user menu/, () => {
-    return header.clickUserMenu();
-  });
-
   Then('the user should see the option to log out', () => {
     return header.logout.isDisplayed().then(displayed => {
       expect(displayed).to.equal(true);

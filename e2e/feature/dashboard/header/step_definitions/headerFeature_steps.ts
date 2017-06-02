@@ -14,33 +14,25 @@ defineSupportCode(({Given, When, Then}) => {
   const menus = [
     {
       name: 'mega-menu',
-      select: header.clickMegaMenu,
+      select: () => { header.clickMegaMenu() },
       element: header.dropdownHeader
     },
     {
       name: 'notifications',
-      select: header.clickNotificationsMenu,
+      select: () => { header.clickNotificationsMenu() },
       element: header.mediaList
     },
     {
       name: 'languages',
-      select: header.clickLanguagesMenu,
+      select: () => { header.clickLanguagesMenu() },
       element: header.languagesList
     },
     {
       name: 'user',
-      select: header.userMenu,
+      select: () => { header.clickUserMenu() },
       element: header.logout
     }
   ]
-
-  menus.forEach( menu => {
-
-    When(/the user selects the mega-menu menu/, () => {
-      return header.clickMegaMenu();
-    });
-
-  });
 
   Given('the Capacity Dashboard header is loaded', () => {
     return app.getAppHeader().then( appHeader => {
@@ -50,16 +42,12 @@ defineSupportCode(({Given, When, Then}) => {
     });
   });
 
-  When(/the user selects the mega-menu menu/, () => {
-    return header.clickMegaMenu();
-  });
+  menus.forEach( menu => {
 
-  When(/the user selects the notifications menu/, () => {
-    return header.clickNotificationsMenu();
-  });
+    When(new RegExp('the user selects the ' + menu.name + ' menu'), () => {
+      return menu.select();
+    });
 
-  When(/the user selects the languages menu/, () => {
-    return header.clickLanguagesMenu();
   });
 
   Then('the user should see the mega-menu menu', () => {
@@ -109,6 +97,3 @@ defineSupportCode(({Given, When, Then}) => {
     });
   });
 });
-
-// Menu name | Click Function | Element
-// mega-menu | clickMegaMenu() | dropdownHeader
