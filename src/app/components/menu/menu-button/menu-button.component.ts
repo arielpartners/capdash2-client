@@ -26,6 +26,7 @@ export class MenuButtonComponent {
 
   _classList: any = {};
 
+  // Todo: MenuService should be part of this module, but located at app/services
   constructor(public menu: MenuService) {}
 
   get inputId(): string {
