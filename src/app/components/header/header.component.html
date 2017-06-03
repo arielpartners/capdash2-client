@@ -29,7 +29,7 @@
             <cd-menu-header [icon]="submenu.header.icon" [text]="submenu.header.text"></cd-menu-header>
 
             <div class="row" *ngSwitchCase="'list'">
-              <cd-list class="nav">
+              <cd-list className="nav">
                 <cd-list-item [link]="item.href" *ngFor="let item of submenu.items">
                   <cd-icon class="fa fa-fw fa-lg fa-angle-right"
                            activeClass="fa-chevron-circle-right"
@@ -124,7 +124,7 @@
     </div>
 
     <div class="dropdown" [ngClass]="headerMenu.user.container">
-      <cd-menu-button [id]="headerMenu.user.menu.id" [name]="headerMenu.user.menu.name" class="flex-box-row f-s-14">
+      <cd-menu-button [id]="headerMenu.user.menu.id" [name]="headerMenu.user.menu.name" className="flex-box-row f-s-14">
         <img [src]="(userProfile$ | async)" alt="user-rbs" width="128" height="128">
         <span class="hidden-xs text-white">{{userName$ | async}}</span>
         <b class="caret text-white"></b>
