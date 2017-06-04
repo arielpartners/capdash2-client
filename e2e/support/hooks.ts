@@ -24,7 +24,7 @@ defineSupportCode(function ({ registerHandler, registerListener, After, setDefau
     });
 
     const cucumberReporterOptions = {
-        theme: 'bootstrap',
+        theme: 'hierarchy',
         jsonFile: targetJson,
         output: htmlReports + '/feature_test_report.html',
         reportSuiteAsScenarios: true,
@@ -56,4 +56,4 @@ defineSupportCode(function ({ registerHandler, registerListener, After, setDefau
         log: logFn
     });
     registerListener(jsonformatter);
-})
+});
