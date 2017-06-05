@@ -54,10 +54,6 @@ As of today, there is no separate unit test report generated; all unit test resu
 
 Run `npm run coverage` to generate a unit test coverage report using the PhantomJS based tests.  Results can be found in `coverage/index.html`.  `npm run coverage-open` will open the coverage report in a new browser tab.
 
-Please note that the `npm test` command will run `ng lint` after running unit tests.
-
-Run `npm run coverage` to generate a unit test coverage report.  `npm run coverage-open` will open the coverage report in a new browser tab.
-
 ## Running end-to-end tests
 
 End-to-end tests are executed with [CucumberJS](https://cucumber.io/docs/reference/javascript) and [Protractor](http://www.protractortest.org/).
