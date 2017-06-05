@@ -18,7 +18,15 @@ defineSupportCode(({Given, When, Then}) => {
     });
   });
 
-  When('the user selects the {item} sidebar item', (link) => {
-    return sidebar.items[item].element.click();
+  When('the user selects the {item} sidebar item', (item) => {
+    return sidebar.getItem(item).element.click();
+  });
+
+  Then('the user should see the {item} page', (item) => {
+    const expectedUrl = new RegExp(sidebar.getItem(item).path);
+
+    return browser.getCurrentUrl().then( url => {
+      expect(expectedUrl.test(url)).to.equal(true);
+    });
   });
 })
