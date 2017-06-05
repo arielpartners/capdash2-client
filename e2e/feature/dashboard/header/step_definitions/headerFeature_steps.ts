@@ -1,7 +1,6 @@
 import { browser, element, by } from 'protractor';
 import { HeaderPage } from '../../../../page-objects/header.po';
 import { Capdash2Page } from '../../../../page-objects/app.po';
-import { E2EHelpers } from '../../../../support/e2eHelpers';
 
 import { defineSupportCode } from 'cucumber';
 
