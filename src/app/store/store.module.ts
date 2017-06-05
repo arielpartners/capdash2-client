@@ -44,5 +44,17 @@ export class StoreModule {
     // begin periodically persisting the store
     persistStore(store, {blacklist: ['router']});
 
+    // Support setting redux state during E2E testing
+    /* istanbul ignore next */
+    if (
+      /phantom/i.test(navigator.userAgent)  ||
+      /headless/i.test(navigator.userAgent) ||
+      /linux/i.test(navigator.platform)     ||
+      window.outerHeight - window.innerHeight === 114
+    ) {
+      // Make store available in e2e test environment
+      (<any>window).store = store;
+    }
+
   }
 }

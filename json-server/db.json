@@ -12,5 +12,142 @@
     "email": "sample_user@dhs.nyc.gov",
     "name": "John Doe",
     "profile_image": "/assets/img/user-rbs.jpg"
-  }
+  },
+  "shelters": [
+    {
+      "name": "Boulevard Family Center",
+      "provider": "Samaritan Village"
+    },
+    {
+      "name": "BRONX ACACIA CLUSTER II",
+      "provider": "ACACIA NETWORK HOUSING INC"
+    },
+    {
+      "name": "Auburn Family Residence",
+      "provider": "NYC Department Of Homeless Services"
+    },
+    {
+      "name": "LIFE",
+      "provider": "NYC Department Of Homeless Services"
+    },
+    {
+      "name": "BRONX NEIGHBORHOOD AGUILA",
+      "provider": "AGUILA"
+    },
+    {
+      "name": "HELP - BRONX CROTONA",
+      "provider": "Help U.S.A"
+    }
+  ],
+  "shelter_buildings": [
+    {
+      "name": "79-00 Queens Boulevard",
+      "surge_beds": 5,
+      "shelter_id": 1,
+      "date_opened": null,
+      "address": "79-00 Queens Boulevard Elmhurst, NY 11373",
+      "slug": "79-00-queens-boulevard",
+      "units": 0,
+      "beds": 5,
+      "case_type": "Family with Children",
+      "floors": []
+    },
+    {
+      "name": "1231 Sheridan Avenue",
+      "surge_beds": 3,
+      "shelter_id": 2,
+      "date_opened": null,
+      "address": "1231 Sheridan Avenue Bronx, NY 10456",
+      "slug": "1231-sheridan-avenue",
+      "units": 0,
+      "beds": 3,
+      "case_type": "Family with Children",
+      "floors": []
+    },
+    {
+      "name": "32 Auburn Place",
+      "surge_beds": 0,
+      "shelter_id": 3,
+      "date_opened": null,
+      "address": "32 Auburn Place Brooklyn, NY 11205",
+      "slug": "32-auburn-place",
+      "units": 0,
+      "beds": 0,
+      "case_type": "Family with Children",
+      "floors": []
+    },
+    {
+      "name": "78 Catherine Street",
+      "surge_beds": 0,
+      "shelter_id": 4,
+      "date_opened": null,
+      "address": "78 Catherine Street New York, NY 10038",
+      "slug": "78-catherine-street",
+      "units": 0,
+      "beds": 0,
+      "case_type": "Family with Children",
+      "floors": []
+    },
+    {
+      "name": "1101 Manor Avenue",
+      "surge_beds": 0,
+      "shelter_id": 5,
+      "date_opened": null,
+      "address": "1101 Manor Avenue Bronx, NY 10472",
+      "slug": "1101-manor-avenue",
+      "units": 0,
+      "beds": 0,
+      "case_type": "Family with Children",
+      "floors": []
+    },
+    {
+      "name": "708 EAST 243 STREET",
+      "surge_beds": 0,
+      "shelter_id": 5,
+      "date_opened": null,
+      "address": "708 EAST 243 STREET Bronx, NY 10470",
+      "slug": "708-east-243-street",
+      "units": 0,
+      "beds": 0,
+      "case_type": "Family with Children",
+      "floors": []
+    },
+    {
+      "name": "1208 WESTCHESTER AVENUE",
+      "surge_beds": 0,
+      "shelter_id": 2,
+      "date_opened": null,
+      "address": "1208 WESTCHESTER AVENUE Bronx, NY 10459",
+      "slug": "1208-westchester-avenue",
+      "units": 0,
+      "beds": 0,
+      "case_type": "Family with Children",
+      "floors": []
+    },
+    {
+      "name": "785 CROTONA PARK NORTH",
+      "surge_beds": 0,
+      "shelter_id": 6,
+      "date_opened": null,
+      "address": "785 CROTONA PARK NORTH Bronx, NY 10460",
+      "slug": "785-crotona-park-north",
+      "units": 7,
+      "beds": 28,
+      "case_type": "Family with Children",
+      "floors": [
+        {
+          "name": "1",
+          "case_type": "Family with Children"
+        },
+        {
+          "name": "2",
+          "case_type": "Family with Children"
+        },
+        {
+          "name": "3",
+          "case_type": "Family with Children"
+        }
+      ]
+    }
+  ]
 }

@@ -18,6 +18,14 @@ defineSupportCode(({Given, Then, When}) => {
     });
   });
 
+  Given('the user is logged in as', () => {
+    helpers.confirmLoggedInAs();
+
+    return browser.getCurrentUrl().then(url => {
+      expect(/login/.test(url)).not.to.equal(true);
+    });
+  });
+
   Then('the user should see the option to log out', () => {
     return header.logout.isDisplayed().then(displayed => {
       expect(displayed).to.equal(true);
