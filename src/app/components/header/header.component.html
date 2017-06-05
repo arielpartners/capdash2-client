@@ -30,7 +30,7 @@
 
             <div class="row" *ngSwitchCase="'list'">
               <cd-list className="nav">
-                <cd-list-item *ngFor="let item of submenu.items" [link]="item.href" >
+                <cd-list-item *ngFor="let item of submenu.items" [link]="item.href | safeUrl" >
                   <cd-icon class="fa fa-fw fa-lg fa-angle-right"
                            activeClass="fa-chevron-circle-right"
                            [activeUrl]="item.href"
@@ -82,7 +82,7 @@
         <li class="dropdown-header">Notification ({{headerMenu.notification.items.length}})</li>
         <!--<cd-menu-item className="dropdown-header">Notification (4)</cd-menu-item>-->
         <cd-menu-item className="media"
-                      [link]="item.link"
+                      [link]="item.link | safeUrl"
                       *ngFor="let item of headerMenu.notification.items">
           <div class="media-left">
             <cd-icon *ngIf="!item.icon.thumbnail"
@@ -96,7 +96,7 @@
           </div>
         </cd-menu-item>
         <!-- Todo: hover and focus is not same as original UI design -->
-        <cd-menu-item className="dropdown-footer text-center" link="javscript:">View more</cd-menu-item>
+        <cd-menu-item className="dropdown-footer text-center" [link]="'javscript:' | safeUrl">View more</cd-menu-item>
       </cd-menu>
     </div>
 
@@ -124,7 +124,7 @@
 
     <div class="dropdown" [ngClass]="headerMenu.user.container">
       <cd-menu-button [id]="headerMenu.user.menu.id" [name]="headerMenu.user.menu.name" className="flex-box-row f-s-14">
-        <img [src]="(userProfile$ | async)" alt="user-rbs" width="128" height="128">
+        <img [src]="(userProfile$ | async)" alt="user-rbs" width="128" height="128" *ngIf="userProfile$ | async">
         <span class="hidden-xs text-white">{{userName$ | async}}</span>
         <b class="caret text-white"></b>
       </cd-menu-button>
@@ -133,7 +133,7 @@
                [triggerBy]="headerMenu.user.menu.id">
         <!-- Todo: what does this arrow class list item do? -->
         <li class="arrow"></li>
-        <cd-menu-item *ngFor="let item of headerMenu.user.items" [link]="item.link">
+        <cd-menu-item *ngFor="let item of headerMenu.user.items" [link]="item.link | safeUrl">
           <cd-icon [ngClass]="item.icon"></cd-icon>
           {{item.text}}
           <cd-badge *ngIf="item.badge"
