@@ -8,42 +8,42 @@ import {NgReduxRouterModule} from '@angular-redux/router';
 import {RouterModule} from '@angular/router';
 
 // This app's ngModules
-import { ItemModule } from './core/ajax/item/item.module';
-import { StoreModule } from './store/store.module';
-import { OfflineUnitsModule } from './containers/offline-units/offline-units.module';
+import {ItemModule} from './core/ajax/item/item.module';
+import {StoreModule} from './store/store.module';
+import {OfflineUnitsModule} from './containers/offline-units/offline-units.module';
 
-import { appRoutes } from './app.routes';
-import { AppComponent } from './app.component';
-import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
-import { HeaderComponent } from './components/header/header.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { MenuModule } from './components/menu/menu.module';
-import { HomeComponent } from './containers/home/home.component';
-import { HotelsModule } from './containers/hotels/hotels.module';
-import { ForecastsModule } from './containers/forecasts/forecasts.module';
-import { LoginComponent } from './containers/login/login.component';
-import { ListModule } from './components/list/list.module';
-import { IconModule } from './components/icon/icon.module';
+import {AppComponent} from './app.component';
+import {appRoutes} from './app.routes';
+import {ForecastsModule} from './containers/forecasts/forecasts.module';
+import {HeaderComponent} from './components/header/header.component';
+import {HomeComponent} from './containers/home/home.component';
+import {HotelsModule} from './containers/hotels/hotels.module';
+import {IconModule} from './components/icon/icon.module';
+import {ListModule} from './components/list/list.module';
+import {LoginComponent} from './containers/login/login.component';
+import {MenuModule} from './components/menu/menu.module';
+import {PageNotFoundComponent} from './core/page-not-found/page-not-found.component';
+import {SidebarComponent} from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
+    LoginComponent,
     PageNotFoundComponent,
     SidebarComponent,
-    LoginComponent,
   ],
   imports: [
-    ListModule,
-    MenuModule,
-    IconModule,
     BrowserModule,
     ForecastsModule,
     FormsModule,
     HotelsModule,
     HttpModule,
+    IconModule,
     ItemModule,
+    ListModule,
+    MenuModule,
     NgbModule.forRoot(),
     NgReduxModule,
     NgReduxRouterModule,
