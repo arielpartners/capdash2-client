@@ -29,4 +29,10 @@ defineSupportCode(({Given, When, Then}) => {
       expect(expectedUrl.test(url)).to.equal(true);
     });
   });
+
+  Then('the {item} sidebar item should be highlighted', (item) => {
+    return sidebar.getItem(item).element.getAttribute('class').then( cssClass => {
+      expect(cssClass).to.equal('active');
+    });
+  });
 })
