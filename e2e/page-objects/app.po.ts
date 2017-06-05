@@ -1,6 +1,7 @@
 import { browser, element, by } from 'protractor';
 
 const APP_HEADER = by.css('.app-header');
+const APP_SIDEBAR = by.css('.sidebar');
 export class Capdash2Page {
 
   navigateTo() {
@@ -21,7 +22,14 @@ export class Capdash2Page {
     }, 3000).then(() => {
       return element(APP_HEADER);
     });
+  }
 
+  getAppSidebar() {
+    return browser.wait(() => {
+      return browser.isElementPresent(APP_SIDEBAR);
+    }, 3000).then(() => {
+      return element(APP_SIDEBAR);
+    });
   }
 
 }
