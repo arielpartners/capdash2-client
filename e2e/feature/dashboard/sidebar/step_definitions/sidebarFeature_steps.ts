@@ -24,6 +24,11 @@ defineSupportCode(({Given, When, Then}) => {
     return sidebar.getItem(item).element.click();
   });
 
+  When('the user selects the {sub-item} sub-menu item from the {item} sub-menu',
+  (subItem, item) => {
+    return sidebar.getSubItem(subItem, item).element.click();
+  });
+
   Then('the user should see the {item} page', (item) => {
     const expectedUrl = new RegExp(sidebar.getItem(item).path);
 

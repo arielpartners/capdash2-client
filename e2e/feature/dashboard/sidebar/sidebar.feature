@@ -20,7 +20,7 @@ Scenario Outline: The user can navigate with top level links
 Scenario Outline: The user can navigate using links in sub menus
   When the user selects the <item> sidebar item
   Then the user should see the <sub-item> item in the <item> sub-menu
-  When the user selects the <sub-item> sub menu item
+  When the user selects the <sub-item> sub-menu item from the <item> sub-menu
   Then the user should see the <sub-item> page
 
   Examples:

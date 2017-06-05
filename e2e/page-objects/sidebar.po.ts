@@ -69,8 +69,19 @@ export class SidebarPage {
     }
   }
 
+  // Todo: Refactor to cut down conditionals
   getItem(item) {
-    return this.items[item];
+    if (item in this.items) {
+      return this.items[item];
+    } else {
+      for (let menuItem in this.items) {
+        if (this.items[menuItem].subItems) {
+          if (this.items[menuItem].subItems[item]) {
+            return this.items[menuItem].subItems[item];
+          }
+        }
+      }
+    }
   }
 
   getSubItem(subItem, item) {
