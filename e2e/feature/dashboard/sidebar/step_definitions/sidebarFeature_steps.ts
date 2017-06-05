@@ -1,6 +1,7 @@
 import { browser, element, by } from 'protractor';
 import { SidebarPage } from '../../../../page-objects/sidebar.po';
 import { Capdash2Page } from '../../../../page-objects/app.po';
+import { E2EHelpers } from '../../../../support/e2eHelpers';
 
 import { defineSupportCode } from 'cucumber';
 
@@ -9,6 +10,7 @@ import { expect } from 'chai';
 defineSupportCode(({Given, When, Then}) => {
   const sidebar: SidebarPage = new SidebarPage();
   const app: Capdash2Page = new Capdash2Page();
+  const helpers: E2EHelpers = new E2EHelpers();
 
   Given('the Capacity Dashboard sidebar is loaded', () => {
     return app.getAppSidebar().then( appSidebar => {
@@ -31,8 +33,8 @@ defineSupportCode(({Given, When, Then}) => {
   });
 
   Then('the {item} sidebar item should be highlighted', (item) => {
-    return sidebar.getItem(item).element.getAttribute('class').then( cssClass => {
-      expect(cssClass).to.equal('active');
+    return sidebar.getItem(item).element.getAttribute('class').then( classList => {
+      expect(helpers.hasClass(classList, 'active')).to.equal(true);
     });
   });
 })
