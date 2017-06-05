@@ -262,7 +262,7 @@ export const UserMenu = {
     {
       icon: 'fa fa-pencil-square-o',
       text: 'Edit Profile',
-      link: '#/app/extra/profile'
+      link: '/app/extra/profile'
     },
     {
       icon: 'fa fa-folder-open',
@@ -277,12 +277,12 @@ export const UserMenu = {
     {
       icon: 'fa fa-calendar',
       text: 'Work Orders Schedule',
-      link: '#/app/work_orders/work_orders/calendar'
+      link: '/app/work_orders/work_orders/calendar'
     },
     {
       icon: 'fa fa-cogs',
       text: 'CapApp Setting',
-      link: './#/app/settings/settings/app_settings'
+      link: '/app/settings/settings/app_settings'
     }
   ]
 };
