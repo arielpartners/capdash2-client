@@ -17,4 +17,8 @@ defineSupportCode(({Given, When, Then}) => {
       });
     });
   });
+
+  When('the user selects the {item} sidebar item', (link) => {
+    return sidebar.items[item].element.click();
+  });
 })

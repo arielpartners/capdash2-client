@@ -8,11 +8,11 @@ Background:
 
 Scenario Outline: The user can navigate with top level links
   Given the Capacity Dashboard sidebar is loaded
-  When the user selects the <link> sidebar item
-  Then the user should see the <link> page
-  And the <link> sidebar should be highlighted
+  When the user selects the <item> sidebar item
+  Then the user should see the <item> page
+  And the <item> sidebar should be highlighted
 
   Examples:
-    | link |
+    | item |
     | Edit Demand & Projections |
     | Intake/Vacancy Control |
