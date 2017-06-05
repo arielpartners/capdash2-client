@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 import { AuthService } from './services/auth/auth.service';
 import { MenuService } from './services/menu/menu.service';
 
-
 @Component({
   selector: 'cd-root',
   templateUrl: './app.component.html',

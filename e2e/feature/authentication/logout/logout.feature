@@ -5,7 +5,11 @@ Feature: CapDash2 User Logout
 
 Scenario: A user that is logged in can log out
   Given the user is logged in
+<<<<<<< HEAD
   When the user selects the user dropdown menu
+=======
+  When the user selects the user menu
+>>>>>>> master
   Then the user should see the option to log out
   When the user selects log out
   Then the user should see the login page

@@ -47,9 +47,7 @@ describe('AppComponent', () => {
         ItemModule,
         HttpModule
       ],
-      providers: [
-        AuthService,
-      ]
+      providers: [ AuthService ]
     });
     TestBed.compileComponents();
     MockNgRedux.reset();

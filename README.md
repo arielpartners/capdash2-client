@@ -32,9 +32,27 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `npm build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
+## Running Unit Tests
 
-Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Unit tests are executed via [Karma](https://karma-runner.github.io) and use the [Jasmine](https://jasmine.github.io/) assertion library.
+
+The tests can be run in a Chrome or headless using PhantomJS.  Headless is used for the CI server, but may also be used during development.
+- To run headless, use `npm test`. Uses single-run mode.
+- To run with Chrome, use `npm run test-browser`. Uses watch mode.
+
+Please note that linting will be triggered after unit test execution in both cases.
+
+As of today, there is no separate unit test report generated; all unit test results are output to stdout.
+
+**TBD** FIXME: We will need to generate an output file that can be read in by Bamboo in order to publish unit test results.
+
+### Configuring WebStorm for Debugging Unit Tests
+
+**TBD** FIXME: instructions to be added here
+
+### Unit Test Coverage
+
+Run `npm run coverage` to generate a unit test coverage report using the PhantomJS based tests.  Results can be found in `coverage/index.html`.  `npm run coverage-open` will open the coverage report in a new browser tab.
 
 Please note that the `npm test` command will run `ng lint` after running unit tests.
 
@@ -42,13 +60,23 @@ Run `npm run coverage` to generate a unit test coverage report.  `npm run covera
 
 ## Running end-to-end tests
 
-Run `npm run e2e` to execute the end-to-end tests via [CucumberJS](https://cucumber.io/docs/reference/javascript) and [Protractor](http://www.protractortest.org/).
+End-to-end tests are executed with [CucumberJS](https://cucumber.io/docs/reference/javascript) and [Protractor](http://www.protractortest.org/).
 
-Before running the tests make sure you are serving the app via `npm run json-server`.
+There are two ways to run the tests:
 
-For much faster e2e execution, use `npm run e2e-no-server`.  Before doing so, run `npm run json-server` along with `npm run hmr`.
+1. For a one time execution
+  - Serve the front end with `npm start` (or `npm run hmr`)
+  - In another terminal window, run the tests with `npm run e2e`
 
-E2E test results are available in HTML format.  Run `npm run e2e-report` to run e2e tests (using e2e-no-server) and open the newly created report after completion.  Run `npm run e2e-report-open` to simply open the most recent report.  
+2. For development watch mode
+  - Run `npm run json-server` and `npm run hmr` in two terminal windows
+  - In a third terminal window, run the tests with `npm run e2e-no-server`
+
+The second option is best suited for development, as it does not require rebuilding from scratch every time the tests run.
+
+After running tests, the feature test report is saved to `e2e/reports/html/feature_test_report.html`.
+
+Run `npm run e2e-report` to run e2e tests (using option 2 above) and open the newly created report after completion.  Run `npm run e2e-report-open` to open the most recent report.  
 
 ## Code Linting
 
