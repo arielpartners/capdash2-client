@@ -32,6 +32,12 @@ defineSupportCode(({Given, When, Then}) => {
     });
   });
 
+  Then('the user should see the {sub-item} item in the {item} sub-menu', (subItem, item) => {
+    return sidebar.getSubItem(subItem, item).element.isDisplayed().then( isDisplayed => {
+      expect(isDisplayed).to.equal(true);
+    });
+  });
+
   Then('the {item} sidebar item should be highlighted', (item) => {
     return sidebar.getItem(item).element.getAttribute('class').then( classList => {
       expect(helpers.hasClass(classList, 'active')).to.equal(true);

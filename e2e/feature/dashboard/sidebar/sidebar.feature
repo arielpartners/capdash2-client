@@ -5,9 +5,9 @@ Feature: Capacity Dashboard Sidebar
 
 Background:
   Given the user is logged in
+  And the Capacity Dashboard sidebar is loaded
 
 Scenario Outline: The user can navigate with top level links
-  Given the Capacity Dashboard sidebar is loaded
   When the user selects the <item> sidebar item
   Then the user should see the <item> page
   And the <item> sidebar item should be highlighted
@@ -16,3 +16,20 @@ Scenario Outline: The user can navigate with top level links
     | item |
     | Edit Demand & Projections |
     | Intake/Vacancy Control |
+
+Scenario Outline: The user can navigate using links in sub menus
+  When the user selects the <item> sidebar item
+  Then the user should see the <sub-item> item in the <item> sub-menu
+  When the user selects the <sub-item> sub menu item
+  Then the user should see the <sub-item> page
+
+  Examples:
+    | item | sub-item |
+    | Dashboard | Dashboard |
+    | Units | Offline Units |
+    | Units | HERO |
+    | Units | L.T.R. |
+    | Units | Demand & Projections |
+    | Reports | General Reports |
+    | App Settings | General Settings |
+    | App Help | General Help |
