@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { MenuComponent, MenuHeaderComponent } from './menu.component';
 import { MenuButtonComponent } from './menu-button/menu-button.component';
 import { MenuItemComponent } from './menu-item/menu-item.component';
-import { MenuLabelModule } from './menu-label/menu-label.module';
 import { MenuActions } from '../../services/menu/menu.actions';
 import { MenuService } from '../../services/menu/menu.service';
 import { CloseToggleDirective } from '../../services/menu/menu.directive';
@@ -26,7 +25,6 @@ import { CommonModule } from '@angular/common';
   imports: [
     BrowserModule,
     CommonModule,
-    MenuLabelModule,
     NgReduxModule,
     RouterModule
   ],

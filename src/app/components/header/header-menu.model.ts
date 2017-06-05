@@ -1,5 +1,3 @@
-import { MenuType } from '../components/menu/menu.type';
-
 export const MainMenu = {
   container: 'dropdown-lg',
   menu: {
@@ -125,27 +123,27 @@ export const MainMenu = {
       items: [
         {
           text: 'Administrative Division',
-          link: 'javascript:'
+          href: 'javascript:'
         },
         {
           text: 'Fiscal Procurment',
-          link: 'javascript:'
+          href: 'javascript:'
         },
         {
           text: 'Fleet Services',
-          link: 'javascript:'
+          href: 'javascript:'
         },
         {
           text: 'Human Resources',
-          link: 'javascript:'
+          href: 'javascript:'
         },
         {
           text: 'Legal Affairs',
-          link: 'javascript:'
+          href: 'javascript:'
         },
         {
           text: 'OIT',
-          link: 'javascript:'
+          href: 'javascript:'
         },
       ]
     },
@@ -160,11 +158,11 @@ export const MainMenu = {
         {
           /* tslint:disable:max-line-length */
           text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis libero purus, fermentum at libero convallis, auctor dignissim mauris. Nunc laoreet pellentesque turpis sodales ornare. Nunc vestibulum nunc lorem, at sodales velit malesuada congue. Nam est tortor, tincidunt sit amet eros vitae, aliquam finibus mauris.',
-          link: null
+          href: null
         },
         {
           text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis libero purus, fermentum at libero convallis, auctor dignissim mauris. Nunc laoreet pellentesque turpis sodales ornare. Nunc vestibulum nunc lorem, at sodales velit malesuada congue. Nam est tortor, tincidunt sit amet eros vitae, aliquam finibus mauris.',
-          link: null
+          href: null
           /* tslint:enable:max-line-length */
         }
       ]
@@ -179,7 +177,7 @@ export const NotificationMenu = {
     name: 'header',
     icon: 'fa fa-bell-o f-s-14',
   },
-  // Todo: determine how response would look like for notification API endpoint
+  // Todo: determine data structure of /notifications API endpoint
   items: [
     {
       icon: {
@@ -223,6 +221,7 @@ export const LanguageMenu = {
     title: 'us',
     text: 'EN'
   },
+  // Todo: determine data structure of /settings/language API endpoint
   items: [
     {
       icon: 'flag-icon flag-icon-us',

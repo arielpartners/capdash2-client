@@ -3,8 +3,6 @@ import {
   Input,
   ViewEncapsulation
 } from '@angular/core';
-import { LocationPathType } from '../../../core/utils/common.types';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'cd-list-item',
@@ -20,28 +18,13 @@ import { Location } from '@angular/common';
 })
 export class ListItemComponent {
 
-  // @Input() classNames: string;
   @Input() link: string;
 
-  public currentLocation: LocationPathType;
   _classList: any = {};
-
-  constructor(
-    private location: Location
-  ) {
-    this.currentLocation = {
-      protocol: window.location.protocol,
-      host: window.location.host,
-      origin: window.location.origin,
-      path: location.path()
-    };
-  }
-
-
   /**
-   * This method takes classes set on the host cd-icon element and applies them on the
+   * This method takes classes set on the host cd-list-item element and applies them on the
    * menu template that displays in the overlay container.  Otherwise, it's difficult
-   * to style the containing menu from outside the component.
+   * to style the containing list-item from outside the component.
    * @param classes list of class names
    */
   @Input('className')

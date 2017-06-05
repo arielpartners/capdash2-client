@@ -30,11 +30,11 @@
 
             <div class="row" *ngSwitchCase="'list'">
               <cd-list className="nav">
-                <cd-list-item [link]="item.href" *ngFor="let item of submenu.items">
+                <cd-list-item *ngFor="let item of submenu.items" [link]="item.href" >
                   <cd-icon class="fa fa-fw fa-lg fa-angle-right"
                            activeClass="fa-chevron-circle-right"
                            [activeUrl]="item.href"
-                           cdActiveLocaton
+                           cdActiveLocation
                            cdTextInverse></cd-icon>
                   {{item.text}}
                   <cd-badge *ngIf="item.badge" [status]="item.badge.class" [value]="item.badge.value"></cd-badge>
