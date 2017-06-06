@@ -13,9 +13,9 @@ Scenario Outline: The user can navigate with top level links
   And the <item> sidebar item should be highlighted
 
   Examples:
-    | item |
+    | item                      |
     | Edit Demand & Projections |
-    | Intake/Vacancy Control |
+    | Intake/Vacancy Control    |
 
 Scenario Outline: The user can navigate using links in sub menus
   When the user selects the <item> sidebar item
@@ -26,15 +26,15 @@ Scenario Outline: The user can navigate using links in sub menus
   And the <sub-item> sidebar item should be highlighted
 
   Examples:
-    | item | sub-item |
-    | Dashboard | Dashboard |
-    | Units | Offline Units |
-    | Units | HERO |
-    | Units | L.T.R. |
-    | Units | Demand & Projections |
-    | Reports | General Reports |
-    | App Settings | General Settings |
-    | App Help | General Help |
+    | item         | sub-item             |
+    | Dashboard    | Dashboard            |
+    | Units        | Offline Units        |
+    | Units        | HERO                 |
+    | Units        | L.T.R.               |
+    | Units        | Demand & Projections |
+    | Reports      | General Reports      |
+    | App Settings | General Settings     |
+    | App Help     | General Help         |
 
 Scenario: Sub menu collapses when another is opened
   When the user selects the Units sidebar item
