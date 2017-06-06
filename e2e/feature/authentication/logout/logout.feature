@@ -8,4 +8,4 @@ Scenario: A user that is logged in can log out
   When the user selects the user menu
   Then the user should see the option to log out
   When the user selects log out
-  Then the user should see the login page
+  Then the user should navigate to the login page

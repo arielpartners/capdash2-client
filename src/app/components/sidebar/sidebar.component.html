@@ -13,8 +13,9 @@
           <small>Version: {{version | async}}</small>
         </div>
       </li>
-      <! -- ================== 01.0 Dashboard ============================================================= -->
+      <!-- ================== 01.0 Dashboard ============================================================= -->
       <li class="has-sub"
+          id="sidebar-dashboard"
           routerLinkActive="active"
           (click)="expandedMenu = 'dashboard'"
           [ngClass]="{'expand': expandedMenu === 'dashboard' }">
@@ -24,14 +25,15 @@
           <span>Dashboard</span>
         </a>
         <ul class="sub-menu">
-          <li routerLinkActive="active">
+          <li routerLinkActive="active" id="sidebar-sub-dashboard">
             <a [routerLink]="['dashboard']">Dashboard</a>
           </li>
         </ul>
       </li>
 
-      <! -- ================== 02.0 Units ============================================================= -->
+      <!-- ================== 02.0 Units ============================================================= -->
       <li class="has-sub"
+          id="sidebar-units"
           routerLinkActive="active"
           (click)="expandedMenu = 'units'"
           [ngClass]="{'expand': expandedMenu === 'units' }">
@@ -42,33 +44,34 @@
           <span>Units</span>
         </a>
         <ul class="sub-menu">
-          <li routerLinkActive="active">
+          <li routerLinkActive="active" id="sidebar-units-offline">
             <a [routerLink]="['units/offline-units']"><span class="badge pull-left">817</span>&nbsp;Offline Units</a>
           </li>
-          <li routerLinkActive="active">
+          <li routerLinkActive="active" id="sidebar-units-hero">
             <a [routerLink]="['units/hero']"><span class="badge pull-left">200</span>&nbsp;HERO</a>
           </li>
-          <li routerLinkActive="active">
+          <li routerLinkActive="active" id="sidebar-units-ltr">
             <a [routerLink]="['units/ltr']"><span class="badge pull-left">105</span>&nbsp;L.T.R.</a>
           </li>
-          <li routerLinkActive="active">
+          <li routerLinkActive="active" id="sidebar-units-demand">
             <a [routerLink]="['units/demand']"><span class="badge pull-left">38</span>&nbsp;Demand & Projections</a>
           </li>
         </ul>
       </li>
 
-      <! -- ================== 03.0 Edit Demand & Projections ============================================================= -->
-      <li routerLinkActive="active">
+      <!-- ================== 03.0 Edit Demand & Projections ============================================================= -->
+      <li routerLinkActive="active" id="sidebar-edit-demand">
         <a [routerLink]="['edit-demand/edit']"><i class="fa fa-edit"></i> <span>Edit Demand & Projections</span></a>
       </li>
 
-      <! -- ================== 04.0 IVC ============================================================= -->
-      <li routerLinkActive="active" routerLinkActive="active">
+      <!-- ================== 04.0 IVC ============================================================= -->
+      <li routerLinkActive="active" routerLinkActive="active" id="sidebar-intake">
         <a [routerLink]="['ivc']"><i class="fa fa-calendar-check-o"></i> <span>Intake/Vacancy Control</span></a>
       </li>
 
-      <! -- ================== 05.0 Reports ============================================================= -->
+      <!-- ================== 05.0 Reports ============================================================= -->
       <li class="has-sub"
+          id="sidebar-reports"
           routerLinkActive="active"
           (click)="expandedMenu = 'reports'"
           [ngClass]="{'expand': expandedMenu.startsWith('reports') }">
@@ -78,7 +81,7 @@
           <span>Reports </span>
         </a>
         <ul class="sub-menu">
-          <li routerLinkActive="active">
+          <li routerLinkActive="active" id="sidebar-reports-general">
             <a [routerLink]="['/reports/general']">General Reports</a>
           </li>
             <li class="has-sub"
@@ -104,8 +107,9 @@
         </ul>
       </li>
 
-      <! -- ================== 09.0 App Settings ============================================================= -->
+      <!-- ================== 09.0 App Settings ============================================================= -->
       <li class="has-sub"
+          id="sidebar-settings"
           routerLinkActive="active"
           (click)="expandedMenu = 'settings'"
           [ngClass]="{'expand': expandedMenu === 'settings' }">
@@ -115,14 +119,15 @@
           <span>App Settings</span>
         </a>
         <ul class="sub-menu">
-          <li routerLinkActive="active">
+          <li routerLinkActive="active" id="sidebar-settings-general">
             <a [routerLink]="['/settings/general']">General Settings</a>
           </li>
         </ul>
       </li>
 
-      <! -- ================== 10.0 App Help ============================================================= -->
+      <!-- ================== 10.0 App Help ============================================================= -->
       <li class="has-sub"
+          id="sidebar-help"
           routerLinkActive="active"
           (click)="expandedMenu = 'help'"
           [ngClass]="{'expand': expandedMenu === 'help' }">
@@ -132,7 +137,7 @@
           <span>App Help</span>
         </a>
         <ul class="sub-menu">
-          <li routerLinkActive="active">
+          <li routerLinkActive="active" id="sidebar-help-general">
             <a [routerLink]="['/help/general']">General Help</a>
           </li>
         </ul>

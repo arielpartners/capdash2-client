@@ -28,7 +28,7 @@ defineSupportCode(({Given, Then, When}) => {
     return header.getElement('user', 'child').click();
   });
 
-  Then('the user should see the login page', () => {
+  Then('the user should navigate to the login page', () => {
     return browser.getCurrentUrl().then(url => {
       expect(/login/.test(url)).to.equal(true);
     });

@@ -12,4 +12,8 @@ export class E2EHelpers {
       }
     });
   }
+
+  hasClass (classList, cssClass) {
+    return classList.indexOf(cssClass) !== -1;
+  }
 }
