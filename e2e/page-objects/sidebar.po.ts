@@ -70,12 +70,12 @@ export class SidebarPage {
   }
 
   getItem(item) {
-    let items = this.items;
+    const items = this.items;
 
     if (item in items) {
       return items[item];
     } else {
-      for (let menuItem in items) {
+      for (const menuItem in items) {
         if (items[menuItem].subItems && items[menuItem].subItems[item]) {
           return items[menuItem].subItems[item];
         }

@@ -29,14 +29,6 @@ defineSupportCode(({Given, When, Then}) => {
     return sidebar.getSubItem(subItem, item).element.click();
   });
 
-  Then('the user should see the {item} page', (item) => {
-    const expectedUrl = new RegExp(sidebar.getItem(item).path);
-
-    return browser.getCurrentUrl().then( url => {
-      expect(expectedUrl.test(url)).to.equal(true);
-    });
-  });
-
   Then('the user should see the {sub-item} item in the {item} sub-menu', (subItem, item) => {
     return sidebar.getSubItem(subItem, item).element.isDisplayed().then( isDisplayed => {
       expect(isDisplayed).to.equal(true);
@@ -46,6 +38,22 @@ defineSupportCode(({Given, When, Then}) => {
   Then('the {item} sidebar item should be highlighted', (item) => {
     return sidebar.getItem(item).element.getAttribute('class').then( classList => {
       expect(helpers.hasClass(classList, 'active')).to.equal(true);
+    });
+  });
+
+  Then('the Offline Units item in the Units sub-menu should not be visible', () => {
+    const offlineUnits =  sidebar.getSubItem('Offline Units', 'Units');
+
+    return offlineUnits.element.isDisplayed().then( isDisplayed => {
+      expect(isDisplayed).to.equal(false);
+    });
+  });
+
+  Then('the user should see the {item} page', (item) => {
+    const expectedUrl = new RegExp(sidebar.getItem(item).path);
+
+    return browser.getCurrentUrl().then( url => {
+      expect(expectedUrl.test(url)).to.equal(true);
     });
   });
 })

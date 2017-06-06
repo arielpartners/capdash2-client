@@ -35,3 +35,10 @@ Scenario Outline: The user can navigate using links in sub menus
     | Reports | General Reports |
     | App Settings | General Settings |
     | App Help | General Help |
+
+Scenario: Sub menu collapses when another is opened
+  When the user selects the Units sidebar item
+  Then the user should see the Offline Units item in the Units sub-menu
+  When the user selects the Reports sidebar item
+  Then the user should see the General Reports item in the Reports sub-menu
+  And the Offline Units item in the Units sub-menu should not be visible
