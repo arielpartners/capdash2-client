@@ -15,7 +15,8 @@
   <div class="header-nav-left flex-box-row" id="top-navbar">
     <div class="dropdown" [ngClass]="headerMenu.main.container">
       <cd-menu-button [id]="headerMenu.main.menu.id" [name]="headerMenu.main.menu.name">
-        <cd-icon [ngClass]="headerMenu.main.menu.icon"></cd-icon>
+        <cd-icon [icon]="headerMenu.main.menu.icon"
+                 fixed="true"></cd-icon>
         {{headerMenu.main.menu.label}}
         <b class="caret"></b>
       </cd-menu-button>
@@ -31,10 +32,9 @@
             <div class="row" *ngSwitchCase="'list'">
               <cd-list className="nav">
                 <cd-list-item *ngFor="let item of submenu.items" [link]="item.href | safeUrl" >
-                  <cd-icon class="fa fa-fw fa-lg fa-angle-right"
-                           activeClass="fa-chevron-circle-right"
-                           [activeUrl]="item.href"
-                           cdActiveLocation
+                  <cd-icon [icon]="item.activeIcon ? item.activeIcon : 'angle-right'"
+                           size="lg"
+                           fixed="true"
                            cdTextInverse></cd-icon>
                   {{item.text}}
                   <cd-badge *ngIf="item.badge" [status]="item.badge.class" [value]="item.badge.value"></cd-badge>
@@ -73,7 +73,8 @@
 
     <div class="dropdown" [ngClass]="headerMenu.notification.container">
       <cd-menu-button [id]="headerMenu.notification.menu.id" [name]="headerMenu.notification.menu.name">
-        <cd-icon [ngClass]="headerMenu.notification.menu.icon"></cd-icon>
+        <cd-icon  [icon]="headerMenu.notification.menu.icon"
+                  class="f-s-14"></cd-icon>
         <span class="label">4</span>
       </cd-menu-button>
       <cd-menu [className]="headerMenu.notification.menu.id"
@@ -86,7 +87,7 @@
                       *ngFor="let item of headerMenu.notification.items">
           <div class="media-left">
             <cd-icon *ngIf="!item.icon.thumbnail"
-                     class="fa fa-warning media-object bg-red"></cd-icon>
+                     class="media-object" icon="warning" [color]="item.icon.background"></cd-icon>
             <img *ngIf="item.icon.thumbnail"
                  [src]="item.icon.thumbnail" class="media-object" alt="">
           </div>
@@ -104,7 +105,8 @@
     <!-- Todo: ng-if="setting.layout.pageLanguageBar === true" -->
     <div class="dropdown" [ngClass]="headerMenu.language.container">
       <cd-menu-button [id]="headerMenu.language.menu.id" [name]="headerMenu.language.menu.name" class="f-s-14">
-        <cd-icon [ngClass]="headerMenu.language.selected.icon" [title]="headerMenu.language.selected.title"></cd-icon>
+        <cd-icon [ngClass]="headerMenu.language.selected.icon"
+                 [title]="headerMenu.language.selected.title"></cd-icon>
         <span class="name text-white">{{headerMenu.language.selected.text}}</span>
         <b class="caret text-white"></b>
       </cd-menu-button>
@@ -134,7 +136,7 @@
         <!-- Todo: what does this arrow class list item do? -->
         <li class="arrow"></li>
         <cd-menu-item *ngFor="let item of headerMenu.user.items" [link]="item.link | safeUrl">
-          <cd-icon [ngClass]="item.icon"></cd-icon>
+          <cd-icon [icon]="item.icon"></cd-icon>
           {{item.text}}
           <cd-badge *ngIf="item.badge"
                     [status]="item.badge.class"

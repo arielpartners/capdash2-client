@@ -24,7 +24,8 @@ import {LoginComponent} from './containers/login/login.component';
 import {MenuModule} from './components/menu/menu.module';
 import {PageNotFoundComponent} from './core/page-not-found/page-not-found.component';
 import {SidebarComponent} from './components/sidebar/sidebar.component';
-import {SafeUrlPipe} from '../assets/less/safe-url.pipe';
+import {SafeUrlPipe} from './core/utils/safe-url.pipe';
+import {TextInverseDirective} from './directives/text/text.directive';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {SafeUrlPipe} from '../assets/less/safe-url.pipe';
     PageNotFoundComponent,
     SafeUrlPipe,
     SidebarComponent,
+    TextInverseDirective,
   ],
   imports: [
     BrowserModule,

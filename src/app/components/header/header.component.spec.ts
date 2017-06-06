@@ -4,7 +4,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
 import { ITEM_TYPES } from '../../core/ajax/item/item.types';
 import { ItemActions } from '../../core/ajax/item/item.actions';
-import { IAppState } from '../../store/root.types';
 import { HeaderComponent } from './header.component';
 import { MenuActions } from '../../services/menu/menu.actions';
 import { MenuService } from '../../services/menu/menu.service';
@@ -16,6 +15,7 @@ import {
 } from '../menu/menu.mock';
 import {MockIconComponent} from '../icon/icon.mock';
 import {MockBadgeComponent, MockListComponent, MockListItemComponent} from '../list/list.mock';
+import {SafeUrlPipe} from '../../core/utils/safe-url.pipe';
 
 describe('HeaderComponent', () => {
 
@@ -44,6 +44,7 @@ describe('HeaderComponent', () => {
         MockListComponent,
         MockListItemComponent,
         MockBadgeComponent,
+        SafeUrlPipe
       ],
       imports: [
         RouterTestingModule.withRoutes([

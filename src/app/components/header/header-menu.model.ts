@@ -3,7 +3,7 @@ export const MainMenu = {
   menu: {
     id: 'dropdown-menu-lg',
     name: 'header',
-    icon: 'fa fa-th-large fa-fw',
+    icon: 'th-large',
     label: 'DSS Intranet Main Menu'
   },
   items: [
@@ -30,6 +30,7 @@ export const MainMenu = {
         {
           text: 'Capacity & Planning (CapApp)',
           href: 'http://localhost:4200',
+          activeIcon: 'chevron-circle-right'
         },
         {
           text: 'ORCA',
@@ -175,7 +176,7 @@ export const NotificationMenu = {
   menu: {
     id: 'media-list',
     name: 'header',
-    icon: 'fa fa-bell-o f-s-14',
+    icon: 'bell-o',
   },
   // Todo: determine data structure of /notifications API endpoint
   items: [
@@ -260,12 +261,12 @@ export const UserMenu = {
   },
   items: [
     {
-      icon: 'fa fa-pencil-square-o',
+      icon: 'pencil-square-o',
       text: 'Edit Profile',
       link: '/app/extra/profile'
     },
     {
-      icon: 'fa fa-folder-open',
+      icon: 'folder-open',
       text: 'New Assigned',
       link: 'javascript:',
       badge: {
@@ -275,12 +276,12 @@ export const UserMenu = {
       }
     },
     {
-      icon: 'fa fa-calendar',
+      icon: 'calendar',
       text: 'Work Orders Schedule',
       link: '/app/work_orders/work_orders/calendar'
     },
     {
-      icon: 'fa fa-cogs',
+      icon: 'cogs',
       text: 'CapApp Setting',
       link: '/app/settings/settings/app_settings'
     }
