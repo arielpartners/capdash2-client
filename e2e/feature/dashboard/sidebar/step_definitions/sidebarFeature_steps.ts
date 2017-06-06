@@ -29,6 +29,22 @@ defineSupportCode(({Given, When, Then}) => {
     return sidebar.getSubItem(subItem, item).element.click();
   });
 
+  When(/the user selects the sidebar minify button/, () => {
+    return sidebar.minifyBtn.click();
+  });
+
+  Then('the sidebar should be minified', () => {
+    return sidebar.itemLabel.isDisplayed().then( isDisplayed => {
+      expect(isDisplayed).to.equal(false);
+    });
+  });
+
+  Then('the sidebar should be maximized', () => {
+    return sidebar.itemLabel.isDisplayed().then( isDisplayed => {
+      expect(isDisplayed).to.equal(true);
+    });
+  });
+
   Then('the user should see the {sub-item} item in the {item} sub-menu', (subItem, item) => {
     return sidebar.getSubItem(subItem, item).element.isDisplayed().then( isDisplayed => {
       expect(isDisplayed).to.equal(true);

@@ -69,6 +69,9 @@ export class SidebarPage {
     }
   }
 
+  itemLabel = element(by.cssContainingText('a > span', 'Units'))
+  minifyBtn = element(by.css('.sidebar-minify-btn'));
+
   getItem(item) {
     const items = this.items;
 
