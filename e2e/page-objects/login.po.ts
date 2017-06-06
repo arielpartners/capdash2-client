@@ -1,6 +1,9 @@
 import { browser, element, by } from 'protractor';
 
 export class LoginPage {
+  emailField = element(by.css('input[type=email]'));
+  passwordField = element(by.css('input[type=password]'));
+  loginHeader = element(by.css('.login-header'));
 
   navigateTo() {
     return browser.get('/');
@@ -15,15 +18,11 @@ export class LoginPage {
   }
 
   enterEmail(email) {
-    const emailField = element(by.css('input[type=email]'));
-
-    emailField.sendKeys(email);
+    this.emailField.sendKeys(email);
   }
 
   enterPassword(password) {
-    const passwordField = element(by.css('input[type=password]'));
-
-    passwordField.sendKeys(password);
+    this.passwordField.sendKeys(password);
   }
 
   signIn() {
@@ -37,5 +36,16 @@ export class LoginPage {
     this.enterPassword(password);
 
     return this.signIn();
+  }
+
+  getField(field) {
+    switch (field) {
+      case 'email': return this.emailField;
+      case 'password': return this.passwordField;
+    }
+  }
+
+  getAlert(text) {
+    return element(by.cssContainingText('.alert-danger', text));
   }
 }
