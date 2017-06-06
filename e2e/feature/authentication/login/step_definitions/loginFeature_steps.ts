@@ -39,6 +39,14 @@ defineSupportCode(({Given, When, Then}) => {
     });
   });
 
+  Then('the sign in button should be disabled', () => {
+    return page.loginBtn.click().then(() => {
+      browser.getCurrentUrl().then( url => {
+        expect(/login/.test(url)).to.equal(true);
+      });
+    });
+  });
+
   Then('the user should see their personalized dashboard', () => {
     return app.getAppHeader().then( header => {
       header.isDisplayed().then(isDisplayed => {

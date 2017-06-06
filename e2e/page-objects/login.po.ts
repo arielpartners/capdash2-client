@@ -3,6 +3,7 @@ import { browser, element, by } from 'protractor';
 export class LoginPage {
   emailField = element(by.css('input[type=email]'));
   passwordField = element(by.css('input[type=password]'));
+  loginBtn = element(by.buttonText('Sign me in'));
   loginHeader = element(by.css('.login-header'));
 
   navigateTo() {
@@ -26,9 +27,7 @@ export class LoginPage {
   }
 
   signIn() {
-    const btn = element(by.buttonText('Sign me in'));
-
-    return btn.click();
+    return this.loginBtn.click();
   }
 
   login(email, password) {
