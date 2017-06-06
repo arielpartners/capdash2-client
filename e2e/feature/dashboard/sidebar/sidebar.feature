@@ -22,6 +22,8 @@ Scenario Outline: The user can navigate using links in sub menus
   Then the user should see the <sub-item> item in the <item> sub-menu
   When the user selects the <sub-item> sub-menu item from the <item> sub-menu
   Then the user should see the <sub-item> page
+  And the <item> sidebar item should be highlighted
+  And the <sub-item> sidebar item should be highlighted
 
   Examples:
     | item | sub-item |
