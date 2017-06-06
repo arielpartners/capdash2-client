@@ -7,7 +7,7 @@ Background:
   Given the user is logged in
   And the Capacity Dashboard sidebar is loaded
 
-Scenario Outline: The user can navigate with top level links
+Scenario Outline: The user can navigate using the <item> top level link
   When the user selects the <item> sidebar item
   Then the user should see the <item> page
   And the <item> sidebar item should be highlighted
@@ -17,7 +17,7 @@ Scenario Outline: The user can navigate with top level links
     | Edit Demand & Projections |
     | Intake/Vacancy Control    |
 
-Scenario Outline: The user can navigate using links in sub menus
+Scenario Outline: The user can navigate using links in the <item> sub menu
   When the user selects the <item> sidebar item
   Then the user should see the <sub-item> item in the <item> sub-menu
   When the user selects the <sub-item> sub-menu item from the <item> sub-menu

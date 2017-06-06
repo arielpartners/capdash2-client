@@ -6,7 +6,7 @@ Feature: Capacity Dashboard Header
 Background:
   Given the user is logged in
 
-Scenario Outline: The user can access header menus
+Scenario Outline: The user can access the <menu> header menu
   Given the Capacity Dashboard header is loaded
   When the user selects the <menu> menu
   Then the user should see the <menu> menu
@@ -14,11 +14,11 @@ Scenario Outline: The user can access header menus
   Then the user should not see the <menu> menu
 
   Examples:
-    | menu |
-    | mega-menu |
+    | menu          |
+    | mega-menu     |
     | notifications |
-    | languages |
-    | user |
+    | languages     |
+    | user          |
 
 Scenario: The user can switch between header menus
   Given the Capacity Dashboard header is loaded
