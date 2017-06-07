@@ -17,6 +17,7 @@ This project was originally generated with [Angular CLI](https://github.com/angu
 
 ## Architectural Notes
 
+**TBD**: notes to be added here
 
 ## Development server
 Run `npm run json-server` along with one of the following:
@@ -48,11 +49,11 @@ Please note that linting will be triggered after unit test execution in both cas
 
 As of today, there is no separate unit test report generated; all unit test results are output to stdout.
 
-**TBD** FIXME: We will need to generate an output file that can be read in by Bamboo in order to publish unit test results.
+**TBD**: We will need to generate an output file that can be read in by Bamboo in order to publish unit test results.
 
 ### Configuring WebStorm for Debugging Unit Tests
 
-**TBD** FIXME: instructions to be added here
+**TBD**: instructions to be added here
 
 ### Unit Test Coverage
 
