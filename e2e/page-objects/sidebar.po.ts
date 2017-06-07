@@ -7,32 +7,28 @@ export class SidebarPage {
   items = {
     'Dashboard': {
       element: element(by.css('#sidebar-dashboard')),
-      subItems: {
-        'Main Dashboard': {
-          element: element(by.css('#sidebar-sub-dashboard')),
-          path: 'dashboard'
-        }
+      'Main Dashboard': {
+        element: element(by.css('#sidebar-sub-dashboard')),
+        path: 'dashboard'
       }
     },
     'Units': {
       element: element(by.css('#sidebar-units')),
-      subItems: {
-        'Offline Units': {
-          element: element(by.css('#sidebar-units-offline')),
-          path: 'units/offline-units'
-        },
-        'HERO': {
-          element: element(by.css('#sidebar-units-hero')),
-          path: 'units/hero'
-        },
-        'L.T.R.': {
-          element: element(by.css('#sidebar-units-ltr')),
-          path: 'units/ltr'
-        },
-        'Demand & Projections': {
-          element: element(by.css('#sidebar-units-demand')),
-          path: 'units/demand'
-        }
+      'Offline Units': {
+        element: element(by.css('#sidebar-units-offline')),
+        path: 'units/offline-units'
+      },
+      'HERO': {
+        element: element(by.css('#sidebar-units-hero')),
+        path: 'units/hero'
+      },
+      'L.T.R.': {
+        element: element(by.css('#sidebar-units-ltr')),
+        path: 'units/ltr'
+      },
+      'Demand & Projections': {
+        element: element(by.css('#sidebar-units-demand')),
+        path: 'units/demand'
       }
     },
     'Edit Demand & Projections': {
@@ -45,38 +41,30 @@ export class SidebarPage {
     },
     'Reports': {
       element: element(by.css('#sidebar-reports')),
-      subItems: {
-        'General Reports': {
-          element: element(by.css('#sidebar-reports-general')),
-          path: 'reports/general'
-        },
-        'Other Reports': {
-          element: element(by.css('#sidebar-reports-other')),
-          subItems: {
-            'Report All': {
-              element: element(by.css('#sidebar-reports-other-all')),
-              path: 'reports/all'
-            }
-          }
+      'General Reports': {
+        element: element(by.css('#sidebar-reports-general')),
+        path: 'reports/general'
+      },
+      'Other Reports': {
+        element: element(by.css('#sidebar-reports-other')),
+        'Report All': {
+          element: element(by.css('#sidebar-reports-other-all')),
+          path: 'reports/all'
         }
       }
     },
     'App Settings': {
       element: element(by.css('#sidebar-settings')),
-      subItems: {
-        'General Settings': {
-          element: element(by.css('#sidebar-settings-general')),
-          path: 'settings/general'
-        }
+      'General Settings': {
+        element: element(by.css('#sidebar-settings-general')),
+        path: 'settings/general'
       }
     },
     'App Help': {
       element: element(by.css('#sidebar-help')),
-      subItems: {
-        'General Help': {
-          element: element(by.css('#sidebar-help-general')),
-          path: 'help/general'
-        }
+      'General Help': {
+        element: element(by.css('#sidebar-help-general')),
+        path: 'help/general'
       }
     }
   }
@@ -86,9 +74,5 @@ export class SidebarPage {
 
   getItem(item) {
     return helpers.getItem(item, this.items);
-  }
-
-  getSubItem(subItem, item) {
-    return helpers.getSubItem(subItem, item, this.items);
   }
 }

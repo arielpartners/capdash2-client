@@ -12,15 +12,19 @@ export class E2EHelpers {
     return item in items ? items[item] : this.findItem(item, items);
   }
 
-  findItem(item, items) {
+  findItem(itemToFind, items) {
     for (const menuItem in items) {
-      if (items[menuItem].subItems) {
-        if (items[menuItem].subItems[item]) {
-          return items[menuItem].subItems[item];
-        } else {
-          const found = this.findItem(item, items[menuItem].subItems);
-          if (found) {
-            return found;
+      if (items.hasOwnProperty(menuItem)) {
+        const subItems = items[menuItem];
+        for (const subItem in subItems) {
+          if (subItems[itemToFind]) {
+            return subItems[itemToFind];
+          } else {
+            if (subItems[subItem].element && !subItems[subItem].path) {
+              if (subItems[subItem][itemToFind]) {
+                return subItems[subItem][itemToFind];
+              }
+            }
           }
         }
       }
