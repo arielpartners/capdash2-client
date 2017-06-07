@@ -12,21 +12,13 @@ export class E2EHelpers {
     return item in items ? items[item] : this.findItem(item, items);
   }
 
-  getSubItem(subItem, item, items) {
-    if (item in items) {
-      return items[item].subItems[subItem];
-    } else {
-      return this.getItem(item, items).subItems[subItem];
-    }
-  }
-
-  findItem(item, itemsObj) {
-    for (const menuItem in itemsObj) {
-      if (itemsObj[menuItem].subItems) {
-        if (itemsObj[menuItem].subItems[item]) {
-          return itemsObj[menuItem].subItems[item];
+  findItem(item, items) {
+    for (const menuItem in items) {
+      if (items[menuItem].subItems) {
+        if (items[menuItem].subItems[item]) {
+          return items[menuItem].subItems[item];
         } else {
-          const found = this.findItem(item, itemsObj[menuItem].subItems);
+          const found = this.findItem(item, items[menuItem].subItems);
           if (found) {
             return found;
           }

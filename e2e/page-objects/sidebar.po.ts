@@ -8,7 +8,7 @@ export class SidebarPage {
     'Dashboard': {
       element: element(by.css('#sidebar-dashboard')),
       subItems: {
-        'Dashboard': {
+        'Main Dashboard': {
           element: element(by.css('#sidebar-sub-dashboard')),
           path: 'dashboard'
         }

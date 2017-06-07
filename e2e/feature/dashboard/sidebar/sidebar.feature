@@ -27,7 +27,7 @@ Scenario Outline: The user can navigate using links in the <item> sub menu
 
   Examples:
     | item         | sub-item             |
-    | Dashboard    | Dashboard            |
+    | Dashboard    | Main Dashboard       |
     | Units        | Offline Units        |
     | Units        | HERO                 |
     | Units        | L.T.R.               |
