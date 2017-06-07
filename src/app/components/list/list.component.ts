@@ -1,22 +1,29 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Directive,
+  HostBinding,
+  ViewEncapsulation,
+  Input
+} from '@angular/core';
 
 @Component({
-  selector: 'cd-list',
+  selector: 'cd-list, cd-nav-list',
   template: `
-      <ul [ngClass]="_classList">
+      <ng-container>
         <ng-content></ng-content>
-      </ul>
+      </ng-container>
   `,
-  styleUrls: ['./list.component.less']
+  styleUrls: ['./list.component.less'],
+  encapsulation: ViewEncapsulation.None
 })
-export class ListComponent {
-  _classList: any = {};
+export class ListComponent {}
 
-  @Input('className')
-  set classList(classes: string) {
-    this._classList = classes.split(' ').reduce((obj: any, className: string) => {
-      obj[className] = true;
-      return obj;
-    }, {});
+@Directive({
+  selector: '[cdNavList], [NavList], [cd-nav-list], [nav-list]',
+})
+export class NavListCssDirective {
+  @HostBinding('class.nav') private navList: boolean;
+  constructor() {
+    this.navList = true;
   }
 }

@@ -1,21 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListComponent } from './list.component';
+import {ListComponent, NavListCssDirective} from './list.component';
 import { BadgeComponent } from './badge/badge.component';
 import { ListItemComponent } from './list-item/list-item.component';
+import {BrowserModule} from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
     ListComponent,
     ListItemComponent,
-    BadgeComponent],
+    BadgeComponent,
+    NavListCssDirective
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    BrowserModule
   ],
   exports: [
     ListComponent,
     ListItemComponent,
-    BadgeComponent
+    BadgeComponent,
+    NavListCssDirective
   ]
 
 })

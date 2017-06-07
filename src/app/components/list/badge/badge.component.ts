@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 
+// Todo: use ng-content instead span
 @Component({
   selector: 'cd-badge',
   template: `
