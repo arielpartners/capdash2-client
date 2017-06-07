@@ -1,4 +1,7 @@
 import { browser, element, by } from 'protractor';
+import { E2EHelpers } from '../support/e2eHelpers';
+
+const helpers = new E2EHelpers();
 
 export class SidebarPage {
   items = {
@@ -82,33 +85,10 @@ export class SidebarPage {
   minifyBtn = element(by.css('.sidebar-minify-btn'));
 
   getItem(item) {
-    const items = this.items;
-
-    return item in items ? items[item] : this.findItem(item, items);
-  }
-
-  findItem(item, itemsObj) {
-    for (const menuItem in itemsObj) {
-      if (itemsObj[menuItem].subItems) {
-        if (itemsObj[menuItem].subItems[item]) {
-          return itemsObj[menuItem].subItems[item];
-        } else {
-          const found = this.findItem(item, itemsObj[menuItem].subItems);
-          if (found) {
-            return found;
-          }
-        }
-      }
-    }
+    return helpers.getItem(item, this.items);
   }
 
   getSubItem(subItem, item) {
-    const items = this.items;
-
-    if (item in items) {
-      return items[item].subItems[subItem];
-    } else {
-      return this.getItem(item).subItems[subItem];
-    }
+    return helpers.getSubItem(subItem, item, this.items);
   }
 }
