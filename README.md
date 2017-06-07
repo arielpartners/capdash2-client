@@ -1,4 +1,8 @@
-# Capdash2
+# Capacity Dashboard 2.0
+
+See https://github.com/arielpartners/capdash2 for background information and detailed guide for setting up pre-requisites for development.
+
+Capdash2 client is based on Angular 4
 
 This project was originally generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.2.
 
