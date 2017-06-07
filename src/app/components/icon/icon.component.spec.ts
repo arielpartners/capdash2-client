@@ -100,9 +100,11 @@ describe('IconComponent', () => {
       component.fixed = true;
       component.updateFontIconClasses();
       expect(classes['fa-fw']).toBeTruthy();
+      expect(component.prevFixedWidthStatus).toBeTruthy();
       component.fixed = false;
       component.updateFontIconClasses();
       expect(classes['fa-fw']).toBeFalsy();
+      expect(component.prevFixedWidthStatus).toBeFalsy();
     });
   });
 
