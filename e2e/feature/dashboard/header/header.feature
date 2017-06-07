@@ -5,9 +5,9 @@ Feature: Capacity Dashboard Header
 
 Background:
   Given the user is logged in
+  And the Capacity Dashboard header is loaded
 
 Scenario Outline: The user can access the <menu> header menu
-  Given the Capacity Dashboard header is loaded
   When the user selects the <menu> menu
   Then the user should see the <menu> menu
   When the user selects the <menu> menu
@@ -21,7 +21,6 @@ Scenario Outline: The user can access the <menu> header menu
     | user          |
 
 Scenario: The user can switch between header menus
-  Given the Capacity Dashboard header is loaded
   When the user selects the mega-menu menu
   Then the user should see the mega-menu menu
   When the user selects the user menu
