@@ -85,12 +85,13 @@
             <a [routerLink]="['/reports/general']">General Reports</a>
           </li>
             <li class="has-sub"
+                id="sidebar-reports-other"
                 routerLinkActive="active"
                 (click)="$event.stopPropagation(); expandedMenu = 'reports/other'"
                 [ngClass]="{'expand': expandedMenu === ('reports/other') }">
             <a href="javascript:"><b class="caret pull-right"></b> Other Reports</a>
             <ul class="sub-menu">
-              <li routerLinkActive="active">
+              <li routerLinkActive="active" id="sidebar-reports-other-all">
                 <a [routerLink]="['/reports/all']">Report All</a>
               </li>
               <li routerLinkActive="active">

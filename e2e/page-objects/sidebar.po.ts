@@ -46,6 +46,15 @@ export class SidebarPage {
         'General Reports': {
           element: element(by.css('#sidebar-reports-general')),
           path: 'reports/general'
+        },
+        'Other Reports': {
+          element: element(by.css('#sidebar-reports-other')),
+          subItems: {
+            'Report All': {
+              element: element(by.css('#sidebar-reports-other-all')),
+              path: 'reports/all'
+            }
+          }
         }
       }
     },
@@ -75,18 +84,31 @@ export class SidebarPage {
   getItem(item) {
     const items = this.items;
 
-    if (item in items) {
-      return items[item];
-    } else {
-      for (const menuItem in items) {
-        if (items[menuItem].subItems && items[menuItem].subItems[item]) {
-          return items[menuItem].subItems[item];
+    return item in items ? items[item] : this.findItem(item, items);
+  }
+
+  findItem(item, itemsObj) {
+    for (const menuItem in itemsObj) {
+      if (itemsObj[menuItem].subItems) {
+        if (itemsObj[menuItem].subItems[item]) {
+          return itemsObj[menuItem].subItems[item];
+        } else {
+          const found = this.findItem(item, itemsObj[menuItem].subItems);
+          if (found) {
+            return found;
+          }
         }
       }
     }
   }
 
   getSubItem(subItem, item) {
-    return this.items[item].subItems[subItem];
+    const items = this.items;
+
+    if (item in items) {
+      return items[item].subItems[subItem];
+    } else {
+      return this.getItem(item).subItems[subItem];
+    }
   }
 }

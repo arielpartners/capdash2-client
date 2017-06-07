@@ -36,6 +36,16 @@ Scenario Outline: The user can navigate using links in the <item> sub menu
     | App Settings | General Settings     |
     | App Help     | General Help         |
 
+Scenario: The user can navigate to individual reports using Other Reports
+  When the user selects the Reports sidebar item
+  Then the user should see the Other Reports item in the Reports sub-menu
+  When the user selects the Other Reports sub-menu item from the Reports sub-menu
+  Then the user should see the Report All item in the Other Reports sub-menu
+  When the user selects the Report All sub-menu item from the Other Reports sub-menu
+  Then the user should see the Report All page
+  And the Reports sidebar item should be highlighted
+  And the Report All sidebar item should be highlighted
+
 Scenario: Sub menu collapses when another is expanded
   When the user selects the Units sidebar item
   Then the user should see the Offline Units item in the Units sub-menu
