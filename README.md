@@ -1,4 +1,8 @@
-# Capdash2
+# Capacity Dashboard 2.0
+
+See https://github.com/arielpartners/capdash2 for background information and detailed guide for setting up pre-requisites for development.
+
+Capdash2 client is based on Angular 4
 
 This project was originally generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.2.
 
@@ -7,12 +11,16 @@ This project was originally generated with [Angular CLI](https://github.com/angu
 * [Angular 4](https://angular.io/) Angular4 JavaScript Client-Side MVC Framework (bundles Typescript and RxJS)
 * [Redux](http://redux.js.org/) predictable state container for JavaScript apps
 * [Redux Observables](https://redux-observable.js.org/) RxJS 5-based middleware for Redux.
+* [Bootstrap](http://www.getbootstrap.com) and [Ng-Bootstrap](https://ng-bootstrap.github.io) CSS Framework and Bootstrap components powered by Angular
+* [LESS](http://www.lesscss.org) CSS preprocessor to promote reusability and maintainability
 * [Jasmine](https://jasmine.github.io/) Behavior-driven development framework for unit testing JavaScript code
 * [Protractor](http://www.protractortest.org/#/) end-to-end test framework for Angular and AngularJS applications; runs tests against your application running in a real browser, interacting with it as a user would.
 * [CucumberJS](https://cucumber.io/docs/reference/javascript) Cucumber implementation written in pure JavaScript, for feature tests.
+* [XVFB](https://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml) Virtual Framebuffer enabling headless acceptance testing with Chromedriver via CI server
 
 ## Architectural Notes
 
+**TBD**: notes to be added here
 
 ## Development server
 Run `npm run json-server` along with one of the following:
@@ -44,11 +52,11 @@ Please note that linting will be triggered after unit test execution in both cas
 
 As of today, there is no separate unit test report generated; all unit test results are output to stdout.
 
-**TBD** FIXME: We will need to generate an output file that can be read in by Bamboo in order to publish unit test results.
+**TBD**: We will need to generate an output file that can be read in by Bamboo in order to publish unit test results.
 
 ### Configuring WebStorm for Debugging Unit Tests
 
-**TBD** FIXME: instructions to be added here
+**TBD**: instructions to be added here
 
 ### Unit Test Coverage
 
