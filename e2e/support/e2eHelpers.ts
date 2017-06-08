@@ -42,8 +42,8 @@ export class E2EHelpers {
   logout() {
     return browser.getCurrentUrl().then( url => {
       if (!/login/.test(url)) {
-        return headerPage.getElement('user', 'parent').click().then(() => {
-          return headerPage.getElement('user', 'child').click();
+        return headerPage.getItem('User').click().then(() => {
+          return headerPage.getItem('Logout').click();
         });
       }
     });
