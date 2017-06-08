@@ -22,6 +22,10 @@ defineSupportCode(({Given, When, Then}) => {
     return header.getItem(menu).element.click();
   });
 
+  When('the user selects the {link} link', (link) => {
+    return header.getItem(link).element.click();
+  });
+
   Then('the user should see the {menu} menu', (menu) => {
     return header.getChild(menu).element.isPresent().then(present => {
       expect(present).to.equal(true);
@@ -33,5 +37,13 @@ defineSupportCode(({Given, When, Then}) => {
       expect(present).to.equal(false);
     });
   });
+
+  Then('the user should navigate to the {link} page from the header', (link) => {
+    const expectedUrl = new RegExp(header.getItem(link).path);
+
+    return browser.getCurrentUrl().then( url => {
+      expect(expectedUrl.test(url)).to.equal(true);
+    });
+  })
 
 });

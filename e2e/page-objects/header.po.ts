@@ -32,6 +32,18 @@ export class HeaderPage {
     'User': {
       element: element(by.css('.navbar-user')),
       children: {
+        'Edit Profile': {
+          element: element(by.cssContainingText('li > a', 'Edit Profile')),
+          path: '#/app/extra/profile'
+        },
+        'Work Orders Schedule': {
+          element: element(by.cssContainingText('li > a', 'Work Orders Schedule')),
+          path: '#/app/work_orders/work_orders/calendar'
+        },
+        'CapApp Setting': {
+          element: element(by.cssContainingText('li > a', 'CapApp Setting')),
+          path: '#/app/settings/settings/app_settings'
+        },
         'Logout': {
           element: element(by.css('.logout'))
         }

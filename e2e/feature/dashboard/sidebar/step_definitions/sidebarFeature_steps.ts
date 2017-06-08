@@ -65,7 +65,7 @@ defineSupportCode(({Given, When, Then}) => {
     });
   });
 
-  Then('the user should see the {item} page', (item) => {
+  Then('the user should navigate to the {item} page from the sidebar', (item) => {
     const expectedUrl = new RegExp(sidebar.getItem(item).path);
 
     return browser.getCurrentUrl().then( url => {
