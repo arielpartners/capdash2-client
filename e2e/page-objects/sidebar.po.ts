@@ -6,7 +6,7 @@ const helpers = new E2EHelpers();
 export class SidebarPage {
   items = {
     'Dashboard': {
-      element: element(by.css('#sidebar-dashboard')),
+      element: element(by.cssContainingText('li.has-sub', 'Dashboard')),
       children: {
         'Main Dashboard': {
           element: element(by.css('#sidebar-sub-dashboard')),

@@ -26,15 +26,11 @@ defineSupportCode(({Given, When, Then}) => {
     return header.getItem(link).element.click();
   });
 
-  Then('the user should see the {menu} menu', (menu) => {
-    return header.getChild(menu).element.isPresent().then(present => {
-      expect(present).to.equal(true);
-    });
-  });
+  Then('the {menu} menu should be {visibility}', (menu, visibility) => {
+    const expected = visibility === 'displayed' ? true : false;
 
-  Then('the user should not see the {menu} menu', (menu) => {
-    return header.getChild(menu).element.isPresent().then(present => {
-      expect(present).to.equal(false);
+    return header.getChild(menu).element.isPresent().then( isPresent => {
+      expect(isPresent).to.equal(expected);
     });
   });
 
@@ -44,6 +40,6 @@ defineSupportCode(({Given, When, Then}) => {
     return browser.getCurrentUrl().then( url => {
       expect(expectedUrl.test(url)).to.equal(true);
     });
-  })
+  });
 
 });

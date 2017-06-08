@@ -9,7 +9,7 @@ export class HeaderPage {
       element: element(by.css('.dropdown-lg')),
       children: {
         'Mega-menu Header': {
-          element: element(by.css('.dropdown-header'))
+          element: element(by.cssContainingText('h4', 'Apps'))
         }
       }
     },

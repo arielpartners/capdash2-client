@@ -9,9 +9,9 @@ Background:
 
 Scenario Outline: The user can access the <menu> header menu
   When the user selects the <menu> menu
-  Then the user should see the <menu> menu
+  Then the <menu> menu should be displayed
   When the user selects the <menu> menu
-  Then the user should not see the <menu> menu
+  Then the <menu> menu should be hidden
 
   Examples:
     | menu          |
@@ -33,7 +33,7 @@ Scenario Outline: The user can navigate to the <page> page through the <menu> he
 
 Scenario: The user can switch between header menus
   When the user selects the Mega-menu menu
-  Then the user should see the Mega-menu menu
+  Then the Mega-menu menu should be displayed
   When the user selects the User menu
-  Then the user should see the User menu
-  And the user should not see the Mega-menu menu
+  Then the User menu should be displayed
+  And the Mega-menu menu should be hidden
