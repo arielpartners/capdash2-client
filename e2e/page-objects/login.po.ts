@@ -26,15 +26,11 @@ export class LoginPage {
     this.passwordField.sendKeys(password);
   }
 
-  signIn() {
-    return this.loginBtn.click();
-  }
-
   login(email, password) {
     this.enterEmail(email);
     this.enterPassword(password);
 
-    return this.signIn();
+    return this.loginBtn.click();
   }
 
   getField(field) {
