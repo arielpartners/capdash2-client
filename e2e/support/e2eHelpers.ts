@@ -1,29 +1,17 @@
 import { browser, element, by } from 'protractor';
 
-import { LoginPage } from '../page-objects/login.po';
-import { HeaderPage } from '../page-objects/header.po';
-
-const loginPage: LoginPage = new LoginPage();
-const headerPage: HeaderPage = new HeaderPage();
-
 export class E2EHelpers {
 
-  getItem(item, items) {
-    return item in items ? items[item] : this.findItem(item, items);
-  }
-
-  findItem(itemToFind, items) {
-    for (const menuItem in items) {
-      if (items.hasOwnProperty(menuItem)) {
-        const subItems = items[menuItem];
-        for (const subItem in subItems) {
-          if (subItems[itemToFind]) {
-            return subItems[itemToFind];
-          } else {
-            if (subItems[subItem].element && !subItems[subItem].path) {
-              if (subItems[subItem][itemToFind]) {
-                return subItems[subItem][itemToFind];
-              }
+  getItem(item, obj) {
+    if (item in obj) {
+      return obj[item];
+    } else {
+      for (const prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+          if (obj[prop].children) {
+            const found = this.getItem(item, obj[prop].children);
+            if (found) {
+              return found;
             }
           }
         }
@@ -31,22 +19,15 @@ export class E2EHelpers {
     }
   }
 
-  confirmLogin () {
-    return browser.getCurrentUrl().then(url => {
-      if (/login/.test(url)) {
-        loginPage.login('sample_user@hra.nyc.gov', 'password');
+  getChild(item, obj) {
+    const children = this.getItem(item, obj).children;
+    for (const prop in children) {
+      if (children.hasOwnProperty(prop)) {
+        if (children[prop].element) {
+          return children[prop];
+        }
       }
-    });
-  }
-
-  logout() {
-    return browser.getCurrentUrl().then( url => {
-      if (!/login/.test(url)) {
-        return headerPage.getItem('User').click().then(() => {
-          return headerPage.getItem('Logout').click();
-        });
-      }
-    });
+    }
   }
 
   hasClass (classList, cssClass) {

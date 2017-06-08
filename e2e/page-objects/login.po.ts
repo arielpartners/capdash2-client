@@ -47,4 +47,13 @@ export class LoginPage {
   getAlert(text) {
     return element(by.cssContainingText('.alert-danger', text));
   }
+
+  confirmLogin () {
+    return browser.getCurrentUrl().then(url => {
+      if (/login/.test(url)) {
+        this.login('sample_user@hra.nyc.gov', 'password');
+      }
+    });
+  }
+
 }

@@ -15,14 +15,14 @@ Scenario Outline: The user can access the <menu> header menu
 
   Examples:
     | menu          |
-    | mega-menu     |
-    | notifications |
-    | languages     |
-    | user          |
+    | Mega-menu     |
+    | Notifications |
+    | Languages     |
+    | User          |
 
 Scenario: The user can switch between header menus
-  When the user selects the mega-menu menu
-  Then the user should see the mega-menu menu
-  When the user selects the user menu
-  Then the user should see the user menu
-  And the user should not see the mega-menu menu
+  When the user selects the Mega-menu menu
+  Then the user should see the Mega-menu menu
+  When the user selects the User menu
+  Then the user should see the User menu
+  And the user should not see the Mega-menu menu
