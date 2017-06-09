@@ -73,7 +73,9 @@
         <form class="navbar-form full-width ng-pristine ng-valid">
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Global Enter keyword">
-            <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+            <button type="submit" class="btn btn-search">
+              <cd-icon icon="search"></cd-icon>
+            </button>
           </div>
         </form>
       </div>
@@ -81,7 +83,7 @@
 
       <div class="dropdown" [ngClass]="headerMenu.notification.container">
         <cd-menu-button [id]="headerMenu.notification.menu.id" [name]="headerMenu.notification.menu.name" class="f-s-14">
-          <cd-icon  [icon]="headerMenu.notification.menu.icon"></cd-icon>
+          <cd-icon [icon]="headerMenu.notification.menu.icon"></cd-icon>
           <span class="label">4</span>
         </cd-menu-button>
         <cd-menu [className]="headerMenu.notification.menu.id + ' pull-right animated fadeInDown'"
@@ -117,7 +119,7 @@
           <span class="name text-white">{{headerMenu.language.selected.text}}</span>
           <b class="caret text-white"></b>
         </cd-menu-button>
-        <cd-menu [className]="headerMenu.language.menu.id"
+        <cd-menu [className]="headerMenu.language.menu.id + ' animated fadeInRight'"
                  [triggerBy]="headerMenu.language.menu.id">
           <!-- Todo: what does this arrow class list item do? -->
           <li class="arrow"></li>
