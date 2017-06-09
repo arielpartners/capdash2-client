@@ -162,7 +162,7 @@ export const MainMenu = {
           href: null
         },
         {
-          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis libero purus, fermentum at libero convallis, auctor dignissim mauris. Nunc laoreet pellentesque turpis sodales ornare. Nunc vestibulum nunc lorem, at sodales velit malesuada congue. Nam est tortor, tincidunt sit amet eros vitae, aliquam finibus mauris.',
+          text: 'Fusce ac ligula laoreet ante dapibus mattis. Nam auctor vulputate aliquam. Suspendisse efficitur, felis sed elementum eleifend, ipsum tellus sodales nisi, ut condimentum nisi sem in nibh. Phasellus suscipit vulputate purus at venenatis. Quisque luctus tincidunt tempor.',
           href: null
           /* tslint:enable:max-line-length */
         }
@@ -186,27 +186,33 @@ export const NotificationMenu = {
       },
       link: 'javascript:',
       text: 'Violations Reports Updated',
+      timestamp: timeDiffFromNow('2017-06-08 10:40:00 EDT')
     },
     {
       icon: {
         thumbnail: 'assets/img/user-ka.jpg'
       },
       link: 'javascript:',
-      text: 'Violations Reports Updated'
+      text: 'Kari Auer',
+      description: 'Quisque pulvinar tellus sit amet sem scelerisque tincidunt.',
+      timestamp: timeDiffFromNow('2017-06-08 10:50:00 EDT')
     },
     {
       icon: {
         thumbnail: 'assets/img/user-mj.jpg'
       },
       link: 'javascript:',
-      text: 'Violations Reports Updated'
+      text: 'Michael Jabbour',
+      description: 'Quisque pulvinar tellus sit amet sem scelerisque tincidunt.',
+      timestamp: timeDiffFromNow('2017-06-08 10:53:00 EDT')
     },
     {
       icon: {
         background: 'green'
       },
       link: 'javascript:',
-      text: 'Violations Reports Updated'
+      text: 'Violations Reports Updated',
+      timestamp: timeDiffFromNow('2017-06-07 10:40:00 EDT')
     }
   ]
 };
@@ -287,3 +293,15 @@ export const UserMenu = {
     }
   ]
 };
+
+function timeDiffFromNow(date) {
+  let diff =(Date.now() - new Date(date).getTime() ) / 1000;
+  diff /= 60;
+  const minutes = Math.abs(Math.round(diff));
+
+  return minutes >= 60
+    ? Math.abs(Math.round(diff / 60)) >= 24
+      ? `${Math.abs(Math.round(diff / 60 / 24))} days`
+      : `${Math.abs(Math.round(diff / 60))} hours`
+    : `${minutes} minutes`
+}

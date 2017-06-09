@@ -4,14 +4,70 @@
   z-index: 1020;
   align-items: center;
 
-  .header-nav-left {
-    flex-grow: 1;
-    min-width: 310px;
+  .navbar-nav {
+
+    & > div {
+      float: left;
+    }
+    & > div > a,
+    & > div > cd-menu-button label {
+      line-height: 20px;
+      padding: 17px 15px;
+      position: relative;
+      display: block;
+
+      &:hover, &:focus {
+        color: #333;
+        background: #fafafa;
+        opacity: 0.6;
+        filter: alpha(opacity=60);
+        text-decoration: none;
+      }
+
+      &:hover, &:focus {
+        color: #333;
+        background-color: transparent;
+      }
+
+    }
   }
 
-  .header-nav-right {
-    align-items: center;
+  .navbar-nav.navbar-right .show.dropdown-menu,
+  .navbar-nav.navbar-right .open .dropdown-menu {
+    right: 0;
+    left: auto;
   }
+}
+
+.navbar-nav {
+
+  &.navbar-right .show{
+    &.dropdown-menu {
+      right: 0;
+      left: auto;
+    }
+  }
+
+  .show {
+    &.dropdown-menu  {
+      & > cd-menu-item > a,
+      & > li > a {
+        padding: 5px 15px;
+        line-height: 20px;
+
+      }
+    }
+  }
+}
+
+.dropdown-menu > cd-menu-item.dropdown-footer > a {
+  padding: 0 !important;
+  display: inline !important;
+}
+
+.nav > div {
+  position: relative;
+  display: block;
 }
 
 label {
@@ -22,15 +78,8 @@ label {
   align-items: center;
 }
 
-/* Checkbox/Radio input hack */
-input[type=radio].radio-hack {
-  position: absolute;
-  top: -9999px;
-  left: -9999px;
-}
-
-/* Toggled State */
-input[type=radio].radio-hack:checked ~ div,
-input[type=radio].radio-hack:checked ~ ul {
-  display: block;
-}
+//.navbar-language .flag-icon {
+//  font-size: 15px;
+//  margin: 2px 7px 0;
+//  float: left;
+//}

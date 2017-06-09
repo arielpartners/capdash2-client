@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import {Component, ChangeDetectionStrategy, OnInit, ViewEncapsulation} from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
 import { IAppState } from '../../store/root.types';
 import { MainMenu, NotificationMenu, LanguageMenu, UserMenu } from './header-menu.model';
@@ -16,6 +16,7 @@ import { Observable } from 'rxjs/Observable';
     MenuService
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 
 export class HeaderComponent implements OnInit {
