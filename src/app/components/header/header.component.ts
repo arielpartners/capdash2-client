@@ -1,62 +1,45 @@
-import { Component, AfterViewInit, Input, ChangeDetectionStrategy, ElementRef } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { NgRedux } from '@angular-redux/store';
+import {Component, ChangeDetectionStrategy, OnInit, ViewEncapsulation} from '@angular/core';
+import { NgRedux, select } from '@angular-redux/store';
 import { IAppState } from '../../store/root.types';
+import { MainMenu, NotificationMenu, LanguageMenu, UserMenu } from './header-menu.model';
 import { ITEM_TYPES } from '../../core/ajax/item/item.types';
 import { ItemActions } from '../../core/ajax/item/item.actions';
-import { AuthService } from '../../services/auth/auth.service';
-import { HeaderActions } from './header.actions';
+import { MenuService } from '../../services/menu/menu.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'cd-header',
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.less'],
   providers: [
-    HeaderActions,
     ItemActions,
-    AuthService
+    MenuService
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
-export class HeaderComponent implements AfterViewInit {
 
-  @Input() isToggled: Observable<boolean>;
-  @Input() selectedDropdown: Observable<string>;
-  @Input() userName: Observable<string>;
-  @Input() userProfile: Observable<string>;
+export class HeaderComponent implements OnInit {
 
+  @select(['user', 'item', 'name']) readonly userName$: Observable<string>;
+  @select(['user', 'item', 'profile_image']) readonly userProfile$: Observable<string>;
+
+  headerMenu: any;
   constructor(
+    /* istanbul ignore next */
     private store: NgRedux<IAppState>,
-    private actions: HeaderActions,
     private ajax: ItemActions,
-    private auth: AuthService
-  ) {}
+    public menu: MenuService,
+  ) {
+    this.headerMenu = {
+      main: MainMenu,
+      notification: NotificationMenu,
+      language: LanguageMenu,
+      user: UserMenu
+    };
+  }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.store.dispatch(this.ajax.loadItem(ITEM_TYPES.USER));
-  }
-
-  logout() {
-    this.auth.logout();
-    this.store.dispatch(this.actions.closeToggle());
-  }
-
-  toggleDropdown(e) {
-    const elem = e ? e.target : undefined,
-          header = JSON.parse(localStorage.getItem('reduxPersist:header'));
-
-    const shouldOpen = elem
-      ? !header
-        ? true
-        : !header.isToggled
-          ? true
-          : header.selectedDropdown !== elem.id
-      : false;
-
-    if (shouldOpen) {
-      this.store.dispatch(this.actions.openToggle(elem.id));
-    } else {
-      this.store.dispatch(this.actions.closeToggle());
-    }
   }
 }

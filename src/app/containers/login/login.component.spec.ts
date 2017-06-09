@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 import { LoginComponent } from './login.component';
 import { AuthService } from '../../services/auth/auth.service';
 import { ItemActions } from '../../core/ajax/item/item.actions';
-import { ITEM_TYPES } from '../../core/ajax/item/item.types';
 
 describe('LoginComponent', () => {
 

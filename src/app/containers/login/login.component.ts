@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {Router} from '@angular/router';
-import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({

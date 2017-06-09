@@ -1,4 +1,4 @@
-export interface HeaderType {
+export interface MenuType {
   isToggled: boolean;
   selectedDropdown: string;
 }

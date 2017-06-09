@@ -8,12 +8,12 @@
 .dropdown-menu > li > a {
     padding: 5px 15px;
 }
-.dropdown-menu > li > a:hover, 
+.dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
     background: #edf0f5;
 }
-.dropdown-menu > .active > a, 
-.dropdown-menu > .active > a:hover, 
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus {
     background: #348fe2;
 }
@@ -55,12 +55,12 @@
 .dropdown-footer {
     padding: 10px 20px;
 }
-.dropdown-menu > li.dropdown-footer > a {
+.dropdown-menu > li.dropdown-footer > a,
+.dropdown-menu > cd-menu-item.dropdown-footer > a {
     padding: 0 !important;
     display: inline !important;
-}
-.dropdown-menu > li.dropdown-footer > a:hover,
-.dropdown-menu > li.dropdown-footer > a:focus {
-    background: none !important;
-    text-decoration: underline !important;
+    &:hover, &:focus {
+      background: none !important;
+      text-decoration: underline !important;
+    }
 }

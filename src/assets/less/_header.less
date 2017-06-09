@@ -33,7 +33,7 @@
     width: 1px;
   }
 
-  .bell > label .label {
+  .bell label .label {
     position: absolute;
     top: -11px;
     right: 3px;
@@ -54,11 +54,6 @@
       max-width: 200px;
     }
   }
-
-  .dropdown-menu-lg {
-    top: 55px;
-  }
-
 }
 
 .navbar-toggle {
@@ -95,7 +90,7 @@
 .navbar-brand {
   margin-right: 10px;
   padding: 12px 20px;
-  height: auto;
+  height: 54px;
   width: 220px;
   font-weight: 100;
   font-size: 18px;
@@ -178,13 +173,22 @@
 }
 
 .navbar-user {
-  min-width: 170px;
+  /*min-width: 170px;*/
 
   img {
     float: left;
-    width: 30px;
-    height: 30px;
-    margin: 0 10px 0 0;
-    .border-radius(30px);
+    width: 20px;
+    height: 20px;
+    margin: 0px 10px 0 0;
+    .border-radius(2px);
   }
+}
+.navbar-language  .dropdown-menu.language {
+  padding-bottom: 0px;
+}
+
+.navbar-language .flag-icon {
+  font-size: 15px;
+  margin: 2px 7px 0;
+  float: left;
 }

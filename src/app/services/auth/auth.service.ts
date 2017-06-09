@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    this.store.dispatch(this.itemAction.submitForm(ITEM_TYPES.TOKEN, { 'auth': { email, password, }}));
+    this.store.dispatch(this.itemAction.submitForm(ITEM_TYPES.TOKEN, { auth: { email, password, }}));
   }
 
   logout() {
