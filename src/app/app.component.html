@@ -3,7 +3,7 @@
        class="app-header">
     <cd-header></cd-header>
   </div>
-  <div class="app-section" cdCloseToggle>
+  <div class="app-section" close-toggle>
     <div *ngIf="token$ | async"
          class="app-nav">
       <cd-sidebar [version]="version$"
