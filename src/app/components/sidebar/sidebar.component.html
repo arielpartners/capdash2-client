@@ -13,7 +13,7 @@
           <small>Version: {{version | async}}</small>
         </div>
       </li>
-      <! -- ================== 01.0 Dashboard ============================================================= -->
+      <!-- ================== 01.0 Dashboard ============================================================= -->
       <li class="has-sub"
           routerLinkActive="active"
           (click)="expandedMenu = 'dashboard'"
@@ -30,7 +30,7 @@
         </ul>
       </li>
 
-      <! -- ================== 02.0 Units ============================================================= -->
+      <!-- ================== 02.0 Units ============================================================= -->
       <li class="has-sub"
           routerLinkActive="active"
           (click)="expandedMenu = 'units'"
@@ -57,17 +57,17 @@
         </ul>
       </li>
 
-      <! -- ================== 03.0 Edit Demand & Projections ============================================================= -->
+      <!-- ================== 03.0 Edit Demand & Projections ============================================================= -->
       <li routerLinkActive="active">
         <a [routerLink]="['edit-demand/edit']"><i class="fa fa-edit"></i> <span>Edit Demand & Projections</span></a>
       </li>
 
-      <! -- ================== 04.0 IVC ============================================================= -->
-      <li routerLinkActive="active" routerLinkActive="active">
+      <!-- ================== 04.0 IVC ============================================================= -->
+      <li routerLinkActive="active" routerLinkActive="active" id="sidebar-intake">
         <a [routerLink]="['ivc']"><i class="fa fa-calendar-check-o"></i> <span>Intake/Vacancy Control</span></a>
       </li>
 
-      <! -- ================== 05.0 Reports ============================================================= -->
+      <!-- ================== 05.0 Reports ============================================================= -->
       <li class="has-sub"
           routerLinkActive="active"
           (click)="expandedMenu = 'reports'"
@@ -104,7 +104,7 @@
         </ul>
       </li>
 
-      <! -- ================== 09.0 App Settings ============================================================= -->
+      <!-- ================== 09.0 App Settings ============================================================= -->
       <li class="has-sub"
           routerLinkActive="active"
           (click)="expandedMenu = 'settings'"
@@ -121,7 +121,7 @@
         </ul>
       </li>
 
-      <! -- ================== 10.0 App Help ============================================================= -->
+      <!-- ================== 10.0 App Help ============================================================= -->
       <li class="has-sub"
           routerLinkActive="active"
           (click)="expandedMenu = 'help'"

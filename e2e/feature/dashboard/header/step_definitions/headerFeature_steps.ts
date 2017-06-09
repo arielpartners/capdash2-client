@@ -1,7 +1,6 @@
 import { browser, element, by } from 'protractor';
 import { HeaderPage } from '../../../../page-objects/header.po';
 import { Capdash2Page } from '../../../../page-objects/app.po';
-import { E2EHelpers } from '../../../../support/e2eHelpers';
 
 import { defineSupportCode } from 'cucumber';
 
@@ -20,18 +19,26 @@ defineSupportCode(({Given, When, Then}) => {
   });
 
   When('the user selects the {menu} menu', (menu) => {
-    return header.getElement(menu, 'parent').click();
+    return header.getItem(menu).element.click();
   });
 
-  Then('the user should see the {menu} menu', (menu) => {
-    return header.getElement(menu, 'child').isPresent().then(present => {
-      expect(present).to.equal(true);
+  When('the user selects the {link} link', (link) => {
+    return header.getItem(link).element.click();
+  });
+
+  Then('the {menu} menu should be {visibility}', (menu, visibility) => {
+    const expected = visibility === 'displayed' ? true : false;
+
+    return header.getChild(menu).element.isPresent().then( isPresent => {
+      expect(isPresent).to.equal(expected);
     });
   });
 
-  Then('the user should not see the {menu} menu', (menu) => {
-    return header.getElement(menu, 'child').isPresent().then(present => {
-      expect(present).to.equal(false);
+  Then('the user should navigate to the {link} page from the header', (link) => {
+    const expectedUrl = new RegExp(header.getItem(link).path);
+
+    return browser.getCurrentUrl().then( url => {
+      expect(expectedUrl.test(url)).to.equal(true);
     });
   });
 

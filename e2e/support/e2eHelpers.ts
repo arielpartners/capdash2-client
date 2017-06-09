@@ -1,15 +1,36 @@
 import { browser, element, by } from 'protractor';
 
-import { LoginPage } from '../page-objects/login.po';
-
-const loginPage: LoginPage = new LoginPage();
-
 export class E2EHelpers {
-  confirmLogin () {
-    return browser.getCurrentUrl().then(url => {
-      if (/login/.test(url)) {
-        loginPage.login('sample_user@hra.nyc.gov', 'password');
+
+  getItem(item, obj) {
+    if (item in obj) {
+      return obj[item];
+    } else {
+      for (const prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+          if (obj[prop].children) {
+            const found = this.getItem(item, obj[prop].children);
+            if (found) {
+              return found;
+            }
+          }
+        }
       }
-    });
+    }
+  }
+
+  getChild(item, obj) {
+    const children = this.getItem(item, obj).children;
+    for (const prop in children) {
+      if (children.hasOwnProperty(prop)) {
+        if (children[prop].element) {
+          return children[prop];
+        }
+      }
+    }
+  }
+
+  hasClass (classList, cssClass) {
+    return classList.indexOf(cssClass) !== -1;
   }
 }
