@@ -2,7 +2,7 @@ import { Directive, HostListener } from '@angular/core';
 import { MenuService } from './menu.service';
 
 @Directive({
-  selector: '[cdCloseToggle]'
+  selector: '[cdCloseToggle], [cd-close-toggle], [closeToggle], [close-toggle]'
 })
 
 export class CloseToggleDirective {
