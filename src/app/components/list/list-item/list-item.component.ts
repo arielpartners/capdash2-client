@@ -1,7 +1,7 @@
 import {
   Component,
   Input,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 // this component should behave as li tag
