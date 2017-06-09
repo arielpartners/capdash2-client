@@ -5,25 +5,35 @@ Feature: Capacity Dashboard Header
 
 Background:
   Given the user is logged in
+  And the Capacity Dashboard header is loaded
 
-Scenario Outline: The user can access header menus
-  Given the Capacity Dashboard header is loaded
+Scenario Outline: The user can access the <menu> header menu
   When the user selects the <menu> menu
-  Then the user should see the <menu> menu
+  Then the <menu> menu should be displayed
   When the user selects the <menu> menu
-  Then the user should not see the <menu> menu
+  Then the <menu> menu should be hidden
 
   Examples:
-    | menu |
-    | mega-menu |
-    | notifications |
-    | languages |
-    | user |
+    | menu          |
+    | Mega-menu     |
+    | Notifications |
+    | Languages     |
+    | User          |
+
+Scenario Outline: The user can navigate to the <page> page through the <menu> header menu
+  When the user selects the <menu> menu
+  And the user selects the <link> link
+  Then the user should navigate to the <link> page from the header
+
+  Examples:
+    | menu | link                 |
+    | User | Edit Profile         |
+    | User | Work Orders Schedule |
+    | User | CapApp Setting       |
 
 Scenario: The user can switch between header menus
-  Given the Capacity Dashboard header is loaded
-  When the user selects the mega-menu menu
-  Then the user should see the mega-menu menu
-  When the user selects the user menu
-  Then the user should see the user menu
-  And the user should not see the mega-menu menu
+  When the user selects the Mega-menu menu
+  Then the Mega-menu menu should be displayed
+  When the user selects the User menu
+  Then the User menu should be displayed
+  And the Mega-menu menu should be hidden

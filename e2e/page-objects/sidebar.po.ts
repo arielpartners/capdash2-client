@@ -1,68 +1,80 @@
 import { browser, element, by } from 'protractor';
+import { E2EHelpers } from '../support/e2eHelpers';
+
+const helpers = new E2EHelpers();
 
 export class SidebarPage {
   items = {
     'Dashboard': {
-      element: element(by.css('#sidebar-dashboard')),
-      subItems: {
-        'Dashboard': {
-          element: element(by.css('#sidebar-sub-dashboard')),
+      element: element(by.cssContainingText('li.has-sub', 'Dashboard')),
+      children: {
+        'Main Dashboard': {
+          element: element(by.xpath('//ul[@class="sub-menu"]/li/a[text()[contains(., "Dashboard")]]/..')),
           path: 'dashboard'
         }
       }
     },
     'Units': {
-      element: element(by.css('#sidebar-units')),
-      subItems: {
+      element: element(by.cssContainingText('li.has-sub', 'Units')),
+      children: {
         'Offline Units': {
-          element: element(by.css('#sidebar-units-offline')),
+          element: element(by.xpath('//a[text()[contains(., "Offline Units")]]/..')),
           path: 'units/offline-units'
         },
         'HERO': {
-          element: element(by.css('#sidebar-units-hero')),
+          element: element(by.xpath('//a[text()[contains(., "HERO")]]/..')),
           path: 'units/hero'
         },
         'L.T.R.': {
-          element: element(by.css('#sidebar-units-ltr')),
+          element: element(by.xpath('//a[text()[contains(., "L.T.R.")]]/..')),
           path: 'units/ltr'
         },
         'Demand & Projections': {
-          element: element(by.css('#sidebar-units-demand')),
+          element: element(by.xpath('//a[text()[contains(., "Demand & Projections")]]/..')),
           path: 'units/demand'
         }
       }
     },
     'Edit Demand & Projections': {
-      element: element(by.css('#sidebar-edit-demand')),
+      element: element(by.cssContainingText('li', 'Edit Demand & Projections')),
       path: 'edit-demand/edit'
     },
     'Intake/Vacancy Control': {
-      element: element(by.css('#sidebar-intake')),
+      element: element(by.cssContainingText('li', 'Intake/Vacancy Control')),
       path: 'ivc'
     },
     'Reports': {
-      element: element(by.css('#sidebar-reports')),
-      subItems: {
+      element: element(by.xpath('//span[text()[contains(., "Reports")]]/../..')),
+      children: {
         'General Reports': {
-          element: element(by.css('#sidebar-reports-general')),
+          element: element(by.xpath('//a[text()[contains(., "General Reports")]]/..')),
           path: 'reports/general'
+        },
+        'Other Reports': {
+          element: element(by.xpath('//a[text()[contains(., "Other Reports")]]/..')),
+          children: {
+            'Report All': {
+              element: element(by.xpath('//a[text()[contains(., "Report All")]]/..')),
+              path: 'reports/all'
+            }
+          }
         }
       }
     },
     'App Settings': {
-      element: element(by.css('#sidebar-settings')),
-      subItems: {
+      element: element(by.cssContainingText('li.has-sub', 'App Settings')),
+      children: {
         'General Settings': {
-          element: element(by.css('#sidebar-settings-general')),
+          element: element(by.xpath('//a[text()[contains(., "General Settings")]]/..')),
           path: 'settings/general'
         }
       }
     },
     'App Help': {
-      element: element(by.css('#sidebar-help')),
-      subItems: {
+      element: element(by.cssContainingText('li.has-sub', 'App Help')),
+      children: {
         'General Help': {
-          element: element(by.css('#sidebar-help-general')),
+          element: element(by.xpath('//a[text()[contains(., "General Help")]]/..')),
           path: 'help/general'
         }
       }
@@ -73,20 +85,6 @@ export class SidebarPage {
   minifyBtn = element(by.css('.sidebar-minify-btn'));
 
   getItem(item) {
-    const items = this.items;
-
-    if (item in items) {
-      return items[item];
-    } else {
-      for (const menuItem in items) {
-        if (items[menuItem].subItems && items[menuItem].subItems[item]) {
-          return items[menuItem].subItems[item];
-        }
-      }
-    }
-  }
-
-  getSubItem(subItem, item) {
-    return this.items[item].subItems[subItem];
+    return helpers.getItem(item, this.items);
   }
 }

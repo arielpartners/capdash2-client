@@ -1,6 +1,10 @@
 import { browser, element, by } from 'protractor';
 
 export class LoginPage {
+  emailField = element(by.css('input[type=email]'));
+  passwordField = element(by.css('input[type=password]'));
+  loginBtn = element(by.buttonText('Sign me in'));
+  loginHeader = element(by.css('.login-header'));
 
   navigateTo() {
     return browser.get('/');
@@ -15,27 +19,37 @@ export class LoginPage {
   }
 
   enterEmail(email) {
-    const emailField = element(by.css('input[type=email]'));
-
-    emailField.sendKeys(email);
+    this.emailField.sendKeys(email);
   }
 
   enterPassword(password) {
-    const passwordField = element(by.css('input[type=password]'));
-
-    passwordField.sendKeys(password);
-  }
-
-  signIn() {
-    const btn = element(by.buttonText('Sign me in'));
-
-    return btn.click();
+    this.passwordField.sendKeys(password);
   }
 
   login(email, password) {
     this.enterEmail(email);
     this.enterPassword(password);
 
-    return this.signIn();
+    return this.loginBtn.click();
   }
+
+  getField(field) {
+    switch (field) {
+      case 'email': return this.emailField;
+      case 'password': return this.passwordField;
+    }
+  }
+
+  getAlert(text) {
+    return element(by.cssContainingText('.alert-danger', text));
+  }
+
+  confirmLogin () {
+    return browser.getCurrentUrl().then(url => {
+      if (/login/.test(url)) {
+        this.login('sample_user@hra.nyc.gov', 'password');
+      }
+    });
+  }
+
 }

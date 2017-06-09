@@ -26,7 +26,7 @@ defineSupportCode(({Given, When, Then}) => {
 
   When('the user selects the {sub-item} sub-menu item from the {item} sub-menu',
   (subItem, item) => {
-    return sidebar.getSubItem(subItem, item).element.click();
+    return sidebar.getItem(subItem).element.click();
   });
 
   When(/the user selects the sidebar minify button/, () => {
@@ -46,7 +46,7 @@ defineSupportCode(({Given, When, Then}) => {
   });
 
   Then('the user should see the {sub-item} item in the {item} sub-menu', (subItem, item) => {
-    return sidebar.getSubItem(subItem, item).element.isDisplayed().then( isDisplayed => {
+    return sidebar.getItem(subItem).element.isDisplayed().then( isDisplayed => {
       expect(isDisplayed).to.equal(true);
     });
   });
@@ -58,14 +58,14 @@ defineSupportCode(({Given, When, Then}) => {
   });
 
   Then('the Offline Units item in the Units sub-menu should not be visible', () => {
-    const offlineUnits =  sidebar.getSubItem('Offline Units', 'Units');
+    const offlineUnits =  sidebar.getItem('Offline Units');
 
     return offlineUnits.element.isDisplayed().then( isDisplayed => {
       expect(isDisplayed).to.equal(false);
     });
   });
 
-  Then('the user should see the {item} page', (item) => {
+  Then('the user should navigate to the {item} page from the sidebar', (item) => {
     const expectedUrl = new RegExp(sidebar.getItem(item).path);
 
     return browser.getCurrentUrl().then( url => {
