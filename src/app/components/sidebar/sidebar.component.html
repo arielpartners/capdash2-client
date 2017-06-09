@@ -24,7 +24,7 @@
           <span>Dashboard</span>
         </a>
         <ul class="sub-menu">
-          <li routerLinkActive="active" id="sidebar-sub-dashboard">
+          <li routerLinkActive="active">
             <a [routerLink]="['dashboard']">Dashboard</a>
           </li>
         </ul>
@@ -32,7 +32,6 @@
 
       <!-- ================== 02.0 Units ============================================================= -->
       <li class="has-sub"
-          id="sidebar-units"
           routerLinkActive="active"
           (click)="expandedMenu = 'units'"
           [ngClass]="{'expand': expandedMenu === 'units' }">
@@ -43,23 +42,23 @@
           <span>Units</span>
         </a>
         <ul class="sub-menu">
-          <li routerLinkActive="active" id="sidebar-units-offline">
+          <li routerLinkActive="active">
             <a [routerLink]="['units/offline-units']"><span class="badge pull-left">817</span>&nbsp;Offline Units</a>
           </li>
-          <li routerLinkActive="active" id="sidebar-units-hero">
+          <li routerLinkActive="active">
             <a [routerLink]="['units/hero']"><span class="badge pull-left">200</span>&nbsp;HERO</a>
           </li>
-          <li routerLinkActive="active" id="sidebar-units-ltr">
+          <li routerLinkActive="active">
             <a [routerLink]="['units/ltr']"><span class="badge pull-left">105</span>&nbsp;L.T.R.</a>
           </li>
-          <li routerLinkActive="active" id="sidebar-units-demand">
+          <li routerLinkActive="active">
             <a [routerLink]="['units/demand']"><span class="badge pull-left">38</span>&nbsp;Demand & Projections</a>
           </li>
         </ul>
       </li>
 
       <!-- ================== 03.0 Edit Demand & Projections ============================================================= -->
-      <li routerLinkActive="active" id="sidebar-edit-demand">
+      <li routerLinkActive="active">
         <a [routerLink]="['edit-demand/edit']"><i class="fa fa-edit"></i> <span>Edit Demand & Projections</span></a>
       </li>
 
@@ -70,7 +69,6 @@
 
       <!-- ================== 05.0 Reports ============================================================= -->
       <li class="has-sub"
-          id="sidebar-reports"
           routerLinkActive="active"
           (click)="expandedMenu = 'reports'"
           [ngClass]="{'expand': expandedMenu.startsWith('reports') }">
@@ -80,17 +78,16 @@
           <span>Reports </span>
         </a>
         <ul class="sub-menu">
-          <li routerLinkActive="active" id="sidebar-reports-general">
+          <li routerLinkActive="active">
             <a [routerLink]="['/reports/general']">General Reports</a>
           </li>
             <li class="has-sub"
-                id="sidebar-reports-other"
                 routerLinkActive="active"
                 (click)="$event.stopPropagation(); expandedMenu = 'reports/other'"
                 [ngClass]="{'expand': expandedMenu === ('reports/other') }">
             <a href="javascript:"><b class="caret pull-right"></b> Other Reports</a>
             <ul class="sub-menu">
-              <li routerLinkActive="active" id="sidebar-reports-other-all">
+              <li routerLinkActive="active">
                 <a [routerLink]="['/reports/all']">Report All</a>
               </li>
               <li routerLinkActive="active">
@@ -109,7 +106,6 @@
 
       <!-- ================== 09.0 App Settings ============================================================= -->
       <li class="has-sub"
-          id="sidebar-settings"
           routerLinkActive="active"
           (click)="expandedMenu = 'settings'"
           [ngClass]="{'expand': expandedMenu === 'settings' }">
@@ -119,7 +115,7 @@
           <span>App Settings</span>
         </a>
         <ul class="sub-menu">
-          <li routerLinkActive="active" id="sidebar-settings-general">
+          <li routerLinkActive="active">
             <a [routerLink]="['/settings/general']">General Settings</a>
           </li>
         </ul>
@@ -127,7 +123,6 @@
 
       <!-- ================== 10.0 App Help ============================================================= -->
       <li class="has-sub"
-          id="sidebar-help"
           routerLinkActive="active"
           (click)="expandedMenu = 'help'"
           [ngClass]="{'expand': expandedMenu === 'help' }">
@@ -137,7 +132,7 @@
           <span>App Help</span>
         </a>
         <ul class="sub-menu">
-          <li routerLinkActive="active" id="sidebar-help-general">
+          <li routerLinkActive="active">
             <a [routerLink]="['/help/general']">General Help</a>
           </li>
         </ul>

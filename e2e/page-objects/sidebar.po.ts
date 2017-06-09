@@ -9,52 +9,52 @@ export class SidebarPage {
       element: element(by.cssContainingText('li.has-sub', 'Dashboard')),
       children: {
         'Main Dashboard': {
-          element: element(by.css('#sidebar-sub-dashboard')),
+          element: element(by.xpath('//ul[@class="sub-menu"]/li/a[text()[contains(., "Dashboard")]]/..')),
           path: 'dashboard'
         }
       }
     },
     'Units': {
-      element: element(by.css('#sidebar-units')),
+      element: element(by.cssContainingText('li.has-sub', 'Units')),
       children: {
         'Offline Units': {
-          element: element(by.css('#sidebar-units-offline')),
+          element: element(by.xpath('//a[text()[contains(., "Offline Units")]]/..')),
           path: 'units/offline-units'
         },
         'HERO': {
-          element: element(by.css('#sidebar-units-hero')),
+          element: element(by.xpath('//a[text()[contains(., "HERO")]]/..')),
           path: 'units/hero'
         },
         'L.T.R.': {
-          element: element(by.css('#sidebar-units-ltr')),
+          element: element(by.xpath('//a[text()[contains(., "L.T.R.")]]/..')),
           path: 'units/ltr'
         },
         'Demand & Projections': {
-          element: element(by.css('#sidebar-units-demand')),
+          element: element(by.xpath('//a[text()[contains(., "Demand & Projections")]]/..')),
           path: 'units/demand'
         }
       }
     },
     'Edit Demand & Projections': {
-      element: element(by.css('#sidebar-edit-demand')),
+      element: element(by.cssContainingText('li', 'Edit Demand & Projections')),
       path: 'edit-demand/edit'
     },
     'Intake/Vacancy Control': {
-      element: element(by.css('#sidebar-intake')),
+      element: element(by.cssContainingText('li', 'Intake/Vacancy Control')),
       path: 'ivc'
     },
     'Reports': {
-      element: element(by.css('#sidebar-reports')),
+      element: element(by.xpath('//span[text()[contains(., "Reports")]]/../..')),
       children: {
         'General Reports': {
-          element: element(by.css('#sidebar-reports-general')),
+          element: element(by.xpath('//a[text()[contains(., "General Reports")]]/..')),
           path: 'reports/general'
         },
         'Other Reports': {
-          element: element(by.css('#sidebar-reports-other')),
+          element: element(by.xpath('//a[text()[contains(., "Other Reports")]]/..')),
           children: {
             'Report All': {
-              element: element(by.css('#sidebar-reports-other-all')),
+              element: element(by.xpath('//a[text()[contains(., "Report All")]]/..')),
               path: 'reports/all'
             }
           }
@@ -62,19 +62,19 @@ export class SidebarPage {
       }
     },
     'App Settings': {
-      element: element(by.css('#sidebar-settings')),
+      element: element(by.cssContainingText('li.has-sub', 'App Settings')),
       children: {
         'General Settings': {
-          element: element(by.css('#sidebar-settings-general')),
+          element: element(by.xpath('//a[text()[contains(., "General Settings")]]/..')),
           path: 'settings/general'
         }
       }
     },
     'App Help': {
-      element: element(by.css('#sidebar-help')),
+      element: element(by.cssContainingText('li.has-sub', 'App Help')),
       children: {
         'General Help': {
-          element: element(by.css('#sidebar-help-general')),
+          element: element(by.xpath('//a[text()[contains(., "General Help")]]/..')),
           path: 'help/general'
         }
       }
