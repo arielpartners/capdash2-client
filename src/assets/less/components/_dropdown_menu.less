@@ -55,12 +55,12 @@
 .dropdown-footer {
     padding: 10px 20px;
 }
-.dropdown-menu > li.dropdown-footer > a {
+.dropdown-menu > li.dropdown-footer > a,
+.dropdown-menu > cd-menu-item.dropdown-footer > a {
     padding: 0 !important;
     display: inline !important;
-}
-.dropdown-menu > li.dropdown-footer > a:hover,
-.dropdown-menu > li.dropdown-footer > a:focus {
-    background: none !important;
-    text-decoration: underline !important;
+    &:hover, &:focus {
+      background: none !important;
+      text-decoration: underline !important;
+    }
 }
