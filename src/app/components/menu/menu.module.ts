@@ -8,7 +8,6 @@ import { MenuItemComponent } from './menu-item/menu-item.component';
 import { MenuActions } from '../../services/menu/menu.actions';
 import { MenuService } from '../../services/menu/menu.service';
 import { CloseToggleDirective } from '../../services/menu/menu.directive';
-import { LogoutButtonDirective } from '../../services/auth/auth.directive';
 import { AuthService } from '../../services/auth/auth.service';
 import { CommonModule } from '@angular/common';
 
@@ -19,14 +18,13 @@ import { CommonModule } from '@angular/common';
     MenuButtonComponent,
     MenuHeaderComponent,
     MenuItemComponent,
-    LogoutButtonDirective,
-    CloseToggleDirective
+    CloseToggleDirective,
   ],
   imports: [
     BrowserModule,
     CommonModule,
     NgReduxModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [
     MenuService,
@@ -38,6 +36,7 @@ import { CommonModule } from '@angular/common';
     MenuHeaderComponent,
     MenuButtonComponent,
     CloseToggleDirective,
-    MenuItemComponent],
+    MenuItemComponent
+  ],
 })
 export class MenuModule {}
