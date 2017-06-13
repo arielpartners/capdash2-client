@@ -5,16 +5,17 @@ import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing'
 import { ITEM_TYPES } from '../../core/ajax/item/item.types';
 import { ItemActions } from '../../core/ajax/item/item.actions';
 import { HeaderComponent } from './header.component';
-import { MenuActions } from '../../services/menu/menu.actions';
-import { MenuService } from '../../services/menu/menu.service';
 import {
+  DropdownActions,
+  DropdownService,
   MockMenuButtonComponent,
   MockMenuComponent,
   MockMenuHeaderComponent,
   MockMenuItemComponent
-} from '../menu/menu.mock';
-import {MockIconComponent} from '../icon/icon.mock';
-import {MockBadgeComponent, MockListComponent, MockListItemComponent} from '../list/list.mock';
+} from 'capdash2-common-module/src/lib/menu/';
+import {MockIconComponent} from 'capdash2-common-module/src/lib/icon/';
+import {MockBadgeComponent, MockListComponent, MockListItemComponent} from 'capdash2-common-module/src/lib/list/';
+
 import {SafeUrlPipe} from '../../core/utils/safe-url.pipe';
 
 describe('HeaderComponent', () => {
@@ -53,9 +54,9 @@ describe('HeaderComponent', () => {
         NgReduxTestingModule,
       ],
       providers: [
-        MenuActions,
+        DropdownActions,
         ItemActions,
-        MenuService,
+        DropdownService,
       ]
     }).compileComponents().then(() => {
       fixture = TestBed.createComponent(HeaderComponent);

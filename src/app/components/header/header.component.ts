@@ -4,9 +4,8 @@ import { IAppState } from '../../store/root.types';
 import { MainMenu, NotificationMenu, LanguageMenu, UserMenu } from './header-menu.model';
 import { ITEM_TYPES } from '../../core/ajax/item/item.types';
 import { ItemActions } from '../../core/ajax/item/item.actions';
-// import { MenuService } from '../../services/menu/menu.service';
 import { Observable } from 'rxjs/Observable';
-import { DropdownService } from 'capdash2-common-module/src/lib/menu/dropdown/dropdown.service';
+import { DropdownService } from 'capdash2-common-module/src/lib/menu';
 
 @Component({
   selector: 'cd-header',
