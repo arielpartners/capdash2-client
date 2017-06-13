@@ -81,6 +81,8 @@ describe('LoginComponent', () => {
           localStorage.setItem('reduxPersist:token', token);
           return router.navigate(['/login']);
         }).then(() => {
+          return component.ngOnInit();
+        }).then(() => {
           expect(location.path()).toBe('/');
         });
       })

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(
     fb: FormBuilder,
     location: Location,
-    private ngRouter: Router,
+    public router: Router,
     private auth: AuthService
   ) {
     // For our form, we’ll just have two fields and we’ll require both of them to be filled out before the form can be submitted
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     const token = JSON.parse(localStorage.getItem('reduxPersist:token'));
     const loginUrl = '/login';
     if (token && this.location.path() === loginUrl) {
-      this.ngRouter.navigate(['']);
+      return this.router.navigate(['']);
     }
   }
 
