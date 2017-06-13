@@ -1,8 +1,10 @@
-import { MenuType } from '../services/menu/menu.type';
-import { MenuActions } from '../services/menu/menu.actions';
+// import { MenuType } from '../services/menu/menu.type';
+// import { MenuActions } from '../services/menu/menu.actions';
+import { DropdownActions } from 'capdash2-common-module/src/lib/menu/dropdown/dropdown.actions';
+import { DropdownStateType } from 'capdash2-common-module/src/lib/menu/dropdown/dropdown.type';
 
 /* eslint-disable indent */
-const initialState: MenuType = {
+const initialState: DropdownStateType = {
   isToggled: false,
   selectedDropdown: ''
 };
@@ -10,7 +12,7 @@ const initialState: MenuType = {
 export const header = (state = initialState, { type, payload }) => {
   let newState = Object.assign({}, state);
   switch (type) {
-    case MenuActions.TOGGLE:
+    case DropdownActions.TOGGLE:
       newState = payload;
       break;
 

@@ -4,7 +4,8 @@ import { Location } from '@angular/common';
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './services/auth/auth.service';
-import { MenuService } from './services/menu/menu.service';
+import { DropdownService } from 'capdash2-common-module/src/lib/menu/dropdown/dropdown.service';
+// import { MenuService } from './services/menu/menu.service';
 
 @Component({
   selector: 'cd-root',
@@ -12,7 +13,7 @@ import { MenuService } from './services/menu/menu.service';
   styleUrls: ['./app.component.less'],
   providers: [
     AuthService,
-    MenuService
+    DropdownService
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -29,7 +30,7 @@ export class AppComponent implements AfterViewInit {
   constructor(
     private ngRouter: Router,
     private auth: AuthService,
-    public menu: MenuService,
+    public menu: DropdownService,
     location: Location
   ) {
     this.location = location;
