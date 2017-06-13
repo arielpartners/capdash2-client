@@ -4,8 +4,8 @@ import { IAppState } from '../../store/root.types';
 import { MainMenu, NotificationMenu, LanguageMenu, UserMenu } from './header-menu.model';
 import { ITEM_TYPES } from '../../core/ajax/item/item.types';
 import { ItemActions } from '../../core/ajax/item/item.actions';
-import { MenuService } from '../../services/menu/menu.service';
 import { Observable } from 'rxjs/Observable';
+import { DropdownService } from 'capdash2-common-module/src/lib/menu';
 
 @Component({
   selector: 'cd-header',
@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['header.component.less'],
   providers: [
     ItemActions,
-    MenuService
+    DropdownService,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
     /* istanbul ignore next */
     private store: NgRedux<IAppState>,
     private ajax: ItemActions,
-    public menu: MenuService,
+    public menu: DropdownService,
   ) {
     this.headerMenu = {
       main: MainMenu,

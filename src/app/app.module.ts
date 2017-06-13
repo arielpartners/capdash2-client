@@ -11,6 +11,7 @@ import {RouterModule} from '@angular/router';
 import {ItemModule} from './core/ajax/item/item.module';
 import {StoreModule} from './store/store.module';
 import {OfflineUnitsModule} from './containers/offline-units/offline-units.module';
+import {CapDashModule} from 'capdash2-common-module/src/lib/module';
 
 import {AppComponent} from './app.component';
 import {appRoutes} from './app.routes';
@@ -18,15 +19,13 @@ import {ForecastsModule} from './containers/forecasts/forecasts.module';
 import {HeaderComponent} from './components/header/header.component';
 import {HomeComponent} from './containers/home/home.component';
 import {HotelsModule} from './containers/hotels/hotels.module';
-import {IconModule} from './components/icon/icon.module';
-import {ListModule} from './components/list/list.module';
 import {LoginComponent} from './containers/login/login.component';
-import {MenuModule} from './components/menu/menu.module';
 import {PageNotFoundComponent} from './core/page-not-found/page-not-found.component';
 import {SidebarComponent} from './components/sidebar/sidebar.component';
+
 import {SafeUrlPipe} from './core/utils/safe-url.pipe';
-import {TextInverseDirective} from './directives/text/text.directive';
 import {LogoutButtonDirective} from './services/auth/auth.directive';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +36,6 @@ import {LogoutButtonDirective} from './services/auth/auth.directive';
     PageNotFoundComponent,
     SafeUrlPipe,
     SidebarComponent,
-    TextInverseDirective,
     LogoutButtonDirective,
   ],
   imports: [
@@ -46,10 +44,8 @@ import {LogoutButtonDirective} from './services/auth/auth.directive';
     FormsModule,
     HotelsModule,
     HttpModule,
-    IconModule,
     ItemModule,
-    ListModule,
-    MenuModule,
+    CapDashModule.forRoot(),
     NgbModule.forRoot(),
     NgReduxModule,
     NgReduxRouterModule,

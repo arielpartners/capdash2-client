@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { MockComponent } from 'ng2-mock-component';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
 import { AuthService } from './services/auth/auth.service';
-import { MenuModule } from './components/menu/menu.module';
+import { CapDashModule } from 'capdash2-common-module/src/lib/module';
 import { ItemModule } from './core/ajax/item/item.module';
 import { HttpModule } from '@angular/http';
 
@@ -43,7 +43,7 @@ describe('AppComponent', () => {
           { path: 'login', component: DummyComponent }
         ]),
         NgReduxTestingModule,
-        MenuModule,
+        CapDashModule.forRoot(),
         ItemModule,
         HttpModule
       ],

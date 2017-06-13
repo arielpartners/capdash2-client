@@ -97,6 +97,7 @@
     "@types/jasmine": "2.5.47",
     "@types/node": "~7.0.18",
     "@types/redux-logger": "^3.0.0",
+    "capdash2-common-module": "git+https://github.com/arielpartners/capdash2-common-module.git",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "codelyzer": "~3.0.1",
