@@ -32,8 +32,8 @@ Scenario Outline: The user can navigate to the <page> page through the <menu> he
     | User | CapApp Setting       |
 
 Scenario: The user can switch between header menus
-  When the user selects the Mega-menu menu
-  Then the Mega-menu menu should be displayed
+  When the user selects the Languages menu
+  Then the Languages menu should be displayed
   When the user selects the User menu
   Then the User menu should be displayed
-  And the Mega-menu menu should be hidden
+  And the Languages menu should be hidden

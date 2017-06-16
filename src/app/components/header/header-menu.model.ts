@@ -17,11 +17,11 @@ export const MainMenu = {
       items: [
         {
           text: 'Cares',
-          href: 'javascript:'
+          href: '/placeholder'
         },
         {
           text: 'VETS Tracking System',
-          href: 'javascript:',
+          href: '/placeholder',
           badge: {
             class: 'success',
             value: 'UPDATE'
@@ -34,7 +34,7 @@ export const MainMenu = {
         },
         {
           text: 'ORCA',
-          href: 'javascript:',
+          href: '/placeholder',
         }
       ]
     },
@@ -48,31 +48,31 @@ export const MainMenu = {
       items: [
         {
           text: 'City Share',
-          href: 'javascript:',
+          href: '/placeholder',
         },
         {
           text: 'Help Desk',
-          href: 'javascript:',
+          href: '/placeholder',
         },
         {
           text: 'FAQs',
-          href: 'javascript:',
+          href: '/placeholder',
         },
         {
           text: 'Policy & Procedures',
-          href: 'javascript:',
+          href: '/placeholder',
         },
         {
           text: 'DEOA',
-          href: 'javascript:',
+          href: '/placeholder',
         },
         {
           text: 'Office of the Ombudsman',
-          href: 'javascript:',
+          href: '/placeholder',
         },
         {
           text: 'Staff Directory',
-          href: 'javascript:',
+          href: '/placeholder',
         },
       ]
     },
@@ -86,31 +86,31 @@ export const MainMenu = {
       items: [
         {
           text: 'Adults',
-          href: 'javascript:',
+          href: '/placeholder',
         },
         {
           text: 'Capacity Panning & Development',
-          href: 'javascript:',
+          href: '/placeholder',
         },
         {
           text: 'Communications & External Affairs',
-          href: 'javascript:',
+          href: '/placeholder',
         },
         {
           text: 'Families',
-          href: 'javascript:',
+          href: '/placeholder',
         },
         {
           text: 'Policy & Planning',
-          href: 'javascript:',
+          href: '/placeholder',
         },
         {
           text: 'Prevention',
-          href: 'javascript:',
+          href: '/placeholder',
         },
         {
           text: 'Security & Emergency Operations',
-          href: 'javascript:',
+          href: '/placeholder',
         },
       ]
     },
@@ -124,27 +124,27 @@ export const MainMenu = {
       items: [
         {
           text: 'Administrative Division',
-          href: 'javascript:'
+          href: '/placeholder'
         },
         {
           text: 'Fiscal Procurment',
-          href: 'javascript:'
+          href: '/placeholder'
         },
         {
           text: 'Fleet Services',
-          href: 'javascript:'
+          href: '/placeholder'
         },
         {
           text: 'Human Resources',
-          href: 'javascript:'
+          href: '/placeholder'
         },
         {
           text: 'Legal Affairs',
-          href: 'javascript:'
+          href: '/placeholder'
         },
         {
           text: 'OIT',
-          href: 'javascript:'
+          href: '/placeholder'
         },
       ]
     },
@@ -184,7 +184,7 @@ export const NotificationMenu = {
       icon: {
         background: 'red'
       },
-      link: 'javascript:',
+      link: '/placeholder',
       text: 'Violations Reports Updated',
       timestamp: timeDiffFromNow('2017-06-08 10:40:00 EDT')
     },
@@ -192,7 +192,7 @@ export const NotificationMenu = {
       icon: {
         thumbnail: 'assets/img/user-ka.jpg'
       },
-      link: 'javascript:',
+      link: '/placeholder',
       text: 'Kari Auer',
       description: 'Quisque pulvinar tellus sit amet sem scelerisque tincidunt.',
       timestamp: timeDiffFromNow('2017-06-08 10:50:00 EDT')
@@ -201,7 +201,7 @@ export const NotificationMenu = {
       icon: {
         thumbnail: 'assets/img/user-mj.jpg'
       },
-      link: 'javascript:',
+      link: '/placeholder',
       text: 'Michael Jabbour',
       description: 'Quisque pulvinar tellus sit amet sem scelerisque tincidunt.',
       timestamp: timeDiffFromNow('2017-06-08 10:53:00 EDT')
@@ -210,7 +210,7 @@ export const NotificationMenu = {
       icon: {
         background: 'green'
       },
-      link: 'javascript:',
+      link: '/placeholder',
       text: 'Violations Reports Updated',
       timestamp: timeDiffFromNow('2017-06-07 10:40:00 EDT')
     }
@@ -274,7 +274,7 @@ export const UserMenu = {
     {
       icon: 'folder-open',
       text: 'New Assigned',
-      link: 'javascript:',
+      link: '/placeholder',
       badge: {
         class: 'danger',
         value: '3',

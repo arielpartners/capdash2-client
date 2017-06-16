@@ -9,7 +9,7 @@ export class HeaderPage {
       element: element(by.css('.dropdown-lg')),
       children: {
         'Mega-menu Header': {
-          element: element(by.cssContainingText('h4', 'Apps'))
+          element: element(by.cssContainingText('h4', 'APP'))
         }
       }
     },
@@ -25,7 +25,7 @@ export class HeaderPage {
       element: element(by.css('.navbar-language')),
       children: {
         'Languages List': {
-          element: element(by.css('.languages-menu'))
+          element: element(by.css('div.language'))
         }
       }
     },
@@ -33,16 +33,16 @@ export class HeaderPage {
       element: element(by.css('.navbar-user')),
       children: {
         'Edit Profile': {
-          element: element(by.cssContainingText('li > a', 'Edit Profile')),
-          path: '#/app/extra/profile'
+          element: element(by.cssContainingText('cd-link > a', 'Edit Profile')),
+          path: '/app/extra/profile'
         },
         'Work Orders Schedule': {
-          element: element(by.cssContainingText('li > a', 'Work Orders Schedule')),
-          path: '#/app/work_orders/work_orders/calendar'
+          element: element(by.cssContainingText('cd-link > a', 'Work Orders Schedule')),
+          path: '/app/work_orders/work_orders/calendar'
         },
         'CapApp Setting': {
-          element: element(by.cssContainingText('li > a', 'CapApp Setting')),
-          path: '#/app/settings/settings/app_settings'
+          element: element(by.cssContainingText('cd-link > a', 'CapApp Setting')),
+          path: '/app/settings/settings/app_settings'
         },
         'Logout': {
           element: element(by.css('.logout'))
