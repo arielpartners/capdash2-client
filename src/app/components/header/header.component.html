@@ -37,7 +37,7 @@
                 <div class="row" *ngSwitchCase="'list'">
                   <cd-list nav-list>
                     <cd-list-item *ngFor="let item of submenu.items"
-                                  [link]="item.href | safeUrl"
+                                  [link]="item.href"
                                   cdCloseToggle>
                       <cd-icon [icon]="item.activeIcon ? item.activeIcon : 'angle-right'"
                                size="lg"
@@ -91,7 +91,7 @@
           <li class="dropdown-header">Notification ({{headerMenu.notification.items.length}})</li>
           <!--<cd-menu-item className="dropdown-header">Notification (4)</cd-menu-item>-->
           <cd-menu-item class="media"
-                        [link]="item.link | safeUrl"
+                        [link]="item.link"
                         *ngFor="let item of headerMenu.notification.items">
             <div class="media-left">
               <cd-icon *ngIf="!item.icon.thumbnail"
@@ -106,7 +106,7 @@
             </div>
           </cd-menu-item>
           <!-- Todo: hover and focus is not same as original UI design -->
-          <cd-menu-item class="dropdown-footer text-center" [link]="'javscript:' | safeUrl">View more</cd-menu-item>
+          <cd-menu-item class="dropdown-footer text-center" [link]="'/placeholder'">View more</cd-menu-item>
         </cd-menu>
       </div>
 
@@ -144,7 +144,7 @@
                  [triggerBy]="headerMenu.user.menu.id">
           <!-- Todo: what does this arrow class list item do? -->
           <li class="arrow"></li>
-          <cd-menu-item *ngFor="let item of headerMenu.user.items" [link]="item.link | safeUrl">
+          <cd-menu-item *ngFor="let item of headerMenu.user.items" [link]="item.link">
             <cd-icon [icon]="item.icon"></cd-icon>
             {{item.text}}
             <cd-badge *ngIf="item.badge"
