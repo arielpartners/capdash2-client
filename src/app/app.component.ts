@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './services/auth/auth.service';
-import { DropdownService } from 'capdash2-common-module/src/lib/menu';
+import { DropdownService } from 'dhs-common-module/src/lib/menu';
 
 @Component({
   selector: 'cd-root',

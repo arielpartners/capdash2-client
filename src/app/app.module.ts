@@ -11,7 +11,7 @@ import {RouterModule} from '@angular/router';
 import {ItemModule} from './core/ajax/item/item.module';
 import {StoreModule} from './store/store.module';
 import {OfflineUnitsModule} from './containers/offline-units/offline-units.module';
-import {CapDashModule} from 'capdash2-common-module/src/lib/module';
+import {DHSModule} from 'dhs-common-module/src/lib/module';
 
 import {AppComponent} from './app.component';
 import {appRoutes} from './app.routes';
@@ -45,7 +45,7 @@ import {LogoutButtonDirective} from './services/auth/auth.directive';
     HotelsModule,
     HttpModule,
     ItemModule,
-    CapDashModule.forRoot(),
+    DHSModule.forRoot(),
     NgbModule.forRoot(),
     NgReduxModule,
     NgReduxRouterModule,
