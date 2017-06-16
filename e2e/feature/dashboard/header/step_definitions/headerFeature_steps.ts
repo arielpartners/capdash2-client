@@ -29,8 +29,8 @@ defineSupportCode(({Given, When, Then}) => {
   Then('the {menu} menu should be {visibility}', (menu, visibility) => {
     const expected = visibility === 'displayed' ? true : false;
 
-    return header.getChild(menu).element.isPresent().then( isPresent => {
-      expect(isPresent).to.equal(expected);
+    return header.getChild(menu).element.isDisplayed().then( isDisplayed => {
+      expect(isDisplayed).to.equal(expected);
     });
   });
 
@@ -38,6 +38,7 @@ defineSupportCode(({Given, When, Then}) => {
     const expectedUrl = new RegExp(header.getItem(link).path);
 
     return browser.getCurrentUrl().then( url => {
+      console.log('url: ', url);
       expect(expectedUrl.test(url)).to.equal(true);
     });
   });
