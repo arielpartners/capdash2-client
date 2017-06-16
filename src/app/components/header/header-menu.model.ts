@@ -256,7 +256,7 @@ export const LanguageMenu = {
       text: 'Hindi'
     }
   ]
-}
+};
 
 
 export const UserMenu = {
@@ -295,7 +295,7 @@ export const UserMenu = {
 };
 
 function timeDiffFromNow(date) {
-  let diff =(Date.now() - new Date(date).getTime() ) / 1000;
+  let diff = (Date.now() - new Date(date).getTime() ) / 1000;
   diff /= 60;
   const minutes = Math.abs(Math.round(diff));
 

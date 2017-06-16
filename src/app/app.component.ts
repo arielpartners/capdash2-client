@@ -5,7 +5,6 @@ import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './services/auth/auth.service';
 import { DropdownService } from 'capdash2-common-module/src/lib/menu';
-// import { MenuService } from './services/menu/menu.service';
 
 @Component({
   selector: 'cd-root',

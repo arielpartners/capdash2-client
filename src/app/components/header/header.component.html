@@ -18,7 +18,7 @@
     <!-- begin mega menu -->
     <div class="collapse navbar-collapse pull-left" id="top-navbar">
       <div class="nav navbar-nav">
-        <div class="dropdown" [ngClass]="headerMenu.main.container">
+        <div [ngClass]="headerMenu.main.container" dropdown>
           <cd-menu-button [id]="headerMenu.main.menu.id" [name]="headerMenu.main.menu.name">
             <cd-icon [icon]="headerMenu.main.menu.icon"
                      fixed="true"></cd-icon>
@@ -81,7 +81,7 @@
       </div>
       <!-- ./end header global search -->
 
-      <div class="dropdown" [ngClass]="headerMenu.notification.container">
+      <div dropdown [ngClass]="headerMenu.notification.container">
         <cd-menu-button [id]="headerMenu.notification.menu.id" [name]="headerMenu.notification.menu.name" class="f-s-14">
           <cd-icon [icon]="headerMenu.notification.menu.icon"></cd-icon>
           <span class="label">4</span>
@@ -112,14 +112,14 @@
 
       <!-- ngIf: setting.layout.pageLanguageBar === true -->
       <!-- Todo: ng-if="setting.layout.pageLanguageBar === true" -->
-      <div class="dropdown" [ngClass]="headerMenu.language.container">
+      <div dropdown [ngClass]="headerMenu.language.container">
         <cd-menu-button [id]="headerMenu.language.menu.id" [name]="headerMenu.language.menu.name">
           <cd-icon [ngClass]="headerMenu.language.selected.icon"
                    [title]="headerMenu.language.selected.title"></cd-icon>
           <span class="name text-white">{{headerMenu.language.selected.text}}</span>
           <b class="caret text-white"></b>
         </cd-menu-button>
-        <cd-menu [className]="headerMenu.language.menu.id + ' animated fadeInRight'"
+        <cd-menu [className]="headerMenu.language.menu.id + ' animated fadeInRight p-b-0'"
                  [triggerBy]="headerMenu.language.menu.id">
           <!-- Todo: what does this arrow class list item do? -->
           <li class="arrow"></li>
@@ -133,7 +133,7 @@
         </cd-menu>
       </div>
 
-      <div class="dropdown" [ngClass]="headerMenu.user.container">
+      <div dropdown [ngClass]="headerMenu.user.container">
         <cd-menu-button [id]="headerMenu.user.menu.id" [name]="headerMenu.user.menu.name" className="flex-box-row">
           <img [src]="(userProfile$ | async)" alt="user-rbs" width="128" height="128" *ngIf="userProfile$ | async">
           <span class="hidden-xs text-white">{{userName$ | async}}</span>
