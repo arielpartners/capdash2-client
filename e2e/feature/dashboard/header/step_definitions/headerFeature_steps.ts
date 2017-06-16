@@ -38,7 +38,6 @@ defineSupportCode(({Given, When, Then}) => {
     const expectedUrl = new RegExp(header.getItem(link).path);
 
     return browser.getCurrentUrl().then( url => {
-      console.log('url: ', url);
       expect(expectedUrl.test(url)).to.equal(true);
     });
   });

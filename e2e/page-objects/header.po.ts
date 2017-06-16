@@ -34,15 +34,15 @@ export class HeaderPage {
       children: {
         'Edit Profile': {
           element: element(by.cssContainingText('cd-link > a', 'Edit Profile')),
-          path: '#/app/extra/profile'
+          path: '/app/extra/profile'
         },
         'Work Orders Schedule': {
           element: element(by.cssContainingText('cd-link > a', 'Work Orders Schedule')),
-          path: '#/app/work_orders/work_orders/calendar'
+          path: '/app/work_orders/work_orders/calendar'
         },
         'CapApp Setting': {
           element: element(by.cssContainingText('cd-link > a', 'CapApp Setting')),
-          path: '#/app/settings/settings/app_settings'
+          path: '/app/settings/settings/app_settings'
         },
         'Logout': {
           element: element(by.css('.logout'))

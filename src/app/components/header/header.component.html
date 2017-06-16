@@ -144,7 +144,7 @@
                  [triggerBy]="headerMenu.user.menu.id">
           <!-- Todo: what does this arrow class list item do? -->
           <li class="arrow"></li>
-          <cd-menu-item *ngFor="let item of headerMenu.user.items" [link]="item.link | safeUrl">
+          <cd-menu-item *ngFor="let item of headerMenu.user.items" [link]="item.link">
             <cd-icon [icon]="item.icon"></cd-icon>
             {{item.text}}
             <cd-badge *ngIf="item.badge"
