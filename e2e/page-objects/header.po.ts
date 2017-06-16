@@ -33,15 +33,15 @@ export class HeaderPage {
       element: element(by.css('.navbar-user')),
       children: {
         'Edit Profile': {
-          element: element(by.cssContainingText('cd-link > a', 'Edit Profile')),
+          element: element(by.cssContainingText('a', 'Edit Profile')),
           path: '/app/extra/profile'
         },
         'Work Orders Schedule': {
-          element: element(by.cssContainingText('cd-link > a', 'Work Orders Schedule')),
+          element: element(by.cssContainingText('a', 'Work Orders Schedule')),
           path: '/app/work_orders/work_orders/calendar'
         },
         'CapApp Setting': {
-          element: element(by.cssContainingText('cd-link > a', 'CapApp Setting')),
+          element: element(by.cssContainingText('a', 'CapApp Setting')),
           path: '/app/settings/settings/app_settings'
         },
         'Logout': {
