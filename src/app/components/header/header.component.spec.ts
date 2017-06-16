@@ -12,9 +12,9 @@ import {
   MockMenuComponent,
   MockMenuHeaderComponent,
   MockMenuItemComponent
-} from 'capdash2-common-module/src/lib/menu/';
-import {MockIconComponent} from 'capdash2-common-module/src/lib/icon/';
-import {MockBadgeComponent, MockListComponent, MockListItemComponent} from 'capdash2-common-module/src/lib/list/';
+} from 'dhs-common-module/src/lib/menu/';
+import {MockIconComponent} from 'dhs-common-module/src/lib/icon/';
+import {MockBadgeComponent, MockListComponent, MockListItemComponent} from 'dhs-common-module/src/lib/list/';
 
 import {SafeUrlPipe} from '../../core/utils/safe-url.pipe';
 

@@ -5,7 +5,7 @@ import { MainMenu, NotificationMenu, LanguageMenu, UserMenu } from './header-men
 import { ITEM_TYPES } from '../../core/ajax/item/item.types';
 import { ItemActions } from '../../core/ajax/item/item.actions';
 import { Observable } from 'rxjs/Observable';
-import { DropdownService } from 'capdash2-common-module/src/lib/menu';
+import { DropdownService } from 'dhs-common-module/src/lib/menu';
 
 @Component({
   selector: 'cd-header',

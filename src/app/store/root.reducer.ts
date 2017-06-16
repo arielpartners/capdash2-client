@@ -7,7 +7,7 @@ import { token } from '../reducers/token.reducer';
 import { createItemReducer } from '../core/ajax/item/item.reducer';
 import { ITEM_TYPES } from '../core/ajax/item/item.types';
 
-import { DropdownReducer } from 'capdash2-common-module/src/lib/menu';
+import { DropdownReducer } from 'dhs-common-module/src/lib/menu';
 
 // Define the global store shape by combining our application's
 // reducers together into a given structure.
