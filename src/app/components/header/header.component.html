@@ -144,7 +144,7 @@
                  [triggerBy]="headerMenu.user.menu.id">
           <!-- Todo: what does this arrow class list item do? -->
           <li class="arrow"></li>
-          <dhs-menu-item *ngFor="let item of headerMenu.user.items" [link]="item.link | safeUrl">
+          <dhs-menu-item *ngFor="let item of headerMenu.user.items" [link]="item.link">
             <dhs-icon [icon]="item.icon"></dhs-icon>
             {{item.text}}
             <dhs-badge *ngIf="item.badge"
