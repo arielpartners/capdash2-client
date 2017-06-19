@@ -6,6 +6,7 @@
 
     <!-- begin sidebar nav -->
     <ul class="nav">
+
       <li class="nav-profile">
         <div class="info">
           {{agencyTitle}} {{appShTitle}}
@@ -13,130 +14,130 @@
           <small>Version: {{version | async}}</small>
         </div>
       </li>
+
       <!-- ================== 01.0 Dashboard ======================= -->
       <li class="has-sub"
           routerLinkActive="active"
-          (click)="expandedMenu = 'dashboard'"
-          [ngClass]="{'expand': expandedMenu === 'dashboard' }">
-        <a href="javascript:">
+          (click)="expandedMenu = sidebarMenu.dashboards.menu.id"
+          [ngClass]="{'expand': expandedMenu === sidebarMenu.dashboards.menu.id }">
+        <dhs-menu-button [id]="sidebarMenu.dashboards.menu.id" [name]="sidebarMenu.dashboards.menu.name">
           <b class="caret pull-right"></b>
-          <i class="fa fa-dashboard"></i>
-          <span>Dashboard</span>
-        </a>
-        <ul class="sub-menu">
-          <li routerLinkActive="active">
-            <a [routerLink]="['dashboard']">Dashboard</a>
-          </li>
-        </ul>
+          <dhs-icon [icon]="sidebarMenu.dashboards.menu.icon"></dhs-icon>
+          <span>{{sidebarMenu.dashboards.menu.label}}</span>
+        </dhs-menu-button>
+        <dhs-menu class="sub-menu">
+          <dhs-menu-item routerLinkActive="active"
+                         [link]="item.link"
+                         *ngFor="let item of sidebarMenu.dashboards.items">
+            <span>{{item.text}}</span>
+          </dhs-menu-item>
+        </dhs-menu>
       </li>
 
       <!-- ================== 02.0 Units ========================= -->
       <li class="has-sub"
           routerLinkActive="active"
-          (click)="expandedMenu = 'units'"
-          [ngClass]="{'expand': expandedMenu === 'units' }">
-        <a href="javascript:">
+          (click)="expandedMenu = sidebarMenu.units.menu.id"
+          [ngClass]="{'expand': expandedMenu === sidebarMenu.units.menu.id }">
+        <dhs-menu-button>
           <b class="caret pull-right"></b>
-          <span class="badge pull-right">817</span>
-          <i class="fa fa-building-o"></i>
-          <span>Units</span>
-        </a>
-        <ul class="sub-menu">
-          <li routerLinkActive="active">
-            <a [routerLink]="['units/offline-units']"><span class="badge pull-left">817</span>&nbsp;Offline Units</a>
-          </li>
-          <li routerLinkActive="active">
-            <a [routerLink]="['units/hero']"><span class="badge pull-left">200</span>&nbsp;HERO</a>
-          </li>
-          <li routerLinkActive="active">
-            <a [routerLink]="['units/ltr']"><span class="badge pull-left">105</span>&nbsp;L.T.R.</a>
-          </li>
-          <li routerLinkActive="active">
-            <a [routerLink]="['units/demand']"><span class="badge pull-left">38</span>&nbsp;Demand & Projections</a>
-          </li>
-        </ul>
+          <dhs-badge [value]="sidebarMenu.units.menu.badge.value" [right]="true"></dhs-badge>
+          <dhs-icon [icon]="sidebarMenu.units.menu.icon"></dhs-icon>
+          <span>{{sidebarMenu.units.menu.label}}</span>
+        </dhs-menu-button>
+        <dhs-menu class="sub-menu">
+          <dhs-menu-item *ngFor="let item of sidebarMenu.units.items"
+                          routerLinkActive="active"
+                          [link]="item.link">
+            <dhs-badge [value]="item.badge.value" class="pull-left"></dhs-badge>
+            <span>{{item.text}}</span>
+          </dhs-menu-item>
+        </dhs-menu>
       </li>
 
       <!-- ================== 03.0 Edit Demand & Projections ======================= -->
-      <li routerLinkActive="active">
-        <a [routerLink]="['edit-demand/edit']"><i class="fa fa-edit"></i> <span>Edit Demand & Projections</span></a>
-      </li>
+      <dhs-menu-item routerLinkActive="active"
+                     [link]="sidebarMenu.demand.link">
+        <dhs-icon [icon]="sidebarMenu.demand.icon"></dhs-icon> <span>{{sidebarMenu.demand.label}}</span>
+      </dhs-menu-item>
 
       <!-- ================== 04.0 IVC ============================================= -->
-      <li routerLinkActive="active" routerLinkActive="active">
-        <a [routerLink]="['ivc']"><i class="fa fa-calendar-check-o"></i> <span>Intake/Vacancy Control</span></a>
-      </li>
+      <dhs-menu-item routerLinkActive="active"
+                     [link]="sidebarMenu.intake.link">
+        <dhs-icon [icon]="sidebarMenu.intake.icon"></dhs-icon> <span>{{sidebarMenu.intake.label}}</span>
+      </dhs-menu-item>
 
-      <!-- ================== 05.0 Reports ============================================================= -->
+      <!-- ================== 05.0 Reports ======================================== -->
       <li class="has-sub"
           routerLinkActive="active"
-          (click)="expandedMenu = 'reports'"
-          [ngClass]="{'expand': expandedMenu.startsWith('reports') }">
-        <a href="javascript:">
+          (click)="expandedMenu = sidebarMenu.reports.menu.id"
+          [ngClass]="{'expand': expandedMenu === sidebarMenu.reports.menu.id }">
+        <dhs-menu-button>
           <b class="caret pull-right"></b>
-          <i class="fa fa-bar-chart"></i>
-          <span>Reports </span>
-        </a>
-        <ul class="sub-menu">
-          <li routerLinkActive="active">
-            <a [routerLink]="['/reports/general']">General Reports</a>
-          </li>
-            <li class="has-sub"
-                routerLinkActive="active"
-                (click)="$event.stopPropagation(); expandedMenu = 'reports/other'"
-                [ngClass]="{'expand': expandedMenu === ('reports/other') }">
-            <a href="javascript:"><b class="caret pull-right"></b> Other Reports</a>
-            <ul class="sub-menu">
-              <li routerLinkActive="active">
-                <a [routerLink]="['/reports/all']">Report All</a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/reports/v1']">Report 1</a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/reports/v2']">Report 2</a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/reports/v3']">Report 3</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+          <dhs-icon [icon]="sidebarMenu.reports.menu.icon"></dhs-icon>
+          <span>{{sidebarMenu.reports.menu.label}}</span>
+        </dhs-menu-button>
+        <dhs-menu class="sub-menu">
+          <dhs-menu-item *ngFor="let item of sidebarMenu.reports.items">
+            <dhs-link *ngIf="item.link" [path]="item.link">
+              {{item.text}}
+            </dhs-link>
+            <dhs-menu-button *ngIf="item.menu"
+                             class="has-sub"
+                             routerLinkActive="active"
+                             (click)="$event.stopPropagation(); expandedMenu = item.menu.id"
+                             [ngClass]="{'expand': expandedMenu === item.menu.id }">
+              <b class="caret pull-right"></b> <span>{{item.menu.label}}</span>
+              <dhs-menu class="sub-menu">
+                <dhs-menu-item *ngFor="let subItem of item.menu.items"
+                               routerLinkActive="active"
+                               [link]="subItem.link">
+                  <span>{{subItem.text}}</span>
+                </dhs-menu-item>
+              </dhs-menu>
+            </dhs-menu-button>
+          </dhs-menu-item>
+        </dhs-menu>
       </li>
 
-      <!-- ================== 09.0 App Settings ============================================================= -->
+      <!-- ================== 09.0 App Settings ===================================== -->
       <li class="has-sub"
           routerLinkActive="active"
-          (click)="expandedMenu = 'settings'"
-          [ngClass]="{'expand': expandedMenu === 'settings' }">
-        <a href="javascript:">
+          (click)="expandedMenu = sidebarMenu.settings.menu.id"
+          [ngClass]="{'expand': expandedMenu === sidebarMenu.settings.menu.id }">
+        <dhs-menu-button>
           <b class="caret pull-right"></b>
-          <i class="fa fa-cogs"></i>
-          <span>App Settings</span>
-        </a>
-        <ul class="sub-menu">
-          <li routerLinkActive="active">
-            <a [routerLink]="['/settings/general']">General Settings</a>
-          </li>
-        </ul>
+          <dhs-icon [icon]="sidebarMenu.settings.menu.icon"></dhs-icon>
+          <span>{{sidebarMenu.settings.menu.label}}</span>
+        </dhs-menu-button>
+        <dhs-menu class="sub-menu">
+          <dhs-menu-item *ngFor="let item of sidebarMenu.settings.items"
+                         routerLinkActive="active"
+                         [link]="item.link">
+            {{item.text}}
+          </dhs-menu-item>
+        </dhs-menu>
       </li>
 
-      <!-- ================== 10.0 App Help ============================================================= -->
+      <!-- ================== 10.0 App Help ======================================= -->
       <li class="has-sub"
           routerLinkActive="active"
-          (click)="expandedMenu = 'help'"
-          [ngClass]="{'expand': expandedMenu === 'help' }">
-        <a href="javascript:">
+          (click)="expandedMenu = sidebarMenu.help.menu.id"
+          [ngClass]="{'expand': expandedMenu === sidebarMenu.help.menu.id }">
+        <dhs-menu-button>
           <b class="caret pull-right"></b>
-          <i class="fa fa-life-buoy"></i>
-          <span>App Help</span>
-        </a>
-        <ul class="sub-menu">
-          <li routerLinkActive="active">
-            <a [routerLink]="['/help/general']">General Help</a>
-          </li>
-        </ul>
+          <dhs-icon [icon]="sidebarMenu.help.menu.icon"></dhs-icon>
+          <span>{{sidebarMenu.help.menu.label}}</span>
+        </dhs-menu-button>
+        <dhs-menu class="sub-menu">
+          <dhs-menu-item *ngFor="let item of sidebarMenu.help.items"
+                         routerLinkActive="active"
+                         [link]="item.link">
+            {{item.text}}
+          </dhs-menu-item>
+        </dhs-menu>
       </li>
+
       <!-- begin sidebar minify button -->
       <li>
         <a href="javascript:"
