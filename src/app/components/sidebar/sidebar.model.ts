@@ -110,6 +110,7 @@ export const ReportsMenu = {
     }
   ]
 }
+
 export const SettingsMenu = {
   menu: {
     id: 'settings',
