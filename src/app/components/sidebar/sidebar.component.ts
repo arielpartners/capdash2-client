@@ -1,11 +1,12 @@
-import { AfterViewInit, Component, Input, ChangeDetectionStrategy  } from '@angular/core';
+import { AfterViewInit, Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import {NgRedux} from '@angular-redux/store';
+import { NgRedux } from '@angular-redux/store';
 
-import {IAppState} from '../../store/root.types';
-import {ITEM_TYPES} from '../../core/ajax/item/item.types';
-import {ItemActions} from '../../core/ajax/item/item.actions';
+import { IAppState } from '../../store/root.types';
+import { ITEM_TYPES } from '../../core/ajax/item/item.types';
+import { ItemActions } from '../../core/ajax/item/item.actions';
+import { DropdownService } from 'dhs-common-module/src/lib/menu';
 
 import {
   DashboardsMenu,
@@ -21,6 +22,10 @@ import {
   selector: 'cd-sidebar',
   templateUrl: 'sidebar.component.html',
   styleUrls: ['sidebar.component.less'],
+  providers: [
+    ItemActions,
+    DropdownService
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent implements AfterViewInit {
@@ -37,7 +42,8 @@ export class SidebarComponent implements AfterViewInit {
 
   constructor(
     private ngRedux: NgRedux<IAppState>,
-    private actions: ItemActions
+    private actions: ItemActions,
+    public menu: DropdownService
   ) {
     this.sidebarMenu = {
       dashboards: DashboardsMenu,
