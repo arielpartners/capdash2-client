@@ -18,6 +18,7 @@
       <!-- ================== 01.0 Dashboard ======================= -->
       <li class="has-sub"
           routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"
           (click)="expandedMenu = sidebarMenu.dashboards.menu.id"
           [ngClass]="{'expand': expandedMenu === sidebarMenu.dashboards.menu.id}">
         <a>

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { AfterViewInit, Component, Input, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { NgRedux } from '@angular-redux/store';
@@ -27,6 +27,7 @@ import {
     DropdownService
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class SidebarComponent implements AfterViewInit {
   @Input() version:  Observable<string>;
