@@ -16,13 +16,13 @@
       </li>
 
       <!-- BEGIN SIDEBAR ITERATOR -->
-      <li *ngFor="let item of sidebarItems">
+      <div *ngFor="let item of sidebarItems" class="sidebar-item">
         <!-- MENU -->
-        <dhs-menu-item *ngIf="item.menu"
-                       class="has-sub"
-                       routerLinkActive="active"
-                       (click)="expandedMenu = item.menu.id"
-                       [ngClass]="{'expand': expandedMenu === item.menu.id}">
+        <li *ngIf="item.menu"
+            class="has-sub"
+            routerLinkActive="active"
+            (click)="expandedMenu = item.menu.id"
+            [ngClass]="{'expand': expandedMenu === item.menu.id}">
           <a>
             <b class="caret pull-right"></b>
             <dhs-badge *ngIf="item.menu.badge" [value]="item.menu.badge.value" [right]="true"></dhs-badge>
@@ -36,7 +36,7 @@
               <dhs-badge *ngIf="subItem.badge" [value]="subItem.badge.value" class="pull-left"></dhs-badge>
               <span *ngIf="subItem.text">{{subItem.text}}</span>
 
-              <!-- If third level submenu -->
+              <!-- IF third level submenu -->
 
               <li *ngIf="subItem.menu"
                   class="has-sub"
@@ -54,7 +54,7 @@
               </li>
             </dhs-menu-item>
           </dhs-menu>
-        </dhs-menu-item>
+        </li>
 
         <!-- ITEM -->
         <dhs-menu-item *ngIf="!item.menu"
@@ -62,7 +62,7 @@
                        [link]="item.link">
           <dhs-icon [icon]="item.icon"></dhs-icon> <span>{{item.label}}</span>
         </dhs-menu-item>
-      </li>
+      </div>
       <!-- END SIDEBAR ITERATOR -->
 
       <!-- begin sidebar minify button -->
