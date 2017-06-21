@@ -40,6 +40,7 @@ export class SidebarComponent implements AfterViewInit {
   expandedMenu = 'dashboard';
   sidebarMinimized = false;
   sidebarMenu: any;
+  sidebarItems: any;
 
   constructor(
     private ngRedux: NgRedux<IAppState>,
@@ -55,6 +56,16 @@ export class SidebarComponent implements AfterViewInit {
       settings: SettingsMenu,
       help: HelpMenu
     }
+
+    this.sidebarItems = [
+      DashboardsMenu,
+      UnitsMenu,
+      DemandMenu,
+      IntakeMenu,
+      ReportsMenu,
+      SettingsMenu,
+      HelpMenu
+    ]
   }
 
   ngAfterViewInit() {

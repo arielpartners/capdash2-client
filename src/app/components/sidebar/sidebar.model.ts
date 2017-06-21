@@ -20,8 +20,7 @@ export const UnitsMenu = {
     icon: 'building-o',
     label: 'Units',
     badge: {
-      value: '817',
-      right: true
+      value: '817'
     }
   },
   items: [
@@ -29,32 +28,28 @@ export const UnitsMenu = {
       link: 'units/offline-units',
       text: 'Offline Units',
       badge: {
-        value: '817',
-        left: true
+        value: '817'
       }
     },
     {
       link: 'units/hero',
       text: 'HERO',
       badge: {
-        value: '200',
-        left: true
+        value: '200'
       }
     },
     {
       link: 'units/ltr',
       text: 'L.T.R',
       badge: {
-        value: '105',
-        left: true
+        value: '105'
       }
     },
     {
       link: 'units/demand',
       text: 'Demand & Projections',
       badge: {
-        value: '38',
-        left: true
+        value: '38'
       }
     }
   ]

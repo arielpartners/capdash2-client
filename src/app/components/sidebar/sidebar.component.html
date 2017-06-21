@@ -15,129 +15,55 @@
         </div>
       </li>
 
-      <!-- ================== 01.0 Dashboard ======================= -->
-      <li class="has-sub"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact: true}"
-          (click)="expandedMenu = sidebarMenu.dashboards.menu.id"
-          [ngClass]="{'expand': expandedMenu === sidebarMenu.dashboards.menu.id}">
-        <a>
-          <b class="caret pull-right"></b>
-          <dhs-icon [icon]="sidebarMenu.dashboards.menu.icon"></dhs-icon>
-          <span>{{sidebarMenu.dashboards.menu.label}}</span>
-        </a>
-        <dhs-menu class="sub-menu">
-          <dhs-menu-item routerLinkActive="active"
-                         [link]="item.link"
-                         *ngFor="let item of sidebarMenu.dashboards.items">
-            <span>{{item.text}}</span>
-          </dhs-menu-item>
-        </dhs-menu>
+      <!-- BEGIN SIDEBAR ITERATOR -->
+      <li *ngFor="let item of sidebarItems">
+        <!-- MENU -->
+        <dhs-menu-item *ngIf="item.menu"
+                       class="has-sub"
+                       routerLinkActive="active"
+                       (click)="expandedMenu = item.menu.id"
+                       [ngClass]="{'expand': expandedMenu === item.menu.id}">
+          <a>
+            <b class="caret pull-right"></b>
+            <dhs-badge *ngIf="item.menu.badge" [value]="item.menu.badge.value" [right]="true"></dhs-badge>
+            <dhs-icon [icon]="item.menu.icon"></dhs-icon>
+            <span>{{item.menu.label}}</span>
+          </a>
+          <dhs-menu class="sub-menu">
+            <dhs-menu-item *ngFor="let subItem of item.items"
+                           routerLinkActive="active"
+                           [link]="subItem.link ? subItem.link : ':javascript'">
+              <dhs-badge *ngIf="subItem.badge" [value]="subItem.badge.value" class="pull-left"></dhs-badge>
+              <span *ngIf="subItem.text">{{subItem.text}}</span>
+
+              <!-- If third level submenu -->
+
+              <li *ngIf="subItem.menu"
+                  class="has-sub"
+                  routerLinkActive="active"
+                  (click)="$event.stopPropagation(); expandedMenu = subItem.menu.id"
+                  [ngClass]="{'expand': expandedMenu === subItem.menu.id }">
+                <a><b class="caret pull-right"></b>{{subItem.menu.label}}</a>
+                <dhs-menu class="sub-menu">
+                  <dhs-menu-item *ngFor="let subSubItem of subItem.items"
+                                 routerLinkActive="active"
+                                 [link]="subSubItem.link">
+                    <span>{{subSubItem.text}}</span>
+                  </dhs-menu-item>
+                </dhs-menu>
+              </li>
+            </dhs-menu-item>
+          </dhs-menu>
+        </dhs-menu-item>
+
+        <!-- ITEM -->
+        <dhs-menu-item *ngIf="!item.menu"
+                       routerLinkActive="active"
+                       [link]="item.link">
+          <dhs-icon [icon]="item.icon"></dhs-icon> <span>{{item.label}}</span>
+        </dhs-menu-item>
       </li>
-
-      <!-- ================== 02.0 Units ========================= -->
-      <li class="has-sub"
-          routerLinkActive="active"
-          (click)="expandedMenu = sidebarMenu.units.menu.id"
-          [ngClass]="{'expand': expandedMenu === sidebarMenu.units.menu.id }">
-        <a>
-          <b class="caret pull-right"></b>
-          <dhs-badge [value]="sidebarMenu.units.menu.badge.value" [right]="true"></dhs-badge>
-          <dhs-icon [icon]="sidebarMenu.units.menu.icon"></dhs-icon>
-          <span>{{sidebarMenu.units.menu.label}}</span>
-        </a>
-        <dhs-menu class="sub-menu">
-          <dhs-menu-item *ngFor="let item of sidebarMenu.units.items"
-                          routerLinkActive="active"
-                          [link]="item.link">
-            <dhs-badge [value]="item.badge.value" class="pull-left"></dhs-badge>
-            <span>{{item.text}}</span>
-          </dhs-menu-item>
-        </dhs-menu>
-      </li>
-
-      <!-- ================== 03.0 Edit Demand & Projections ======================= -->
-      <dhs-menu-item routerLinkActive="active"
-                     [link]="sidebarMenu.demand.link">
-        <dhs-icon [icon]="sidebarMenu.demand.icon"></dhs-icon> <span>{{sidebarMenu.demand.label}}</span>
-      </dhs-menu-item>
-
-      <!-- ================== 04.0 IVC ============================================= -->
-      <dhs-menu-item routerLinkActive="active"
-                     [link]="sidebarMenu.intake.link">
-        <dhs-icon [icon]="sidebarMenu.intake.icon"></dhs-icon> <span>{{sidebarMenu.intake.label}}</span>
-      </dhs-menu-item>
-
-      <!-- ================== 05.0 Reports ======================================== -->
-      <li class="has-sub"
-          routerLinkActive="active"
-          (click)="expandedMenu = sidebarMenu.reports.menu.id"
-          [ngClass]="{'expand': expandedMenu.startsWith(sidebarMenu.reports.menu.id)}">
-        <a>
-          <b class="caret pull-right"></b>
-          <dhs-icon [icon]="sidebarMenu.reports.menu.icon"></dhs-icon>
-          <span>{{sidebarMenu.reports.menu.label}}</span>
-        </a>
-        <dhs-menu class="sub-menu">
-          <dhs-menu-item *ngFor="let item of sidebarMenu.reports.items"
-                         [link]="item.link ? item.link : ':javascript'">
-            <span *ngIf="item.link">{{item.text}}</span>
-
-            <li *ngIf="item.menu"
-                class="has-sub"
-                routerLinkActive="active"
-                (click)="$event.stopPropagation(); expandedMenu = item.menu.id"
-                [ngClass]="{'expand': expandedMenu === item.menu.id }">
-              <a><b class="caret pull-right"></b>{{item.menu.label}}</a>
-              <dhs-menu class="sub-menu">
-                <dhs-menu-item *ngFor="let subItem of item.items"
-                               routerLinkActive="active"
-                               [link]="subItem.link">
-                  <span>{{subItem.text}}</span>
-                </dhs-menu-item>
-              </dhs-menu>
-            </li>
-          </dhs-menu-item>
-        </dhs-menu>
-      </li>
-
-      <!-- ================== 09.0 App Settings ===================================== -->
-      <li class="has-sub"
-          routerLinkActive="active"
-          (click)="expandedMenu = sidebarMenu.settings.menu.id"
-          [ngClass]="{'expand': expandedMenu === sidebarMenu.settings.menu.id }">
-        <a>
-          <b class="caret pull-right"></b>
-          <dhs-icon [icon]="sidebarMenu.settings.menu.icon"></dhs-icon>
-          <span>{{sidebarMenu.settings.menu.label}}</span>
-        </a>
-        <dhs-menu class="sub-menu">
-          <dhs-menu-item *ngFor="let item of sidebarMenu.settings.items"
-                         routerLinkActive="active"
-                         [link]="item.link">
-            {{item.text}}
-          </dhs-menu-item>
-        </dhs-menu>
-      </li>
-
-      <!-- ================== 10.0 App Help ======================================= -->
-      <li class="has-sub"
-          routerLinkActive="active"
-          (click)="expandedMenu = sidebarMenu.help.menu.id"
-          [ngClass]="{'expand': expandedMenu === sidebarMenu.help.menu.id }">
-        <a>
-          <b class="caret pull-right"></b>
-          <dhs-icon [icon]="sidebarMenu.help.menu.icon"></dhs-icon>
-          <span>{{sidebarMenu.help.menu.label}}</span>
-        </a>
-        <dhs-menu class="sub-menu">
-          <dhs-menu-item *ngFor="let item of sidebarMenu.help.items"
-                         routerLinkActive="active"
-                         [link]="item.link">
-            {{item.text}}
-          </dhs-menu-item>
-        </dhs-menu>
-      </li>
+      <!-- END SIDEBAR ITERATOR -->
 
       <!-- begin sidebar minify button -->
       <li>
