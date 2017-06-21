@@ -15,14 +15,14 @@
         </div>
       </li>
 
-      <!-- BEGIN SIDEBAR ITERATOR -->
+      <!-- BEGIN SIDEBAR ITEMS -->
       <div *ngFor="let item of sidebarItems" class="sidebar-item">
         <!-- MENU -->
         <li *ngIf="item.menu"
             class="has-sub"
             routerLinkActive="active"
             (click)="expandedMenu = item.menu.id"
-            [ngClass]="{'expand': expandedMenu === item.menu.id}">
+            [ngClass]="{'expand': expandedMenu.startsWith(item.menu.id)}">
           <a>
             <b class="caret pull-right"></b>
             <dhs-badge *ngIf="item.menu.badge" [value]="item.menu.badge.value" [right]="true"></dhs-badge>
@@ -63,7 +63,7 @@
           <dhs-icon [icon]="item.icon"></dhs-icon> <span>{{item.label}}</span>
         </dhs-menu-item>
       </div>
-      <!-- END SIDEBAR ITERATOR -->
+      <!-- END SIDEBAR ITEMS -->
 
       <!-- begin sidebar minify button -->
       <li>
