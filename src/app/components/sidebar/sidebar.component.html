@@ -79,15 +79,15 @@
           <span>{{sidebarMenu.reports.menu.label}}</span>
         </a>
         <dhs-menu class="sub-menu">
-          <dhs-menu-item *ngFor="let item of sidebarMenu.reports.items">
-            <dhs-link *ngIf="item.link" [path]="item.link">
-              {{item.text}}
-            </dhs-link>
+          <dhs-menu-item *ngFor="let item of sidebarMenu.reports.items"
+                         [link]="item.link ? item.link : ':javascript'">
+            <span *ngIf="item.link">{{item.text}}</span>
+
             <li *ngIf="item.menu"
-                             class="has-sub"
-                             routerLinkActive="active"
-                             (click)="$event.stopPropagation(); expandedMenu = item.menu.id"
-                             [ngClass]="{'expand': expandedMenu === item.menu.id }">
+                class="has-sub"
+                routerLinkActive="active"
+                (click)="$event.stopPropagation(); expandedMenu = item.menu.id"
+                [ngClass]="{'expand': expandedMenu === item.menu.id }">
               <a><b class="caret pull-right"></b>{{item.menu.label}}</a>
               <dhs-menu class="sub-menu">
                 <dhs-menu-item *ngFor="let subItem of item.items"
