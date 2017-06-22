@@ -24,8 +24,8 @@
             (click)="expandedMenu = item.menu.id"
             [ngClass]="{'expand': expandedMenu.startsWith(item.menu.id)}">
           <a>
-            <b class="caret pull-right"></b>
-            <dhs-badge *ngIf="item.menu.badge" [value]="item.menu.badge.value" [right]="true"></dhs-badge>
+            <b class="caret" pull="right"></b>
+            <dhs-badge *ngIf="item.menu.badge" pull="right">{{item.menu.badge.value}}</dhs-badge>
             <dhs-icon [icon]="item.menu.icon"></dhs-icon>
             <span>{{item.menu.label}}</span>
           </a>
@@ -33,7 +33,7 @@
             <dhs-menu-item *ngFor="let subItem of item.items"
                            routerLinkActive="active"
                            [link]="subItem.link ? subItem.link : ':javascript'">
-              <dhs-badge *ngIf="subItem.badge" [value]="subItem.badge.value" class="pull-left"></dhs-badge>
+              <dhs-badge *ngIf="subItem.badge" pull="left">{{subItem.badge.value}}</dhs-badge>
               <span *ngIf="subItem.text">{{subItem.text}}</span>
 
               <!-- IF third level submenu -->
@@ -43,7 +43,7 @@
                   routerLinkActive="active"
                   (click)="$event.stopPropagation(); expandedMenu = subItem.menu.id"
                   [ngClass]="{'expand': expandedMenu === subItem.menu.id }">
-                <a><b class="caret pull-right"></b>{{subItem.menu.label}}</a>
+                <a><b class="caret" pull="right"></b>{{subItem.menu.label}}</a>
                 <dhs-menu class="sub-menu">
                   <dhs-menu-item *ngFor="let subSubItem of subItem.items"
                                  routerLinkActive="active"
