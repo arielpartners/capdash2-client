@@ -16,10 +16,11 @@
 
     <!-- begin navbar-collapse -->
     <!-- begin mega menu -->
-    <div class="collapse navbar-collapse" id="top-navbar" pull="">
+    <div class="collapse navbar-collapse" id="top-navbar" pull="left">
       <div class="nav navbar-nav">
         <div [ngClass]="headerMenu.main.container" dropdown>
-          <dhs-menu-button [id]="headerMenu.main.menu.id" [name]="headerMenu.main.menu.name">
+          <dhs-menu-button [id]="headerMenu.main.menu.id"
+                           [name]="headerMenu.main.menu.name">
             <dhs-icon [icon]="headerMenu.main.menu.icon"
                      fixed="true"></dhs-icon>
             {{headerMenu.main.menu.label}}
@@ -37,7 +38,7 @@
                 <div class="row" *ngSwitchCase="'list'">
                   <dhs-list nav-list>
                     <dhs-list-item *ngFor="let item of submenu.items"
-                                  [link]="item.href | safeUrl"
+                                  [link]="item.href"
                                   dhsCloseToggle>
                       <dhs-icon [icon]="item.activeIcon ? item.activeIcon : 'angle-right'"
                                size="lg"
@@ -91,7 +92,7 @@
           <li class="dropdown-header">Notification ({{headerMenu.notification.items.length}})</li>
           <!--<dhs-menu-item className="dropdown-header">Notification (4)</dhs-menu-item>-->
           <dhs-menu-item class="media"
-                        [link]="item.link | safeUrl"
+                        [link]="item.link"
                         *ngFor="let item of headerMenu.notification.items">
             <div class="media-left">
               <dhs-icon *ngIf="!item.icon.thumbnail"
@@ -106,7 +107,7 @@
             </div>
           </dhs-menu-item>
           <!-- Todo: hover and focus is not same as original UI design -->
-          <dhs-menu-item class="dropdown-footer text-center" [link]="'javscript:' | safeUrl">View more</dhs-menu-item>
+          <dhs-menu-item class="dropdown-footer text-center" [link]="'javscript:'">View more</dhs-menu-item>
         </dhs-menu>
       </div>
 
