@@ -16,7 +16,7 @@
 
     <!-- begin navbar-collapse -->
     <!-- begin mega menu -->
-    <div class="collapse navbar-collapse pull-left" id="top-navbar">
+    <div class="collapse navbar-collapse" id="top-navbar" pull="">
       <div class="nav navbar-nav">
         <div [ngClass]="headerMenu.main.container" dropdown>
           <dhs-menu-button [id]="headerMenu.main.menu.id" [name]="headerMenu.main.menu.name">
@@ -44,7 +44,7 @@
                                fixed="true"
                                dhsTextInverse></dhs-icon>
                       {{item.text}}
-                      <dhs-badge *ngIf="item.badge" [status]="item.badge.class" [value]="item.badge.value"></dhs-badge>
+                      <dhs-badge *ngIf="item.badge" [status]="item.badge.class">{{item.badge.value}}</dhs-badge>
                     </dhs-list-item>
                   </dhs-list>
                 </div>
@@ -86,8 +86,8 @@
           <dhs-icon [icon]="headerMenu.notification.menu.icon"></dhs-icon>
           <span class="label">4</span>
         </dhs-menu-button>
-        <dhs-menu [className]="headerMenu.notification.menu.id + ' pull-right animated fadeInDown'"
-                 [triggerBy]="headerMenu.notification.menu.id">
+        <dhs-menu [className]="headerMenu.notification.menu.id + ' animated fadeInDown'"
+                 [triggerBy]="headerMenu.notification.menu.id" pull="right">
           <li class="dropdown-header">Notification ({{headerMenu.notification.items.length}})</li>
           <!--<dhs-menu-item className="dropdown-header">Notification (4)</dhs-menu-item>-->
           <dhs-menu-item class="media"
@@ -149,8 +149,7 @@
             {{item.text}}
             <dhs-badge *ngIf="item.badge"
                       [status]="item.badge.class"
-                      [value]="item.badge.value"
-                      right="true"></dhs-badge>
+                      pull="right">{{item.badge.value}}</dhs-badge>
           </dhs-menu-item>
           <li class="divider"></li>
           <li>
