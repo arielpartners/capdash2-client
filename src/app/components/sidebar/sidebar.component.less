@@ -14,7 +14,7 @@
 
   .nav {
     .sidebar-item {
-      > dhs-menu-item > dhs-link > a,
+      > dhs-list-item > dhs-link > a,
       > li.has-sub > a {
         padding: 8px 20px;
         line-height: 20px;
@@ -32,8 +32,8 @@
       > li.expand > a,
       > li > a:hover,
       > li > a:focus,
-      > dhs-menu-item > dhs-link > a:hover,
-      > dhs-menu-item > dhs-link > a:focus {
+      > dhs-list-item > dhs-link > a:hover,
+      > dhs-list-item > dhs-link > a:focus {
         cursor: pointer;
         background: @dark_black;
         color: @sidebar_text_color;
@@ -49,7 +49,7 @@
         background: @dark_green;
       }
 
-      > li, dhs-menu-item {
+      > li, dhs-list-item {
         > a dhs-icon, dhs-link a dhs-icon {
           float: left;
           margin-right: 15px;
@@ -144,7 +144,7 @@
       width: 2px;
       background: #10181F;
     }
-    dhs-menu-item {
+    dhs-list-item {
       & > dhs-link > a {
         padding: 5px 20px;
         display: block;

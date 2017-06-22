@@ -29,10 +29,10 @@
             <dhs-icon [icon]="item.menu.icon"></dhs-icon>
             <span>{{item.menu.label}}</span>
           </a>
-          <dhs-menu class="sub-menu">
-            <dhs-menu-item *ngFor="let subItem of item.items"
+          <dhs-list class="sub-menu">
+            <dhs-list-item *ngFor="let subItem of item.items"
                            routerLinkActive="active"
-                           [link]="subItem.link ? subItem.link : ':javascript'">
+                           [link]="subItem.link">
               <dhs-badge *ngIf="subItem.badge" pull="left">{{subItem.badge.value}}</dhs-badge>
               <span *ngIf="subItem.text">{{subItem.text}}</span>
 
@@ -44,24 +44,24 @@
                   (click)="$event.stopPropagation(); expandedMenu = subItem.menu.id"
                   [ngClass]="{'expand': expandedMenu === subItem.menu.id }">
                 <a><b class="caret" pull="right"></b>{{subItem.menu.label}}</a>
-                <dhs-menu class="sub-menu">
-                  <dhs-menu-item *ngFor="let subSubItem of subItem.items"
+                <dhs-list class="sub-menu">
+                  <dhs-list-item *ngFor="let subSubItem of subItem.items"
                                  routerLinkActive="active"
                                  [link]="subSubItem.link">
                     <span>{{subSubItem.text}}</span>
-                  </dhs-menu-item>
-                </dhs-menu>
+                  </dhs-list-item>
+                </dhs-list>
               </li>
-            </dhs-menu-item>
-          </dhs-menu>
+            </dhs-list-item>
+          </dhs-list>
         </li>
 
         <!-- ITEM -->
-        <dhs-menu-item *ngIf="!item.menu"
+        <dhs-list-item *ngIf="!item.menu"
                        routerLinkActive="active"
                        [link]="item.link">
           <dhs-icon [icon]="item.icon"></dhs-icon> <span>{{item.label}}</span>
-        </dhs-menu-item>
+        </dhs-list-item>
       </div>
       <!-- END SIDEBAR ITEMS -->
 
