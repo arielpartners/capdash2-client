@@ -145,7 +145,8 @@
       background: #10181F;
     }
     dhs-list-item {
-      & > a {
+      & > a,
+      & > li > a {
         padding: 5px 20px;
         display: block;
         font-weight: 300;
@@ -172,8 +173,8 @@
       &.active > a:focus,
       & > a:hover,
       & > a:focus,
-      & > a > li > a:hover,
-      & > a > li > a:focus {
+      & > li > a:hover,
+      & > li > a:focus {
         cursor: pointer;
         color: #fff;
         background: @darker_black;
