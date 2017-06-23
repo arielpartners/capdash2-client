@@ -14,7 +14,7 @@
 
   .nav {
     .sidebar-item {
-      > dhs-list-item > dhs-link > a,
+      > dhs-list-item > a,
       > li.has-sub > a {
         padding: 8px 20px;
         line-height: 20px;
@@ -32,8 +32,8 @@
       > li.expand > a,
       > li > a:hover,
       > li > a:focus,
-      > dhs-list-item > dhs-link > a:hover,
-      > dhs-list-item > dhs-link > a:focus {
+      > dhs-list-item > a:hover,
+      > dhs-list-item > a:focus {
         cursor: pointer;
         background: @dark_black;
         color: @sidebar_text_color;
@@ -145,7 +145,7 @@
       background: #10181F;
     }
     dhs-list-item {
-      & > dhs-link > a {
+      & > a {
         padding: 5px 20px;
         display: block;
         font-weight: 300;
@@ -164,22 +164,22 @@
           margin-left: -6px;
         }
       }
-      > dhs-link > a > li > a {
+      > a > li > a {
         color: #889097;
       }
-      &.active > dhs-link > a,
-      &.active > dhs-link > a:hover,
-      &.active > dhs-link > a:focus,
-      & > dhs-link > a:hover,
-      & > dhs-link > a:focus,
-      & > dhs-link > a > li > a:hover,
-      & > dhs-link > a > li > a:focus {
+      &.active > a,
+      &.active > a:hover,
+      &.active > a:focus,
+      & > a:hover,
+      & > a:focus,
+      & > a > li > a:hover,
+      & > a > li > a:focus {
         cursor: pointer;
         color: #fff;
         background: @darker_black;
         text-decoration: none;
       }
-      &.active > dhs-link > a:before {
+      &.active > a:before {
         color: @green;
       }
     }

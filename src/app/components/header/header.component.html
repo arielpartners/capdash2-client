@@ -36,8 +36,8 @@
                 <dhs-menu-header [icon]="submenu.header.icon" [text]="submenu.header.text"></dhs-menu-header>
 
                 <div class="row" *ngSwitchCase="'list'">
-                  <dhs-list nav-list>
-                    <dhs-list-item *ngFor="let item of submenu.items"
+                  <dhs-menu nav-list>
+                    <dhs-menu-item *ngFor="let item of submenu.items"
                                   [link]="item.href"
                                   dhsCloseToggle>
                       <dhs-icon [icon]="item.activeIcon ? item.activeIcon : 'angle-right'"
@@ -46,8 +46,8 @@
                                dhsTextInverse></dhs-icon>
                       {{item.text}}
                       <dhs-badge *ngIf="item.badge" [status]="item.badge.class">{{item.badge.value}}</dhs-badge>
-                    </dhs-list-item>
-                  </dhs-list>
+                    </dhs-menu-item>
+                  </dhs-menu>
                 </div>
 
                 <div *ngSwitchCase="'paragraph'">

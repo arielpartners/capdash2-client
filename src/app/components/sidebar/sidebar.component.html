@@ -31,10 +31,11 @@
           </a>
           <dhs-list class="sub-menu">
             <dhs-list-item *ngFor="let subItem of item.items"
-                           routerLinkActive="active"
-                           [link]="subItem.link">
-              <dhs-badge *ngIf="subItem.badge" pull="left">{{subItem.badge.value}}</dhs-badge>
-              <span *ngIf="subItem.text">{{subItem.text}}</span>
+                           routerLinkActive="active">
+              <a *ngIf="subItem.link" [routerLink]="subItem.link">
+                <dhs-badge *ngIf="subItem.badge" pull="left">{{subItem.badge.value}}</dhs-badge>
+                <span *ngIf="subItem.text">{{subItem.text}}</span>
+              </a>
 
               <!-- IF third level submenu -->
 
@@ -46,9 +47,10 @@
                 <a><b class="caret" pull="right"></b>{{subItem.menu.label}}</a>
                 <dhs-list class="sub-menu">
                   <dhs-list-item *ngFor="let subSubItem of subItem.items"
-                                 routerLinkActive="active"
-                                 [link]="subSubItem.link">
-                    <span>{{subSubItem.text}}</span>
+                                 routerLinkActive="active">
+                    <a [routerLink]="subSubItem.link">
+                      <span>{{subSubItem.text}}</span>
+                    </a>
                   </dhs-list-item>
                 </dhs-list>
               </li>
@@ -58,9 +60,10 @@
 
         <!-- ITEM -->
         <dhs-list-item *ngIf="!item.menu"
-                       routerLinkActive="active"
-                       [link]="item.link">
-          <dhs-icon [icon]="item.icon"></dhs-icon> <span>{{item.label}}</span>
+                       routerLinkActive="active">
+          <a [routerLink]="item.link">
+            <dhs-icon [icon]="item.icon"></dhs-icon> <span>{{item.label}}</span>
+          </a>
         </dhs-list-item>
       </div>
       <!-- END SIDEBAR ITEMS -->
