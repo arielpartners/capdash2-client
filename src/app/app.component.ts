@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
-import { AuthService } from './services/auth/auth.service';
+import { AuthService } from 'dhs-common-module/src/lib/auth/auth.service';
 import { DropdownService } from 'dhs-common-module/src/lib/menu';
 
 @Component({

@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import {NgRedux} from '@angular-redux/store';
 
 import {IAppState} from '../../store/root.types';
-import {ITEM_TYPES} from '../../core/ajax/item/item.types';
-import {ItemActions} from '../../core/ajax/item/item.actions';
+import {ITEM_TYPES} from 'dhs-common-module/src/lib/ajax/item/item.types';
+import {ItemActions} from 'dhs-common-module/src/lib/ajax/item/item.actions';
 
 @Component({
   selector: 'cd-sidebar',

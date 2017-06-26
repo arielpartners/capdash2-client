@@ -7,8 +7,8 @@ import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing'
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoginComponent } from './login.component';
-import { AuthService } from '../../services/auth/auth.service';
-import { ItemActions } from '../../core/ajax/item/item.actions';
+import { AuthService } from 'dhs-common-module/src/lib/auth/auth.service';
+import { ItemActions } from 'dhs-common-module/src/lib/ajax/item/item.actions';
 
 describe('LoginComponent', () => {
 
