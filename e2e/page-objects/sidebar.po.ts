@@ -6,16 +6,16 @@ const helpers = new E2EHelpers();
 export class SidebarPage {
   items = {
     'Dashboard': {
-      element: element(by.cssContainingText('li.has-sub', 'Dashboard')),
+      element: element(by.cssContainingText('.has-sub', 'Dashboard')),
       children: {
         'Main Dashboard': {
-          element: element(by.xpath('//ul[@class="sub-menu"]/li/a[text()[contains(., "Dashboard")]]/..')),
+          element: element(by.xpath('//dhs-list[@class="sub-menu"]//dhs-list-item//span[text()[contains(., "Dashboard")]]/../..')),
           path: 'dashboard'
         }
       }
     },
     'Units': {
-      element: element(by.cssContainingText('li.has-sub', 'Units')),
+      element: element(by.cssContainingText('.has-sub', 'Units')),
       children: {
         'Offline Units': {
           element: element(by.xpath('//a[text()[contains(., "Offline Units")]]/..')),
@@ -36,11 +36,11 @@ export class SidebarPage {
       }
     },
     'Edit Demand & Projections': {
-      element: element(by.cssContainingText('li', 'Edit Demand & Projections')),
+      element: element(by.cssContainingText('dhs-list-item', 'Edit Demand & Projections')),
       path: 'edit-demand/edit'
     },
     'Intake/Vacancy Control': {
-      element: element(by.cssContainingText('li', 'Intake/Vacancy Control')),
+      element: element(by.cssContainingText('dhs-list-item', 'Intake/Vacancy Control')),
       path: 'ivc'
     },
     'Reports': {
@@ -62,7 +62,7 @@ export class SidebarPage {
       }
     },
     'App Settings': {
-      element: element(by.cssContainingText('li.has-sub', 'App Settings')),
+      element: element(by.cssContainingText('.has-sub', 'App Settings')),
       children: {
         'General Settings': {
           element: element(by.xpath('//a[text()[contains(., "General Settings")]]/..')),
@@ -71,7 +71,7 @@ export class SidebarPage {
       }
     },
     'App Help': {
-      element: element(by.cssContainingText('li.has-sub', 'App Help')),
+      element: element(by.cssContainingText('.has-sub', 'App Help')),
       children: {
         'General Help': {
           element: element(by.xpath('//a[text()[contains(., "General Help")]]/..')),
