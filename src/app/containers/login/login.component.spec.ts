@@ -1,135 +1,39 @@
-import { Component } from '@angular/core';
+// import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed, inject, fakeAsync, tick } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
-import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
-import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+// import { ReactiveFormsModule } from '@angular/forms';
+// import { By } from '@angular/platform-browser';
+// import { RouterTestingModule } from '@angular/router/testing';
+// import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
+// import { Location } from '@angular/common';
+// import { Router } from '@angular/router';
 import { LoginComponent } from './login.component';
-import { AuthService } from '../../services/auth/auth.service';
-import { ItemActions } from '../../core/ajax/item/item.actions';
+import { AuthModule } from 'dhs-common-module/src/lib/auth/auth.module';
+import {RouterTestingModule} from '@angular/router/testing';
+// import { AuthService } from 'dhs-common-module/src/lib/auth/auth.service';
+// import { ItemActions } from 'dhs-common-module/src/lib/ajax/item/item.actions';
 
 describe('LoginComponent', () => {
 
-  @Component({
-    template: '<router-outlet></router-outlet>'
-  })
-
-  class RouteComponent {}
-
-  @Component({
-    template: '<p>blank component</p>'
-  })
-
-  class DefaultComponent {}
-
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let auth: AuthService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RouteComponent, LoginComponent, DefaultComponent ],
+      declarations: [LoginComponent],
       imports: [
-        ReactiveFormsModule,
-        RouterTestingModule.withRoutes([
-          { path: '', component: DefaultComponent },
-          { path: 'login', component: LoginComponent }
-        ]),
-        NgReduxTestingModule
-      ],
-      providers: [
-        AuthService,
-        ItemActions
-      ],
-    })
-    .compileComponents().then(() => {
-      fixture = TestBed.createComponent(LoginComponent);
-      component = fixture.componentInstance;
-    });
-
-    MockNgRedux.reset();
-
-    auth = TestBed.get(AuthService);
+        AuthModule,
+        RouterTestingModule
+      ]
+    }).compileComponents()
   }));
 
   beforeEach(() => {
-    localStorage.clear();
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  it('should create', async(() => {
+  it('should create', () => {
     expect(component).toBeTruthy();
-  }));
-
-  describe('ngOnInit()', () => {
-
-    let routeComponent: RouteComponent;
-    let routeFixture: ComponentFixture<RouteComponent>;
-
-    beforeEach(() => {
-      routeFixture = TestBed.createComponent(RouteComponent);
-      routeComponent = routeFixture.componentInstance;
-    });
-
-    it('should redirect to base url when token exist and current location is login url', async(
-      inject([Router, Location], (router: Router, location: Location) => {
-        const data = require('../../../../json-server/db.json');
-        const token = JSON.stringify(data.user_token.jwt);
-        router.navigate(['/']).then(() => {
-          expect(location.path()).toBe('/');
-          localStorage.setItem('reduxPersist:token', token);
-          return router.navigate(['/login']);
-        }).then(() => {
-          return component.ngOnInit();
-        }).then(() => {
-          expect(location.path()).toBe('/');
-        });
-      })
-    ));
-  });
-
-  describe('submitForm(authForm)', () => {
-    it('should exist', () => {
-      expect(component.submitForm).toBeTruthy();
-      expect(typeof component.submitForm).toBe('function');
-    });
-
-    it('should have called when submit button is clicked', () => {
-      const button = fixture.debugElement.query(By.css('.btn-success'));
-      fakeAsync(() => {
-        button.triggerEventHandler('click', null);
-        tick();
-        fixture.detectChanges();
-        expect(component.submitForm).toHaveBeenCalled();
-      });
-    });
-
-    it('should not called login() when argument is null', async(() => {
-      const spy = spyOn(auth, 'login');
-      const form = {
-        auth: { email: null, password: null }
-      };
-
-      component.submitForm({
-        email: form.auth.email,
-        password: form.auth.password
-      });
-      expect(spy).not.toHaveBeenCalled();
-    }));
-
-    it('should have called login() from AuthService when form is submitted', async(() => {
-      const spy = spyOn(auth, 'login');
-      const form = {
-        auth: { email: 'test@test.com', password: '1234' }
-      };
-
-      component.submitForm({
-        email: form.auth.email,
-        password: form.auth.password
-      });
-      expect(spy).toHaveBeenCalled();
-      expect(spy).toHaveBeenCalledWith(form.auth.email, form.auth.password);
-    }));
   });
 });

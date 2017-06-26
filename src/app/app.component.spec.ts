@@ -6,9 +6,8 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { MockComponent } from 'ng2-mock-component';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
-import { AuthService } from './services/auth/auth.service';
+import { AuthService } from 'dhs-common-module/src/lib/auth/auth.service';
 import { DHSModule } from 'dhs-common-module/src/lib/module';
-import { ItemModule } from './core/ajax/item/item.module';
 import { HttpModule } from '@angular/http';
 
 describe('AppComponent', () => {
@@ -44,7 +43,6 @@ describe('AppComponent', () => {
         ]),
         NgReduxTestingModule,
         DHSModule.forRoot(),
-        ItemModule,
         HttpModule
       ],
       providers: [ AuthService ]
