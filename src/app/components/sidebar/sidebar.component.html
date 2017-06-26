@@ -5,7 +5,7 @@
   <div data-scrollbar="true" data-height="100%">
 
     <!-- begin sidebar nav -->
-    <ul class="nav">
+    <dhs-list class="nav" expandable>
 
       <li class="nav-profile">
         <div class="info">
@@ -18,32 +18,33 @@
       <!-- BEGIN SIDEBAR ITEMS -->
       <div *ngFor="let item of sidebarItems" class="sidebar-item">
         <!-- MENU -->
-        <li *ngIf="item.menu"
-            class="has-sub"
+        <dhs-list-item *ngIf="item.menu"
             routerLinkActive="active"
-            (click)="expandedMenu = item.menu.id"
-            [ngClass]="{'expand': expandedMenu.startsWith(item.menu.id)}">
+            has-sub [name]="item.menu.id">
           <a>
             <b class="caret" pull="right"></b>
             <dhs-badge *ngIf="item.menu.badge" pull="right">{{item.menu.badge.value}}</dhs-badge>
             <dhs-icon [icon]="item.menu.icon"></dhs-icon>
             <span>{{item.menu.label}}</span>
           </a>
-          <dhs-list class="sub-menu">
-            <dhs-list-item *ngFor="let subItem of item.items"
-                           routerLinkActive="active">
-              <a *ngIf="subItem.link" [routerLink]="subItem.link">
-                <dhs-badge *ngIf="subItem.badge" pull="left">{{subItem.badge.value}}</dhs-badge>
-                <span *ngIf="subItem.text">{{subItem.text}}</span>
-              </a>
+          <dhs-list sub-list>
+            <div *ngFor="let subItem of item.items">
+
+              <!-- IF single item -->
+              <dhs-list-item *ngIf="subItem.link" routerLinkActive="active">
+                <a [routerLink]="subItem.link">
+                  <dhs-badge *ngIf="subItem.badge" pull="left">{{subItem.badge.value}}</dhs-badge>
+                  <span *ngIf="subItem.text">{{subItem.text}}</span>
+                </a>
+              </dhs-list-item>
 
               <!-- IF third level submenu -->
 
-              <li *ngIf="subItem.menu"
-                  class="has-sub"
-                  routerLinkActive="active"
-                  (click)="$event.stopPropagation(); expandedMenu = subItem.menu.id"
-                  [ngClass]="{'expand': expandedMenu === subItem.menu.id }">
+              <dhs-list-item *ngIf="subItem.menu"
+                             routerLinkActive="active"
+                             class="has-sub"
+                             (click)="$event.stopPropagation(); expandedMenu = subItem.menu.id"
+                             [ngClass]="{'expand': expandedMenu === subItem.menu.id }">
                 <a><b class="caret" pull="right"></b>{{subItem.menu.label}}</a>
                 <dhs-list class="sub-menu">
                   <dhs-list-item *ngFor="let subSubItem of subItem.items"
@@ -53,10 +54,11 @@
                     </a>
                   </dhs-list-item>
                 </dhs-list>
-              </li>
-            </dhs-list-item>
+              </dhs-list-item>
+
+            </div>
           </dhs-list>
-        </li>
+        </dhs-list-item>
 
         <!-- ITEM -->
         <dhs-list-item *ngIf="!item.menu"
@@ -78,7 +80,7 @@
       </li>
 
       <!-- end sidebar minify button -->
-    </ul>
+    </dhs-list>
     <!-- end sidebar nav -->
   </div>
   <!-- end sidebar scrollbar -->

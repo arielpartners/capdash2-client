@@ -81,7 +81,7 @@ export const ReportsMenu = {
     },
     {
       menu: {
-        id: 'reports/other',
+        id: 'other-reports',
         label: 'Other Reports'
       },
       items: [
