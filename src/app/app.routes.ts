@@ -4,7 +4,7 @@
 
 import { HomeComponent } from './containers/home/home.component';
 import { LoginComponent } from './containers/login/login.component';
-import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './containers/page-not-found/page-not-found.component';
 
 export const appRoutes = [
   {path: '', component: HomeComponent, pathMatch: 'full' },

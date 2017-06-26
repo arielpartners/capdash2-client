@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 
-import {ITEM_TYPES} from '../core/ajax/item/item.types';
-import {ItemActions} from '../core/ajax/item/item.actions';
-import {ItemEpics} from '../core/ajax/item/item.epics';
+// Todo: dhs-common-module AjaxItem module Type, Actions, Epic path can be combine as 'dhs-common-module/src/lib/ajax/item/'.
+import {ITEM_TYPES} from 'dhs-common-module/src/lib/ajax/item/item.types';
+import {ItemActions} from 'dhs-common-module/src/lib/ajax/item/item.actions';
+import {ItemEpics} from 'dhs-common-module/src/lib/ajax/item/item.epics';
 
 @Injectable()
 export class RootEpics {

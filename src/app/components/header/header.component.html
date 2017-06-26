@@ -20,7 +20,8 @@
       <div class="nav navbar-nav">
         <div [ngClass]="headerMenu.main.container" dropdown>
           <dhs-menu-button [id]="headerMenu.main.menu.id"
-                           [name]="headerMenu.main.menu.name">
+                           [name]="headerMenu.main.menu.name"
+                           className="text-white">
             <dhs-icon [icon]="headerMenu.main.menu.icon"
                      fixed="true"></dhs-icon>
             {{headerMenu.main.menu.label}}
@@ -36,20 +37,19 @@
                 <dhs-menu-header [icon]="submenu.header.icon" [text]="submenu.header.text"></dhs-menu-header>
 
                 <div class="row" *ngSwitchCase="'list'">
-                  <dhs-menu nav-list>
-                    <dhs-menu-item *ngFor="let item of submenu.items"
-                                  [link]="item.href"
-                                  dhsCloseToggle>
-                      <dhs-icon [icon]="item.activeIcon ? item.activeIcon : 'angle-right'"
-                               size="lg"
-                               fixed="true"
-                               dhsTextInverse></dhs-icon>
-                      {{item.text}}
-                      <dhs-badge *ngIf="item.badge" [status]="item.badge.class">{{item.badge.value}}</dhs-badge>
-                    </dhs-menu-item>
-                  </dhs-menu>
+                  <dhs-list nav-list>
+                    <dhs-list-item *ngFor="let item of submenu.items" dhsCloseToggle>
+                      <a [href]="item.href" class="text-ellipsis">
+                        <dhs-icon [icon]="item.activeIcon ? item.activeIcon : 'angle-right'"
+                                 size="lg"
+                                 fixed="true"
+                                 dhsTextInverse></dhs-icon>
+                        {{item.text}}
+                        <dhs-badge *ngIf="item.badge" [status]="item.badge.class">{{item.badge.value}}</dhs-badge>
+                      </a>
+                    </dhs-list-item>
+                  </dhs-list>
                 </div>
-
                 <div *ngSwitchCase="'paragraph'">
                   <p *ngFor="let item of submenu.items">
                     {{item.text}}
@@ -83,7 +83,8 @@
       <!-- ./end header global search -->
 
       <div dropdown [ngClass]="headerMenu.notification.container">
-        <dhs-menu-button [id]="headerMenu.notification.menu.id" [name]="headerMenu.notification.menu.name" class="f-s-14">
+        <dhs-menu-button [id]="headerMenu.notification.menu.id" [name]="headerMenu.notification.menu.name"
+                         className="text-white f-s-14">
           <dhs-icon [icon]="headerMenu.notification.menu.icon"></dhs-icon>
           <span class="label">4</span>
         </dhs-menu-button>
