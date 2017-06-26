@@ -18,19 +18,19 @@ export class SidebarPage {
       element: element(by.cssContainingText('.has-sub', 'Units')),
       children: {
         'Offline Units': {
-          element: element(by.xpath('//a[text()[contains(., "Offline Units")]]/..')),
+          element: element(by.xpath('//dhs-list[@class="sub-menu"]//a/span[text()[contains(., "Offline Units")]]/../..')),
           path: 'units/offline-units'
         },
         'HERO': {
-          element: element(by.xpath('//a[text()[contains(., "HERO")]]/..')),
+          element: element(by.xpath('//dhs-list[@class="sub-menu"]//a/span[text()[contains(., "HERO")]]/../..')),
           path: 'units/hero'
         },
-        'L.T.R.': {
-          element: element(by.xpath('//a[text()[contains(., "L.T.R.")]]/..')),
+        'LTR': {
+          element: element(by.xpath('//dhs-list[@class="sub-menu"]//a/span[text()[contains(., "LTR")]]/../..')),
           path: 'units/ltr'
         },
         'Demand & Projections': {
-          element: element(by.xpath('//a[text()[contains(., "Demand & Projections")]]/..')),
+          element: element(by.xpath('//dhs-list[@class="sub-menu"]//a/span[text()[contains(., "Demand & Projections")]]/../..')),
           path: 'units/demand'
         }
       }

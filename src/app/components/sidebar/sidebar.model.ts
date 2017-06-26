@@ -40,7 +40,7 @@ export const UnitsMenu = {
     },
     {
       link: 'units/ltr',
-      text: 'L.T.R',
+      text: 'LTR',
       badge: {
         value: '105'
       }

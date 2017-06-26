@@ -30,7 +30,7 @@ Scenario Outline: The user can navigate using links in the <item> sub menu
     | Dashboard    | Main Dashboard       |
     | Units        | Offline Units        |
     | Units        | HERO                 |
-    | Units        | L.T.R.               |
+    | Units        | LTR               |
     | Units        | Demand & Projections |
     | Reports      | General Reports      |
     | App Settings | General Settings     |
