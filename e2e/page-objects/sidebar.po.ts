@@ -44,17 +44,17 @@ export class SidebarPage {
       path: 'ivc'
     },
     'Reports': {
-      element: element(by.xpath('//span[text()[contains(., "Reports")]]/../..')),
+      element: element(by.xpath('//div[@class="sidebar-item"]/dhs-list-item/a/span[text()[contains(., "Reports")]]/../..')),
       children: {
         'General Reports': {
-          element: element(by.xpath('//a[text()[contains(., "General Reports")]]/..')),
+          element: element(by.xpath('//dhs-list[@class="sub-menu"]//a/span[text()[contains(., "General Reports")]]/../..')),
           path: 'reports/general'
         },
         'Other Reports': {
           element: element(by.xpath('//a[text()[contains(., "Other Reports")]]/..')),
           children: {
             'Report All': {
-              element: element(by.xpath('//a[text()[contains(., "Report All")]]/..')),
+              element: element(by.xpath('//dhs-list-item/dhs-list/dhs-list-item/a/span[text()[contains(., "Report All")]]/../..')),
               path: 'reports/all'
             }
           }
@@ -65,7 +65,7 @@ export class SidebarPage {
       element: element(by.cssContainingText('.has-sub', 'App Settings')),
       children: {
         'General Settings': {
-          element: element(by.xpath('//a[text()[contains(., "General Settings")]]/..')),
+          element: element(by.xpath('//dhs-list[@class="sub-menu"]//a/span[text()[contains(., "General Settings")]]/../..')),
           path: 'settings/general'
         }
       }
@@ -74,14 +74,14 @@ export class SidebarPage {
       element: element(by.cssContainingText('.has-sub', 'App Help')),
       children: {
         'General Help': {
-          element: element(by.xpath('//a[text()[contains(., "General Help")]]/..')),
+          element: element(by.xpath('//dhs-list[@class="sub-menu"]//a/span[text()[contains(., "General Help")]]/../..')),
           path: 'help/general'
         }
       }
     }
   }
 
-  itemLabel = element(by.cssContainingText('a > span', 'Units'))
+  itemLabel = element(by.cssContainingText('dhs-list-item.has-sub > a > span', 'Units'));
   minifyBtn = element(by.css('.sidebar-minify-btn'));
 
   getItem(item) {
