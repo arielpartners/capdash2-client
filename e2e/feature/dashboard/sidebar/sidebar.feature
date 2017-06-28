@@ -30,7 +30,7 @@ Scenario Outline: The user can navigate using links in the <item> sub menu
     | Dashboard    | Main Dashboard       |
     | Units        | Offline Units        |
     | Units        | HERO                 |
-    | Units        | L.T.R.               |
+    | Units        | LTR               |
     | Units        | Demand & Projections |
     | Reports      | General Reports      |
     | App Settings | General Settings     |
@@ -51,7 +51,7 @@ Scenario: Sub menu collapses when another is expanded
   Then the user should see the Offline Units item in the Units sub-menu
   When the user selects the Reports sidebar item
   Then the user should see the General Reports item in the Reports sub-menu
-  And the Offline Units item in the Units sub-menu should not be visible
+  And the Units sub-menu should be collapsed
 
 Scenario: the user can minify and maximize the sidebar
   When the user selects the sidebar minify button

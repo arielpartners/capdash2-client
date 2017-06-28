@@ -5,7 +5,8 @@
   <div data-scrollbar="true" data-height="100%">
 
     <!-- begin sidebar nav -->
-    <ul class="nav">
+    <dhs-list class="nav" expandable>
+
       <li class="nav-profile">
         <div class="info">
           {{agencyTitle}} {{appShTitle}}
@@ -13,130 +14,62 @@
           <small>Version: {{version | async}}</small>
         </div>
       </li>
-      <!-- ================== 01.0 Dashboard ============================================================= -->
-      <li class="has-sub"
-          routerLinkActive="active"
-          (click)="expandedMenu = 'dashboard'"
-          [ngClass]="{'expand': expandedMenu === 'dashboard' }">
-        <a href="javascript:">
-          <b class="caret pull-right"></b>
-          <i class="fa fa-dashboard"></i>
-          <span>Dashboard</span>
-        </a>
-        <ul class="sub-menu">
-          <li routerLinkActive="active">
-            <a [routerLink]="['dashboard']">Dashboard</a>
-          </li>
-        </ul>
-      </li>
 
-      <!-- ================== 02.0 Units ============================================================= -->
-      <li class="has-sub"
-          routerLinkActive="active"
-          (click)="expandedMenu = 'units'"
-          [ngClass]="{'expand': expandedMenu === 'units' }">
-        <a href="javascript:">
-          <b class="caret pull-right"></b>
-          <span class="badge pull-right">817</span>
-          <i class="fa fa-building-o"></i>
-          <span>Units</span>
-        </a>
-        <ul class="sub-menu">
-          <li routerLinkActive="active">
-            <a [routerLink]="['units/offline-units']"><span class="badge pull-left">817</span>&nbsp;Offline Units</a>
-          </li>
-          <li routerLinkActive="active">
-            <a [routerLink]="['units/hero']"><span class="badge pull-left">200</span>&nbsp;HERO</a>
-          </li>
-          <li routerLinkActive="active">
-            <a [routerLink]="['units/ltr']"><span class="badge pull-left">105</span>&nbsp;L.T.R.</a>
-          </li>
-          <li routerLinkActive="active">
-            <a [routerLink]="['units/demand']"><span class="badge pull-left">38</span>&nbsp;Demand & Projections</a>
-          </li>
-        </ul>
-      </li>
+      <!-- BEGIN SIDEBAR ITEMS -->
+      <div *ngFor="let item of sidebarItems" class="sidebar-item">
+        <!-- MENU -->
+        <dhs-list-item *ngIf="item.menu"
+            routerLinkActive="active"
+            has-sub [name]="item.menu.id">
+          <a>
+            <b class="caret" pull="right"></b>
+            <dhs-badge *ngIf="item.menu.badge" pull="right">{{item.menu.badge.value}}</dhs-badge>
+            <dhs-icon [icon]="item.menu.icon"></dhs-icon>
+            <span>{{item.menu.label}}</span>
+          </a>
+          <dhs-list sub-list>
+            <div *ngFor="let subItem of item.items">
 
-      <!-- ================== 03.0 Edit Demand & Projections ============================================================= -->
-      <li routerLinkActive="active">
-        <a [routerLink]="['edit-demand/edit']"><i class="fa fa-edit"></i> <span>Edit Demand & Projections</span></a>
-      </li>
+              <!-- IF single item -->
+              <dhs-list-item *ngIf="subItem.link" routerLinkActive="active">
+                <a [routerLink]="subItem.link">
+                  <dhs-badge *ngIf="subItem.badge" pull="left">{{subItem.badge.value}}</dhs-badge>
+                  <span *ngIf="subItem.text">{{subItem.text}}</span>
+                </a>
+              </dhs-list-item>
 
-      <!-- ================== 04.0 IVC ============================================================= -->
-      <li routerLinkActive="active" routerLinkActive="active" id="sidebar-intake">
-        <a [routerLink]="['ivc']"><i class="fa fa-calendar-check-o"></i> <span>Intake/Vacancy Control</span></a>
-      </li>
+              <!-- IF third level submenu -->
 
-      <!-- ================== 05.0 Reports ============================================================= -->
-      <li class="has-sub"
-          routerLinkActive="active"
-          (click)="expandedMenu = 'reports'"
-          [ngClass]="{'expand': expandedMenu.startsWith('reports') }">
-        <a href="javascript:">
-          <b class="caret pull-right"></b>
-          <i class="fa fa-bar-chart"></i>
-          <span>Reports </span>
-        </a>
-        <ul class="sub-menu">
-          <li routerLinkActive="active">
-            <a [routerLink]="['/reports/general']">General Reports</a>
-          </li>
-            <li class="has-sub"
-                routerLinkActive="active"
-                (click)="$event.stopPropagation(); expandedMenu = 'reports/other'"
-                [ngClass]="{'expand': expandedMenu === ('reports/other') }">
-            <a href="javascript:"><b class="caret pull-right"></b> Other Reports</a>
-            <ul class="sub-menu">
-              <li routerLinkActive="active">
-                <a [routerLink]="['/reports/all']">Report All</a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/reports/v1']">Report 1</a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/reports/v2']">Report 2</a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/reports/v3']">Report 3</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
+              <dhs-list-item *ngIf="subItem.menu"
+                             routerLinkActive="active"
+                             class="has-sub"
+                             (click)="$event.stopPropagation(); expandedMenu = subItem.menu.id"
+                             [ngClass]="{'expand': expandedMenu === subItem.menu.id }">
+                <a><b class="caret" pull="right"></b>{{subItem.menu.label}}</a>
+                <dhs-list class="sub-menu">
+                  <dhs-list-item *ngFor="let subSubItem of subItem.items"
+                                 routerLinkActive="active">
+                    <a [routerLink]="subSubItem.link">
+                      <span>{{subSubItem.text}}</span>
+                    </a>
+                  </dhs-list-item>
+                </dhs-list>
+              </dhs-list-item>
 
-      <!-- ================== 09.0 App Settings ============================================================= -->
-      <li class="has-sub"
-          routerLinkActive="active"
-          (click)="expandedMenu = 'settings'"
-          [ngClass]="{'expand': expandedMenu === 'settings' }">
-        <a href="javascript:">
-          <b class="caret pull-right"></b>
-          <i class="fa fa-cogs"></i>
-          <span>App Settings</span>
-        </a>
-        <ul class="sub-menu">
-          <li routerLinkActive="active">
-            <a [routerLink]="['/settings/general']">General Settings</a>
-          </li>
-        </ul>
-      </li>
+            </div>
+          </dhs-list>
+        </dhs-list-item>
 
-      <!-- ================== 10.0 App Help ============================================================= -->
-      <li class="has-sub"
-          routerLinkActive="active"
-          (click)="expandedMenu = 'help'"
-          [ngClass]="{'expand': expandedMenu === 'help' }">
-        <a href="javascript:">
-          <b class="caret pull-right"></b>
-          <i class="fa fa-life-buoy"></i>
-          <span>App Help</span>
-        </a>
-        <ul class="sub-menu">
-          <li routerLinkActive="active">
-            <a [routerLink]="['/help/general']">General Help</a>
-          </li>
-        </ul>
-      </li>
+        <!-- ITEM -->
+        <dhs-list-item *ngIf="!item.menu"
+                       routerLinkActive="active">
+          <a [routerLink]="item.link">
+            <dhs-icon [icon]="item.icon"></dhs-icon> <span>{{item.label}}</span>
+          </a>
+        </dhs-list-item>
+      </div>
+      <!-- END SIDEBAR ITEMS -->
+
       <!-- begin sidebar minify button -->
       <li>
         <a href="javascript:"
@@ -147,7 +80,7 @@
       </li>
 
       <!-- end sidebar minify button -->
-    </ul>
+    </dhs-list>
     <!-- end sidebar nav -->
   </div>
   <!-- end sidebar scrollbar -->

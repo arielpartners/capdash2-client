@@ -13,6 +13,7 @@ defineSupportCode(({Given, When, Then}) => {
   const helpers: E2EHelpers = new E2EHelpers();
 
   Given('the Capacity Dashboard sidebar is loaded', () => {
+    browser.get('http://localhost:4200');
     return app.getAppSidebar().then( appSidebar => {
       appSidebar.isDisplayed().then( isDisplayed => {
         expect(isDisplayed).to.equal(true);
@@ -57,11 +58,9 @@ defineSupportCode(({Given, When, Then}) => {
     });
   });
 
-  Then('the Offline Units item in the Units sub-menu should not be visible', () => {
-    const offlineUnits =  sidebar.getItem('Offline Units');
-
-    return offlineUnits.element.isDisplayed().then( isDisplayed => {
-      expect(isDisplayed).to.equal(false);
+  Then('the Units sub-menu should be collapsed', () => {
+    return sidebar.getItem('Units').element.getAttribute('class').then( classList => {
+      expect(helpers.hasClass(classList, 'expand')).to.equal(false);
     });
   });
 
